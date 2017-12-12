@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Community</title>
+<title>Snipe Community</title>
 <!-- Meta tag Keywords -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -11,13 +11,82 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <style type="text/css">
+    .index-content a:hover{
+    color:black;
+    text-decoration:none;
+}
+.index-content{
+    margin-bottom:20px;
+    padding:50px 0px;
+    
+}
+body {
+padding-right:0px !important;
+margin-right:0px !important;
+}
+.index-content .row{
+    margin-top:20px;
+}
+.index-content a{
+    color: black;
+}
+.index-content .card{
+    background-color: #FFFFFF;
+    padding:0;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius:4px;
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
 
+}
+.index-content .card:hover{
+    box-shadow: 0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12), 0 8px 10px -5px rgba(0,0,0,0.3);
+    color:black;
+}
+.index-content .card img{
+    width:100%;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+.index-content .card h4{
+    margin:20px;
+}
+.index-content .card p{
+    margin:20px;
+    opacity: 0.65;
+}
+.index-content .blue-button{
+    width: 100px;
+    -webkit-transition: background-color 1s , color 1s; /* For Safari 3.1 to 6.0 */
+    transition: background-color 1s , color 1s;
+    min-height: 20px;
+    background-color: #002E5B;
+    color: #ffffff;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: lighter;
+    margin: 0px 20px 15px 20px;
+    padding: 5px 0px;
+    display: inline-block;
+}
+.index-content .blue-button:hover{
+    background-color: #dadada;
+    color: #002E5B;
+}
+@media (max-width: 768px) {
+
+    .index-content .col-lg-4 {
+        margin-top: 20px;
+    }
+}
+    </style>
 </head>
 <body>
 <div class="main-agile" id="home">
 	<!-- header -->
 	<div class="header">
-		<div class="container">
+		<div class="container-fluid">
 			<div class="col-md-4 w3l_header_left">
 				<div class="logo">
 					<h1><a class="navbar-brand" href="index.html"><span>Snipe Community</span></a></h1>
@@ -54,8 +123,8 @@
 							<ul class="nav navbar-nav menu__list">
 								<li class="menu__item"><a href="index.html" class="menu__link">Home</a></li>
 								<li class="menu__item "><a href="about.html" class="menu__link">About Us</a></li>
-								<li class="menu__item menu__item--current"><a href="tags.html" class="menu__link">Tags</a></li>
-								<li class="menu__item"><a href="blog.html" class=" menu__link">blog</a></li>
+								<li class="menu__item "><a href="tags.html" class="menu__link">Tags</a></li>
+								<li class="menu__item menu__item--current"><a href="#bl.html" class=" menu__link">blog</a></li>
 								<li class="menu__item"><a href="#contact" class=" menu__link">Contact</a></li>
 
 							</ul>
@@ -79,7 +148,7 @@
 </div>
 <hr>
 
-<h1> Tags </h1>
+<h1> Blog </h1>
 <hr>
 <br>
 <!-- pop-up-box -->
@@ -140,101 +209,156 @@
 
 <br>
 
-<div class="container">    
-  <div class="row">
-    <div class="col-sm-3">
-      <div class="panel panel-primary">
-        <div class="panel-heading">C - Language</div>
-               <div class="panel-footer">C is a high-level & general-purpose programming language that is ideal for developing firmware or portable applications. </div>
-      </div>
+
+<div class="index-content">
+    <div class="container">
+           
+                <div class="col-md-5">
+                    <div class="card">
+                        <img src="images/ang.jpg">
+                        <h4>Angular Js</h4>
+                        <p>AngularJS is a JavaScript-based open-source front-end web application framework mainly maintained by Google and by a community of individuals and corporations to address many of the challenges encountered in developing single-page applications.</p>
+                       <button type="button" class="blue-button" data-toggle="modal" data-target="#myModal">Read More</button>
+                           </div>
+                </div>
+            </a>
+
+                <div class="col-md-5">
+                    <div class="card">
+                        <img src="images/bo.jpg">
+                        <h4>Bootstrap</h4>
+                        <p>Bootstrap is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with our Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.</p>
+                          <button type="button" class="blue-button" data-toggle="modal" data-target="#myModal1">Read More</button>
+                    </div>
+                </div>
+            </a>
+         </div>
+         <br>
+          <div class="container">
+                <div class="col-md-5">
+                    <div class="card">
+                        <img src="images/python.png">
+                        <h4>Python</h4>
+                        <p>Python is a multiparadigm, interpreted, high-level programming language. Python allows programmers to use different programming styles to create simple or complex programs, get quicker results and write code almost as if speaking in a human language.</p>
+                        <button type="button" class="blue-button" data-toggle="modal" data-target="#myModal2">Read More</button>
+                    </div>
+                </div>
+            </a>
+           
+                
+           
+                <div class="col-md-5">
+                    <div class="card">
+                        <img src="images/git.jpg">
+                        <h4>Git</h4>
+                        <p>Git is a version control system for tracking changes in computer files and coordinating work on those files among multiple people. As a distributed revision control system it is aimed at speed, data integrity, and support for distributed, non-linear workflows.</p>
+						 <button type="button" class="blue-button" data-toggle="modal" data-target="#myModal3">Read More</button>
+                    </div>
+                </div>
+            </a>
+
     </div>
-    <div class="col-sm-3"> 
-      <div class="panel panel-primary">
-        <div class="panel-heading">JAVA</div>
-        
-        <div class="panel-footer">Java is a general-purpose object-oriented programming language designed to be used in conjunction with the Java Virtual Machine (JVM).</div>
-      </div>
-    </div>
-    <div class="col-sm-3"> 
-      <div class="panel panel-primary">
-        <div class="panel-heading">C ++</div>
-      
-        <div class="panel-footer">C++ is an OOP language that is viewed by many as the best language for creating large-scale applications. </div>
+</div>
+
+
+
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+
+    <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Angular</h4>
+        </div>
+        <div class="modal-body">
+        	<h4>Reasons to use Angular</h4><br>
+          <p><b>SECURITY :</b>  When we talk about enterprise development or transformation to a new leading technology framework, security is the top most concern. And now more than ever enterprises are focusing more on data security, easy access to their channels, distributors and sales team.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
-</div><br>
 
-<div class="container">    
-  <div class="row">
-    <div class="col-sm-3">
-      <div class="panel panel-primary">
-        <div class="panel-heading">HTML 5</div>
-        <div class="panel-footer">HTML is an acronym which stands for Hyper Text Markup Language. We can create static website by HTML only.</div>
-      </div>
-    </div>
-    <div class="col-sm-3"> 
-      <div class="panel panel-primary">
-        <div class="panel-heading">CSS 3</div>
-        <div class="panel-footer">CSS stands for Cascading Style Sheet.CSS is used to design HTML tags & helps the web designers to apply style on HTML tags.</div>
-      </div>
-    </div>
-    <div class="col-sm-3"> 
-      <div class="panel panel-primary">
-        <div class="panel-heading">BOOTSTRAP</div>
-        <div class="panel-footer">BOOTSTRAP is a front-end framework used for easier and faster web development. It facilitates you to create responsive designs.</div>
+<!-- modal 1 -->
+  <div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Bootstrap</h4>
+        </div>
+        <div class="modal-body">
+        	<h4>Why Bootstrap ?</h4>
+          <p>The bootstrap framework has the primary advantage of having a large number of accessible resources. Here are the most popular reasons why to choose Bootstrap over other frameworks.</p>
+         <ol>
+<li><strong>Easy to use:</strong><br>
+Bootstrap is rated as the easy and user-friendly framework by the top responsive web design companies. It is said to be very adaptable and can be used with CSS or LESS or SASS.</li>
+<li><strong>Faster than any other framework:</strong><br>
+The major advantage of Bootstrap is the speed in which development happens. Instead of coding from scratch, Bootstrap allows using the available ready-made code blocks which can be blended with CSS-LESS functionality and cross-browser compatibility to reduce hours of work.</li>
+<li><strong>Highly responsive:</strong><br>
+As said earlier, mobile device market is continually increasing, and it has become mandatory to have responsive websites. When it comes to responsive design, grid layout plays a significant role and creating a mobile-friendly website is easy and smooth with the help of Bootstrap. It has ready-made classes which help to recognize the number of spots in the grid system. Using Bootstrap, responsive designs are made easy.</li>
+<li><strong>Simple integration and pre-styled components:</strong><br>
+Bootstrap can easily be integrated with other platforms and frameworks. Integration can be done on new sites and even on existing sites without any hassle. Bootstrap has pre-styled components that can be used for alerts, drop down, nav bars, etc. It is feature rich and can be used to develop any responsive websites.</li>
+</ol></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
-</div><br>
 
+<!-- Modal 2 -->
 
-<div class="container">    
-  <div class="row">
-    <div class="col-sm-3">
-      <div class="panel panel-primary">
-        <div class="panel-heading">JQUERY</div>
-        <div class="panel-footer">JQuery is a small, light-weight and fast JavaScript library. It is cross-platform and supports different types of browsers.</div>
-      </div>
-    </div>
-    <div class="col-sm-3"> 
-      <div class="panel panel-primary">
-        <div class="panel-heading">JavaScript</div>
-        <div class="panel-footer">JavaScript is an object-based scripting language that is lightweight and cross-platform. JavaScript is used to create interactive websites.</div>
-      </div>
-    </div>
-    <div class="col-sm-3"> 
-      <div class="panel panel-primary">
-        <div class="panel-heading">TypeScript</div>
-        <div class="panel-footer">TypeScript is JavaScript for application-scale development. TypeScript is a strongly typed, object oriented, compiled language.</div>
+    <div class="modal fade" id="myModal2" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">PYTHON</h4>
+        </div>
+        <div class="modal-body">
+        	<h4>How does Python fit into web development</h4><br>
+          <p>Python can be used to build server-side web applications. While a web framework is not required to build web apps, it's rare that developers would not use existing open source libraries to speed up their progress in getting their application working.</p><br>
+     <p> Python is not used in a web browser. The language executed in browsers such as Chrome, Firefox and Internet Explorer is JavaScript. Projects such as pyjs can compile from Python to JavaScript. However, most Python developers write their web applications using a combination of Python and JavaScript. Python is executed on the server side while JavaScript is downloaded to the client and run by the web browser.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
-</div><br>
 
+<!-- Modal 3-->
 
-<div class="container">    
-  <div class="row">
-    <div class="col-sm-3">
-      <div class="panel panel-primary">
-        <div class="panel-heading">SQL</div>
-        <div class="panel-footer">SQL stands for Structured Query Language. It is a database language for database creation, deletion, fetching & modifying rows.</div>
-      </div>
-    </div>
-    <div class="col-sm-3"> 
-      <div class="panel panel-primary">
-        <div class="panel-heading">PHP</div>
-        <div class="panel-footer">PHP stands for HyperText Preprocessor. It is a open source, interpreted & object-oriented scripting language.</div>
-      </div>
-    </div>
-    <div class="col-sm-3"> 
-      <div class="panel panel-primary">
-        <div class="panel-heading">PYTHON</div>
-        <div class="panel-footer">Python is an object-oriented, high level language, interpreted, dynamic & multipurpose programming language.</div>
+    <div class="modal fade" id="myModal3" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Git</h4>
+        </div>
+        <div class="modal-body">
+        	<h4>Advantages of Git</h4><br>
+         <ol>
+         	<li>Don’t require any common network.</li>
+         	<li>DVCS is fast because it not rely on central server.</li>
+         	<li>Easy to create branches because DVCS is branch management system.</li>
+         	<li>Security is more. It uses a common cryptographic hash function called secure hash function.</li>
+         </ol>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
-</div><br>
+
+</div>
 <!-- Footer -->
 <div class="foote-w3l">
 	<div class="container">
@@ -271,7 +395,7 @@
 								<i class="fa fa-map-marker" aria-hidden="true"></i>
 							</div>
 							<div class="ftr-text">
-								<p>Lorem ipsum dolor sit amet.</p>
+								<p>BENGALURU</p>
 							</div>
 							<div class="clearfix"> </div>
 						</div>
@@ -280,7 +404,7 @@
 								<i class="fa fa-phone" aria-hidden="true"></i>
 							</div>
 							<div class="ftr-text">
-								<p>+1 (512) 154 8176</p>
+								<p>080-23100098</p>
 							</div>
 							<div class="clearfix"> </div>
 						</div>
@@ -289,7 +413,7 @@
 								<i class="fa fa-envelope" aria-hidden="true"></i>
 							</div>
 							<div class="ftr-text">
-								<p><a href="mailto:info@example.com">info@example.com</a></p>
+								<p><a href="mailto:www.snipe.com">www.snipe.com</a></p>
 							</div>
 							<div class="clearfix"> </div>
 						</div>
@@ -319,6 +443,12 @@
 <!-- //Footer -->
 <!-- js-scripts -->
 <!-- js -->
+<script>
+       
+        $(document).ready(function(){
+            $('body').find('img[src$="https://cloud.githubusercontent.com/assets/23024110/20663010/9968df22-b55e-11e6-941d-edbc894c2b78.png"]').parent().closest('a').closest('div').remove();
+        });
+</script>
 	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script> <!-- Necessary-JavaScript-File-For-Bootstrap -->
 <!-- //js -->
