@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<title>Ask a Question</title>
+<link rel='dns-prefetch' href='http://s.w.org/' />
+<script type='text/javascript' src='js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+<script type='text/javascript' src='js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
+<script type='text/javascript' src='js/jquery/ui/core.mine899.js?ver=1.11.4'></script>
+<script type='text/javascript' src='js/general5859.js?ver=4.9.1'></script>
+<script type='text/javascript' src='js/jquery.boxy5859.js?ver=4.9.1'></script>
+<link rel='stylesheet' id='main-stylesheet-css'  href='css/style3.css?ver=1' type='text/css' media='all' />
+</head>
+</script>
+<body  class="page-template page-template-ask-a-question page-template-ask-a-question-php page page-id-6" id=""
+<!-- Points Modal -->
+<!-- Main Section -->
+<div id="main">
+<div class="mainContentTop"></div>
+<div id="mainContent">
+<!-- Center Column -->
+<div id="centerCol" class="left">
+<!-- Top Section -->
+<div class="topSection">
+
+<div class="introBox2">
+<div class="greyBtn addQuestion"></span></a></div>
+
+
+<div class="breadcrumb">
+
+<ul>
+<li><a href="../index.html">Home</a></li>
+<li class="breadcrumbDivider"><img src="images/breadcrumb-right-divider.png" alt="divider" /></li>
+<li>Ask a Question</li>
+<li class="breadcrumbEnd"><img src="images/breadcrumb-right-divider.png" alt="divider" /></li>
+</ul>
+
+</div>
+
+
+</div>
+
+</div>
+<!-- / Top Section -->
+
+<!-- Left Inner Column -->
+<div id="leftColInner" class="left">
+<h1 class="pageTitle">Ask a Question</h1>
+
+
+<!-- Ask a Question Form -->
+<div class="post" id="post-6">
+<form method="post" action="#" id="postNewQuestion" name="postNewQuestion">
+<label>Question Title:<span class="asterixRequired">*</span></label>
+<input type="text" name="question_title" id="question_title" size="30" value="" tabindex="1" autofocus />
+<label>Question Description: <span class="normal">(optional)</span></label>
+<textarea rows="5" cols="40" name="question_content" id="question_content" class="question_content" tabindex="2"></textarea>
+<label>Question Tags: <span class="normal">(optional)</span></label>
+<input type="text" name="question_tags" id="question_tags" size="250" value="" tabindex="3" />
+<label class="categorySelect">Select a Question Category:<span class="asterixRequired">*</span></label>
+
+<select  name='cat' id='askQuestion' class='postform'  tabindex="4">
+<option value='-1'>Select Category</option>
+<option class="level-0" value="19">html</option>
+<option class="level-0" value="18">css</option>
+<option class="level-0" value="15">java</option>
+<option class="level-0" value="16">Hadoop</option>
+<option class="level-0" value="17">phython</option>
+<option class="level-0" value="14">angular</option>
+<option class="level-0" value="13">javascript</option>
+<option class="level-0" value="13">big data</option>
+<option class="level-0" value="13">jquery</option>
+<option class="level-0" value="13">hibernet</option></select>
+<br />
+
+
+<div class="clear"></div>
+
+<div class="divider"></div>
+
+<!-- Log In Box -->
+<div class="loginBox" id="loginBox">
+<label>Member Login:</label><br /><br />
+<label class="loginLabel">Username:<span class="asterixRequired">*</span></label>
+<div class="loginInput"><input type="text" name="username" value="" tabindex="6" /></div>
+<label class="loginLabel">Password:<span class="asterixRequired">*</span></label>
+<div class="loginInput"><input type="password" name="password" id="user_password" class="input" value="" size="20"  maxlength="40" tabindex="7" /></div>
+<div class="clear"></div>
+<p>Not a member yet? <a id="showSignUpBox">Sign Up</a></p>
+</div>
+<!-- / Log In Box -->
+
+<!-- Sign Up Box -->
+<div class="signUpBox" id="signUpBox" style="display:none;">
+<label>New Member Sign Up:</label><br /><br />
+<label class="loginLabel">Choose a Username:<span class="asterixRequired">*</span></label>
+<input type="text" name="user_login" id="new_user_login" class="text" value="" tabindex="8" />
+
+<label class="loginLabel">Choose a Password:<span class="asterixRequired">*</span></label>
+<input type="password" name="password2" id="password1" class="text" value=""  tabindex="9"/>
+
+<label class="loginLabel">Re-enter Password:<span class="asterixRequired">*</span></label><br />
+<input type="password" name="pass_confirm" id="password2" class="text" value="" tabindex="10" />
+
+<label class="loginLabel">Email Address:<span class="asterixRequired">*</span></label><br />
+<input type="text" class="text" name="user_email" id="user_email" value="" tabindex="11" />
+
+
+
+<div class="clear"></div>
+<p>Already a Member? <a id="showLoginBox">Log In</a></p>
+</div>
+<!-- / Sign Up Box -->
+
+<input type="hidden" name="user_type" value="old" id="user_type" />
+
+
+<input type="hidden" name="question_post" value="1" />
+<div class="divider"></div>
+<input type="submit" action="index.html" value="Submit Question" class="left" />
+
+<div class="clear"></div>
+</form>
+
+</div>
+<!-- Ask a Question Form -->
+
+
+<div class="reset"></div>
+
+</div>
+<!-- / Left Inner Column -->
+
+<!-- Right Inner Column -->
+<div id="rightColInner" class="left">
+
+
+
+
+
+<!-- Dynamic Sidebar -->
+
+<div class="sidebarList sidebarSearch">
+<h4>Search</h4>
+<form method="get" id="searchform" action="#" >
+<input type="text" name="s" id="s" tabindex="10" />
+<select  name='cat' id='searchWidget' class='postform'  tabindex="11">
+<option value='-1'>All Categories</option>
+<option class="level-0" value="19">html</option>
+<option class="level-0" value="18">css</option>
+<option class="level-0" value="15">java</option>
+<option class="level-0" value="16">Hadoop</option>
+<option class="level-0" value="17">phython</option>
+<option class="level-0" value="14">angular</option>
+<option class="level-0" value="13">javascript</option>
+<option class="level-0" value="13">big data</option>
+<option class="level-0" value="13">jquery</option>
+<option class="level-0" value="13">hibernet</option>
+</select>
+<input type="submit" value="Search" tabindex="8" />
+</form>
+</div>
+<div class="clear"></div>
+<div class="popularCateogries sidebarList2Col"><h4>Popular Categories</h4><ul class='wp-tag-cloud' role='list'>
+<li><a href="category/food-and-wine/index.html" class="tag-cloud-link tag-link-15 tag-link-position-1" style="font-size: 13px;">html</a></li>
+<li><a href="category/health/index.html" class="tag-cloud-link tag-link-16 tag-link-position-2" style="font-size: 13px;">css</a></li>
+<li><a href="category/hobbies/index.html" class="tag-cloud-link tag-link-17 tag-link-position-3" style="font-size: 13px;">java</a></li>
+<li><a href="category/travel/index.html" class="tag-cloud-link tag-link-13 tag-link-position-4" style="font-size: 13px;">hadoop</a></li>
+<li><a href="category/home-improvement/index.html" class="tag-cloud-link tag-link-14 tag-link-position-5" style="font-size: 13px;">phython</a></li>
+<li><a href="category/education/index.html" class="tag-cloud-link tag-link-18 tag-link-position-6" style="font-size: 13px;">angular</a></li>
+<li><a href="category/career/index.html" class="tag-cloud-link tag-link-19 tag-link-position-7" style="font-size: 13px;">javascript</a></li>
+<li><a href="category/career/index.html" class="tag-cloud-link tag-link-19 tag-link-position-8" style="font-size: 13px;">big data</a></li>
+<li><a href="category/career/index.html" class="tag-cloud-link tag-link-19 tag-link-position-9" style="font-size: 13px;">jquery</a></li>
+<li><a href="category/career/index.html" class="tag-cloud-link tag-link-19 tag-link-position-10" style="font-size: 13px;">hibernet</a></li>
+</ul>
+<div class="clear"></div>
+</div>
+<div class="sidebarList">
+<h4>Recent Questions</h4>
+<ul>
+<li>
+<a href="career/teste/index.html">rohit</a>
+</li>
+<li>
+<a href="career/qa/index.html">ravi</a>
+</li>
+<li>
+<a href="career/demosdfsdf/index.html">sweta</a>
+</li>
+<li>
+<a href="education/xfgxhnmb/index.html">kishor</a>
+</li>
+<li>
+<a href="home-improvement/whats-the-travel-time-la-to-san-diego/index.html">amar</a>
+</li>
+</ul>
+<div class="clear">
+</div>
+</div>
+<div class="clear">
+</div>
+<div class="topMembers sidebarList2Col">
+<!-- /  employees -->
+<h4>
+<a href="leader-board/index.html">Employees</a>
+</h4>
+<ul>
+<li>
+<a href="profile/demouser/index.html">A</a>
+</li>
+<li>
+<a href="profile/admin/index.html">B</a>
+</li>
+<li>
+<a href="profile/cheesestix/index.html">C</a>
+</li>
+<li><a href="profile/misssunshine/index.html">D</a>
+</li>
+<li><a href="profile/test-user/index.html">E</a></li>
+</ul>
+<div class="clear">
+</div>
+</div>
+</div>
+
+<!-- / end employees -->
+
+<!-- / Right Inner Column -->
+</div>
+<!-- / Right Inner Column -->
+<div class="clear"></div>
+</div>
+<!-- / Center Column -->
+<div class="clear"></div>
+</div>
+</div>
+<div class="mainContentBottom"></div>
+<!-- / Main Section -->
+
+</html>
