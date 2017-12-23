@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+<a href="#myModal" data-toggle="modal">forget password?</a>
+
+<div class="modal" id="myModal">
+	<div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+<button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
+          
+          <h4 class="modal-title">Enter email or phone number</h4>
+        </div><div class="container"></div>
+        <div class="modal-body">
+          <input type="text"  required>
+          <br>
+          <br>
+          <br>
+          
+          <a class="btn btn-primary" href="#myModal2" data-toggle="modal">continue</a>
+	  <a class="btn btn-primary" href="index.html" data-toggle="modal">cancel</a>
+        </div>
+        
+      </div>
+    </div>
+</div>
+<div class="modal" id="myModal2" data-backdrop="static">
+	<div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+	<button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
+       
+          <h4 class="modal-title">Enter OTP</h4>
+        </div><div class="container"></div>
+        <div class="modal-body">
+          <input type="text"  required>
+<br>
+          <br>
+          <br>
+<a class="btn btn-primary" href="#myModal3" data-toggle="modal">continue</a>
+        </div>
+        <div class="modal-footer">
+          
+        </div>
+      </div>
+    </div>
+</div>
+<div class="modal" id="myModal3" data-backdrop="static">
+	<div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+	<button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
+       
+          <h4 class="modal-title">Reset your password</h4>
+        </div><div class="container"></div>
+        <div class="modal-body">
+        <input type="text" placeholder="Enter new password"  required><br><br>
+	<input type="text" placeholder="Conform password" required>
+<br>
+          <br>
+          <br>
+<a class="btn btn-primary" href="#myModal4" data-toggle="modal">Reset password</a>
+        </div>
+        <div class="modal-footer">
+          
+        </div>
+      </div>
+    </div>
+<div class="modal" id="myModal4" data-backdrop="static">
+	<div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+<button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
+       
+          <h4 class="modal-title">Your password reset is successfull...</h4>
+        </div><div class="container"></div>
+        <div class="modal-body"><br><br>
+	<p>Login here:</p><br><br>
+        <a class="btn btn-primary" href="#signin" data-toggle="modal">Login</a>
+        </div>
+        <div class="modal-footer">
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
