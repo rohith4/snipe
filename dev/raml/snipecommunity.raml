@@ -1,0 +1,270 @@
+#%RAML 1.0
+title: SnipeCommunity
+version: v1
+baseUri: http://api.samplehost.com
+/login:
+  post:
+    body:
+      application/json:
+        type: object
+        properties:
+          username: string
+          password: string
+        example: |
+          {
+            "username": "kotreshrr17@gmail.com",
+            "password": "123456789"
+          }
+
+    responses:
+      200:
+        body:
+          application/json:
+            type: object
+            properties:
+              success: string
+            example: |
+              {
+              "success": "login successful"
+              }
+      400:
+        body:
+          application/json:
+            type: object
+            properties:
+              failure: string
+            example: |
+              {
+              "failure": "invalid username or password"
+              }
+
+/Registration:
+  post:
+    body:
+      application/json:
+        type: object
+        properties:
+          firstname: string
+          lastname: string
+          email: string
+          password: string
+          confirmpassword: string
+          phone: number
+          gender: string
+          dateofbirth: date-only
+          state: string
+          country: string
+        example: |
+          {
+          "firstname": "kotresh",
+          "lastname": "R",
+          "email": "kotreshrr17@gmail.com",
+          "password": "***********",
+          "confirmpassword": "************",
+          "phone": 9980721856,
+          "gender": "male",
+          "dateofbirth": "1993-04-01",
+          "state": "karnataka",
+          "country": "India"
+          }
+    responses:
+      200:
+        body:
+          application/json:
+            type: object
+            properties:
+              status: string
+            example: |
+              {
+              "status": "Registration successfull"
+              }
+      400:
+        body:
+          application/json:
+            type: object
+            properties:
+              failure: string
+            example: |
+              {
+              "failure": "Registration unsuccessful"
+              }
+
+/Askquestion:
+  post:
+    body:
+      application/json:
+        type: object
+        properties:
+          name: string
+          email: string
+          askquestion: string
+          tagname: string
+        example: |
+          {
+          "name": "kotresh",
+          "email": "kotreshrr17@gmail.com",
+          "askquestion": "what is REST API",
+          "tagname": "Web Service"
+          }
+
+    responses:
+      200:
+        body:
+          application/json:
+            type: object
+            properties:
+              status: string
+            example: |
+              {
+              "status": "question submitted"
+              }
+      400:
+        body:
+          application/json:
+            type: object
+            properties:
+              error: string
+            example: |
+              {
+              "error": "error in submitting question"
+              }
+/forgotpassword:
+  post:
+    body:
+      application/json:
+        type: object
+        properties:
+          email: string
+        example: |
+          {
+          "email": "kotreshrr17@gmail.com"
+          }
+
+    responses:
+      200:
+        body:
+          application/json:
+            type: object
+            properties:
+              "status": string
+            example: |
+              {
+              "status": "success"
+              }
+      400:
+        body:
+          application/json:
+            type: object
+            properties:
+              "error" : string
+            example: |
+              {
+              "error": "email doesn't exist"
+              }
+
+/changepassword:
+  post:
+    body:
+      application/json:
+        type: object
+        properties:
+          "email": string
+          "new_password": string
+          "confirm_password": string
+        example: |
+          {
+          "email": "kotreshrr17@gmail.com",
+          "new_password": "*******",
+          "confirm_password": "*******"
+          }
+
+    responses:
+      200:
+        body:
+          application/json:
+            type: object
+            properties:
+              "status": string
+            example: |
+              {
+              "status": "success"
+              }
+      400:
+        body:
+          application/json:
+            type: object
+            properties:
+              "error": string
+            example: |
+              {
+              "error": "current password/email doesn't exist"
+              }
+
+/allregistered:
+  get:
+    body:
+      application/json:
+        type: object
+        example: |
+          {
+
+          }
+
+    responses:
+      200:
+        body:
+          application/json:
+            type: object
+            example: |
+              {
+              "firstname": "kotresh",
+              "lastname": "R",
+              "email": "kotreshrr17@gmail.com",
+              "phone": 9980721856,
+              "gender": "male",
+              "dateofbirth": "1993-04-01",
+              "state": "karnataka",
+              "country": "India"
+              }
+
+
+
+/contactus:
+  post:
+    body:
+      application/json:
+        type: object
+        properties:
+          "name": string
+          "email": string
+          "contact_number": number
+          "message": string
+        example: |
+          {
+          "name": "mohan",
+          "email": "mohangowda1994@gmail.com",
+          "contact_number": 8197526985,
+          "message": "I have a query regarding this topic"
+          }
+
+    responses:
+      200:
+        body:
+          application/json:
+            type: object
+            properties:
+              "status": string
+            example: |
+              {
+              "status": "success"
+              }
+      400:
+        body:
+          application/json:
+            type: object
+            properties:
+              "error": string
+            example: |
+              {
+              "error": "unsuccessful"
+              }

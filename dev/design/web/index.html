@@ -74,7 +74,10 @@
 .scroll-top-wrapper i.fa {
 	line-height: inherit;
 }
- 
+ body {
+padding-right:0px !important;
+margin-right:0px !important;
+}
 </style>
 <!-- //web-fonts -->
 </head>
@@ -165,7 +168,8 @@
         <div class="modal-header">
           <h4 class="modal-title">What is your Question</h4>
         </div>
-        <div class="modal-body">
+       
+ <div class="modal-body">
         	  <form action="index.html" method="post">
     
         <fieldset>
@@ -179,20 +183,39 @@
         <fieldset>
           <legend><span class="number">2</span>Ask Question</legend><br>
           <label for="">Enter your question</label>
-          <textarea id="question" name="user_question" required="" placeholder="Type here..."></textarea>
+        
+	      <textarea class="form-control" rows="3"required="" placeholder="Type here..." id="question"></textarea>
+
        
         <label for="tag"> Tag name: </label>
-         <input type="text" id="tag" required="">
+        
+	
+<select  name='tag' id='tagname' class='postform'  tabindex="11">
+<option value='-1'>Tags</option>
+<option class="level-0" value="19">html</option>
+<option class="level-0" value="18">css</option>
+<option class="level-0" value="15">java</option>
+<option class="level-0" value="16">Hadoop</option>
+<option class="level-0" value="17">phython</option>
+<option class="level-0" value="14">angular</option>
+<option class="level-0" value="13">javascript</option>
+<option class="level-0" value="13">big data</option>
+<option class="level-0" value="13">jquery</option>
+<option class="level-0" value="13">hibernet</option>
+<option class="level-0" value="13">other</option>
+</select>
+
 		
         
         </fieldset>
         <br>
-       <button style="padding-top: 8px; padding-bottom: 8px; font-size: 1.5em" class="Btn btn-success" value="submit" >Submit</button>
+       <button style="padding-top: 8px; padding-bottom: 8px; font-size: 1.5em" class="Btn btn-success" value="submit">Submit</button>
       </form></div>
-        
+         
       </div>
     </div>
   </div>
+
 
 <div id="small-dialog" class="mfp-hide w3ls_small_dialog wthree_pop">
 	<h3 class="agileinfo_sign">Sign In</h3>	
@@ -207,9 +230,15 @@
 					</div>
 				</div>
 				<div class="agile_remember_right">
-					<a href="#">Forgot Password?</a>
+					<a href="#myModal1" data-toggle="modal">forget password?</a>
+
+
 				</div>
-				<div class="clearfix"> </div>
+
+
+
+
+			<div class="clearfix"> </div>
 			</div>
 			<input type="submit" value="SIGN IN">
 			<p>Don't have an account <a href="#small-dialog1" class="play-icon popup-with-zoom-anim">Sign Up</a></p>
@@ -223,6 +252,94 @@
 			</div>
 		</form>
 	</div>
+</div>
+
+
+
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      
+      <form role="form" action='#' method="post"></form>
+      <div class="modal-body">
+        
+          <h5>Enter Email id</h5>
+
+          <br>
+       <input type="text" class="form-control" placeholder="Email">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="signin">Continue</button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+  
+  <!-- Modal -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      
+      
+      <div class="modal-body">
+        <form role="form" action='#' method="post"> </form>
+        <h5>Enter OTP</h5>
+
+        <br>
+        <input type="text" class="form-control" placeholder="OTP Number">
+      </div>
+      <div class="modal-footer">
+       <a class="btn btn-primary" href="#myModal3" data-toggle="modal">continue</a>
+      </div>
+        
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      
+      
+      <div class="modal-body">
+        <form role="form" action='#' method="post"> </form>
+        <h5>Reset Password</h5>
+
+        <br>
+        <input type="text" class="form-control" placeholder="Enter New Password">
+        <br>
+        <input type="text" class="form-control" placeholder="Confirm Password">
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary" href="#myModal4" data-toggle="modal">continue</a>
+      </div>
+       
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+     
+     <div class="modal-header">
+       
+        <h4 class="modal-title" id="myModalLabel"></h4>
+      </div>
+      
+      <div class="modal-body">
+        
+        <h3 style="text-align: center;">Your password reset is successfull ...</h3>
+       <br>
+      </div>
+      <div class="modal-footer">
+        <a type="button" class="btn btn-primary" href="C:\Users\ROHITH\Desktop\snipe\web\index.html" >Submit</a>
+      </div>
+       
+    </div>
+  </div>
 </div>
 
 <div id="small-dialog1" class="mfp-hide w3ls_small_dialog wthree_pop">
@@ -640,7 +757,7 @@ No Answers
 <form method="get" id="searchform" action="#" >
 <input type="text" name="s" id="s" tabindex="10" />
 <select  name='cat' id='searchWidget' class='postform'  tabindex="11">
-<option value='-1'>All Categories</option>
+<option value='-1'>All categories</option>
 <option class="level-0" value="19">html</option>
 <option class="level-0" value="18">css</option>
 <option class="level-0" value="15">java</option>
@@ -956,6 +1073,25 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 		});
 	});
 </script>
+ <script>
+      
+      $("#signin").on( "click", function() {
+        $('#myModal1').modal('hide');  
+});
+//trigger next modal
+$("#signin").on( "click", function() {
+        $('#myModal2').modal('show');  
+});
+
+$("#signin1").on( "click", function() {
+        $('#myModal3').modal('show');  
+});
+
+$("#signin2").on( "click", function() {
+        $('#myModal3').modal('show');  
+});
+    </script>
+
 <!-- start-smoth-scrolling -->
 <!-- //js-scripts -->
 </body>
