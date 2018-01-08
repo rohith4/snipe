@@ -48,7 +48,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span></button>
-				<a class="navbar-brand" href="web\index.html"><span>Snipe</span>Community</a>
+				<a class="navbar-brand" href="admin.html"><span>Snipe</span>Community</a>
 				<ul class="nav navbar-top-links navbar-right">
 					<li class="dropdown"><a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
 						<em class="fa fa-envelope"></em><span class="label label-danger">15</span>
@@ -117,7 +117,7 @@
 				<li><a href="employee.html">
 					<em class="fa fa-home"></em>
 				</a></li>
-				<li ><a href="employee.htmlclass="active">Employee</li>
+				<li ><a href="employee.html" class="active"></a>Employee</li>
 			</ol>
 </a>
 	<body ng-app="myApp" ng-controller = "myCtrl" class = "container">
@@ -126,7 +126,7 @@
 			<tr>
 				<td>ID</td>
 				<td>
-					<input type = "text" class="form-control" ng-model="item.id" />
+					<input type = "number" class="form-control" ng-model="item.id" />
 				</td>
 			</tr>
 
@@ -144,7 +144,13 @@
 				</td>
 			</tr>
 
-			<tr>
+						<tr>
+				<td>Date of Birth</td>
+				<td>
+					<input type = "date" class="form-control" ng-model="item.date" />
+				</td>
+			</tr>
+			<tr> 
 				<td>Gender</td>
 				<td>
 					<input type = "radio" class="radio-control" value="male" ng-model="item.gender" checked>Male
@@ -200,6 +206,7 @@
 					<th>ID</th>
 					<th>First Name</th>
 					<th>Last Name</th>
+					<th>Date of Birth</th>
 					<th>Gender</th>
 					<th>Year of joining</th>
 					<th>Qualification</th>
@@ -211,21 +218,29 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat = "item in items">
-					<td><span ng-hide="editMode">{{item.id}}</span> 
+
+					    <td><span ng-hide="editMode">{{item.id}}</span>
 						<input type = "text" ng-show = "editMode" ng-model = "item.id"/></td>
 
 						<td><span ng-hide="editMode">{{item.fname}}</span> 
 						<input type = "text" ng-show = "editMode" ng-model = "item.fname"/></td>
+
 						<td><span ng-hide="editMode">{{item.lname}}</span> 
 						<input type = "text" ng-show = "editMode" ng-model = "item.lname"/></td>
+
+						<td><span ng-hide="editMode">{{item.date}}</span> 
+						<input type = "date" ng-show = "editMode" ng-model = "item.date"/></td>
+
 						<td><span ng-hide="editMode">{{item.gender}}</span> 
 						<input type = "text" ng-show = "editMode" ng-model = "item.gender"/></td>
 						
 
 						<td><span ng-hide="editMode">{{item.Year}}</span> 
 						<input type = "text" ng-show = "editMode" ng-model = "item.Year"/></td>
+
 						<td><span ng-hide="editMode">{{item.Qualifications}}</span> 
 						<input type = "text" ng-show = "editMode" ng-model = "item.Qualifications"/></td>
+
 						<td><span ng-hide="editMode">{{item.email}}</span> 
 						<input type = "text" ng-show = "editMode" ng-model = "item.email"/></td>
 						

@@ -72,7 +72,7 @@
 	opacity: 1.0;
 }
 .scroll-top-wrapper i.fa {
-	line-height: inherit;
+	line-height: inherit ;
 }
  body {
 padding-right:0px !important;
@@ -103,6 +103,7 @@ margin-right:0px !important;
 			<div class="clearfix"> </div>
 		</div>
 	</div>
+
 	<div class="header-bottom">
 		<!-- navigation section -->
 		<div class="w3_navigation">
@@ -124,8 +125,8 @@ margin-right:0px !important;
 								<li class="menu__item"><a href="about.html" class="menu__link">About Us</a></li>
 								<li class="menu__item"><a href="tags.html" class="menu__link">Tags</a></li>
 								<li class="menu__item"><a href="blog.html" class=" menu__link">blog</a></li>
-								<li class="menu__item"><a href="#contact" class="scroll menu__link">Contact</a></li>
-							</ul>
+								<li class="menu__item"><a href="#contact" class="scroll menu__link">Contact</a></li>&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+						 	</ul>
 						</nav>
 				<p style=" padding-top: 9px" data-toggle="modal" data-target="#myModal"><a  class="btn btn-danger navbar-btn"> Ask Question</a></p>
 
@@ -170,45 +171,31 @@ margin-right:0px !important;
         </div>
        
  <div class="modal-body">
-        	  <form action="index.html" method="post">
+        	  <form action="#" method="post">
     
-        <fieldset>
-          <legend><span class="number">1</span>Your basic info</legend>
-          <label for="name">Name:</label>
-          <input type="text" id="name" name="user_name" required="">
-          
-          <label for="mail">Email:</label>
-          <input type="email" id="mail" name="user_email" required="">
-        </fieldset>
-        <fieldset>
-          <legend><span class="number">2</span>Ask Question</legend><br>
           <label for="">Enter your question</label>
-        
+        <br>
 	      <textarea class="form-control" rows="3"required="" placeholder="Type here..." id="question"></textarea>
 
        
         <label for="tag"> Tag name: </label>
         
-	
+	<br>
 <select  name='tag' id='tagname' class='postform'  tabindex="11">
 <option value='-1'>Tags</option>
 <option class="level-0" value="19">html</option>
 <option class="level-0" value="18">css</option>
 <option class="level-0" value="15">java</option>
 <option class="level-0" value="16">Hadoop</option>
-<option class="level-0" value="17">phython</option>
+<option class="level-0" value="17">python</option>
 <option class="level-0" value="14">angular</option>
 <option class="level-0" value="13">javascript</option>
 <option class="level-0" value="13">big data</option>
 <option class="level-0" value="13">jquery</option>
-<option class="level-0" value="13">hibernet</option>
+<option class="level-0" value="13">hibernate</option>
 <option class="level-0" value="13">other</option>
 </select>
-
-		
-        
-        </fieldset>
-        <br>
+<br>
        <button style="padding-top: 8px; padding-bottom: 8px; font-size: 1.5em" class="Btn btn-success" value="submit">Submit</button>
       </form></div>
          
@@ -220,8 +207,8 @@ margin-right:0px !important;
 <div id="small-dialog" class="mfp-hide w3ls_small_dialog wthree_pop">
 	<h3 class="agileinfo_sign">Sign In</h3>	
 	<div class="agileits_signin_form">
-		<form action="#" method="post">
-			<input type="email" name="email" placeholder="Your Email" required="">
+		<form action="http://localhost:3000" method="post">
+		 	<input type="email" name="email" placeholder="Your Email" required="">
 			<input type="password" name="password" placeholder="Password" required="">
 			<div class="agile_remember">
 				<div class="agile_remember_left">
@@ -245,8 +232,8 @@ margin-right:0px !important;
 			<div class="w3agile_social_icons">
 				<ul>
 					<li class="wthree_follow">Follow us on :</li>
-					<li><a href="admin.html" class="w3_agile_facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-					<li><a href="emp.html" class="agile_twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+					<li><a href="C:\Users\ROHITH\Desktop\snipe\admin\admin.html" class="w3_agile_facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+					<li><a href="C:\Users\ROHITH\Desktop\snipe\admin\emp.html" class="agile_twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
 					<li><a href="#" class="w3_agile_dribble"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
 				</ul>	
 			</div>
@@ -266,7 +253,7 @@ margin-right:0px !important;
           <h5>Enter Email id</h5>
 
           <br>
-       <input type="text" class="form-control" placeholder="Email">
+       <input type="email" class="form-control" placeholder="Email">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" id="signin">Continue</button>
@@ -351,12 +338,14 @@ margin-right:0px !important;
 			<input type="email" name="email" placeholder="Your Email" required="">
 			<input type="password" name="password" placeholder="Password" required="">
 			<input type="password" name="password" placeholder="Confirm Password" required="">
-			<input type="text" id="name" name="phone" placeholder="Phone" title="Please enter your Phone No" required="">
+			<input type="tel" id="name" name="phone" placeholder="Phone" title="Please enter your Phone No" required="">
 	 			<label id="gender" style="align-items: left;"> Gender :
 	 		 <input type="radio" name="gender" value="male" checked> Male
-  			 <input type="radio" name="gender" value="female"> Female<br> </label>
+  			 <input type="radio" name="gender" value="female"> Female<br></label>
   			 <br>
-			<input type="text" name="dob" id="dob" size="30" placeholder="dd/mm/yyyy">
+			<input type="date" name="dob" id="dob" class="form-control" >
+			<br>
+			
 					<input type="text" id="name" name="state" placeholder="state" size="14" required="">
 			<input type="text" id="name" name="country" placeholder="country" required="">
 			<input type="submit" value="SIGN UP">
@@ -428,7 +417,9 @@ margin-right:0px !important;
 
 <div class="questionBox">
 <div class="memberIcon">
-
+<a href="profile/demouser/index.html">
+<img alt='' src='http://1.gravatar.com/avatar/d803c25b8e919b3d843a5b8e14744575?s=50&amp;d=http%3A%2F%2Fwordpressqa.com%2Frobust-qa%2Fwp-content%2Fthemes%2Frobust-qa%2Fimages%2Fdefault-user-avatar-2.jpg&amp;r=g' srcset='http://1.gravatar.com/avatar/d803c25b8e919b3d843a5b8e14744575?s=100&#038;d=http%3A%2F%2Fwordpressqa.com%2Frobust-qa%2Fwp-content%2Fthemes%2Frobust-qa%2Fimages%2Fdefault-user-avatar-2.jpg&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />                                            
+</a>
 </div>
 <div class="contentText">
 <h4><a href="career/teste/index.html">rohit</a></h4>
