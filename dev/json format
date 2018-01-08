@@ -7,25 +7,10 @@ Request
 
 Response
 		{
-			"Login Successfull"
+			"success" : "Login Successfull"
 		}
 		{
-				"Failure",
-				{
-					"Invaild User Credentials"
-				}
-		}
-		{
-				"Failure",
-				{
-					 "User Unregistered"
-				}
-		}
-		{
-				"Failure",
-				{
-					 "User Account Locked"
-				}
+			"Failure" : "Invaild Username/Password"
 		}
 
 ---------------------------------------------------------------------
@@ -61,12 +46,6 @@ Service	Signup:
 				"Failure",
 				{
 					"Mobile number already exits"
-				}
-			}
-			{
-				"Failure",
-				{
-					"UserName exists"
 				}
 			}
 
@@ -423,26 +402,6 @@ Messages Report
 Request
 	{
 			"url"		:	"http://www.ravirohith.cf/blog.html"
-			"method"	:	"GET"
-	}
-
-	Responese
-	{
-			"success"	:	200
-	}
-
-	{
-			"failure"	:	404
-	}
--------------------------------------------------------------------------------------------------------------------------------------------------
-
----------------------------------------------------------------------------------
-							HOME PAGE
----------------------------------------------------------------------------------
-
-Request
-	{
-			"url"		:	"http://www.ravirohith.cf/index.html"
 			"method"	:	"GET"
 	}
 
