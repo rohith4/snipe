@@ -11,14 +11,16 @@
           </h1>
         </div>
       </div>
-      <div class="col-md-4 w3l_header_right">
 
+      <div class="col-md-4 w3l_header_right w3l-r">
       </div>
+
       <div class="col-md-3 w3l_header_right w3l-r">
         <ul>
           <li>
             <a [routerLink]="['/login']" class="play-icon popup-with-zoom-anim">Sign In</a>
           </li>
+          
           <li>
             <a [routerLink]="['/signup']" class="play-icon popup-with-zoom-anim">Sign Up</a>
           </li>
@@ -28,7 +30,7 @@
     </div>
   </div>
   
-  <div class="header-bottom">
+  <!-- <div class="header-bottom">
     <!-- navigation section -->
     <div class="w3_navigation">
       <div class="container">
@@ -55,17 +57,17 @@
                   <a [routerLink]="['/tag']" class="menu__link">Tags</a>
                 </li>
                 <li class="menu__item">
-                  <a [routerLink]="['/blog']"  class=" menu__link">blog</a>
+                  <a [routerLink]="['/blog']" class=" menu__link">blog</a>
                 </li>
                 <li class="menu__item">
                   <a href="#contact" class="menu__link">Contact</a>
                 </li>
                 <li class="menu__item">
-                  <a data-toggle="modal" data-target="#myModal" class="btn btn-danger menu__link">Ask Question</a>
+                  <a data-toggle="modal" data-target="#myModal" class="btn btn-success menu__link">Ask Question</a>
                 </li>
               </ul>
             </nav>
-            
+
           </div>
         </nav>
       </div>
@@ -73,56 +75,51 @@
     </div>
     <!-- //header -->
   </div>
-  <div class="modal fade" id="myModal" role="dialog">
+
+  
+  <div class="modal fade" id="myModal" role="dialog" name="askquestion" >
     <div class="modal-dialog modal-md">
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title">What is your Question</h4>
         </div>
-       
- <div class="modal-body">
-            <form action="index.html" method="post">
-    
-        <fieldset>
-          <legend><span class="number">1</span>Your basic info</legend>
-          <label for="name">Name:</label>
-          <input type="text" id="name" name="user_name" required="">
-          
-          <label for="mail">Email:</label>
-          <input type="email" id="mail" name="user_email" required="">
-        </fieldset>
-        <fieldset>
-          <legend><span class="number">2</span>Ask Question</legend><br>
-          <label for="">Enter your question</label>
-        
-        <textarea class="form-control" rows="3"required="" placeholder="Type here..." id="question"></textarea>
 
-       
-        <label for="tag"> Tag name: </label>
-        
-  
-<select  name='tag' id='tagname' class='postform'  tabindex="11">
-<option value='-1'>Tags</option>
-<option class="level-0" value="19">html</option>
-<option class="level-0" value="18">css</option>
-<option class="level-0" value="15">java</option>
-<option class="level-0" value="16">Hadoop</option>
-<option class="level-0" value="17">phython</option>
-<option class="level-0" value="14">angular</option>
-<option class="level-0" value="13">javascript</option>
-<option class="level-0" value="13">big data</option>
-<option class="level-0" value="13">jquery</option>
-<option class="level-0" value="13">hibernet</option>
-<option class="level-0" value="13">other</option>
-</select>
+        <div class="modal-body">
+          <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
 
-    
-        
-        </fieldset>
-        <br>
-       <button style="padding-top: 8px; padding-bottom: 8px; font-size: 1.5em" class="Btn btn-success" value="submit">Submit</button>
-      </form></div>
-         
+           
+              <legend>
+                <span class="number">2</span>Ask Question</legend>
+              <br>
+              <label name="tag"> Tag name: </label>
+
+
+              <select name='tag'  class='postform' tabindex="11"  formControlName="tag" required="">
+                <option value='-1'>Tags</option>
+                <option class="level-0" value="19">html</option>
+                <option class="level-0" value="18">css</option>
+                <option class="level-0" value="15">java</option>
+                <option class="level-0" value="16">Hadoop</option>
+                <option class="level-0" value="17">phython</option>
+                <option class="level-0" value="14">angular</option>
+                <option class="level-0" value="13">javascript</option>
+                <option class="level-0" value="13">big data</option>
+                <option class="level-0" value="13">jquery</option>
+                <option class="level-0" value="13">hibernet</option>
+                <option class="level-0" value="13">other</option>
+              </select>
+
+                   <label for="">Enter your question</label>
+
+              <textarea class="form-control" rows="3" required="" placeholder="Type here..."  name="que" formControlName="que" ></textarea>
+
+
+
+            <br>
+            <button style="padding-top: 8px; padding-bottom: 8px; font-size: 1.5em"   class="Btn btn-success" value="submit">Submit</button>
+          </form>
+        </div>
+
       </div>
     </div>
   </div>
@@ -373,5 +370,6 @@
       </form>
     </div>
   </div>
-  <router-outlet></router-outlet>
+  
+    <router-outlet></router-outlet>
   <app-footer></app-footer>
