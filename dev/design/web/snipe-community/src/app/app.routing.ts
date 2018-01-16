@@ -9,7 +9,6 @@ import { BlogComponent } from './components/blog/blog.component';
 import { TagsComponent } from './components/tags/tags.component';
 import { ContactComponent } from './components/contact/contact.component';
 
-
 const appRoutes: Routes = [
    { path: 'login', component: LoginComponent},
    { path: 'signup', component: SignupComponent},
@@ -19,7 +18,7 @@ const appRoutes: Routes = [
       { path: 'about', component: AboutusComponent},
       { path: 'blog', component: BlogComponent},
       { path: 'tag', component: TagsComponent},
-      { path: 'contact', component: ContactComponent}
+      { path: 'contact', component: ContactComponent},
       
     ]}
   ];

@@ -4,6 +4,8 @@ body {
     font-size: 14px;
     color: #444444;
     font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+    
+   
   
   p {
     color: #777; }
@@ -121,6 +123,15 @@ body {
   .dropdown:hover {
     color: #fff;
     background: rgba(255, 255, 255, 0.2); }
+    .form-check-input  {
+      margin-left: -17px; 
+    }
+    .form-check-label{
+      margin-left:-4px;
+      display: inline-block;
+    }
+    
+   
   
   .dropdown .label {
     top: -4px;
