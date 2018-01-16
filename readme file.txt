@@ -1,5 +1,5 @@
 
-click on web folder, in that you find index.html file that is the homepage of snipe community.
+click on web folder, in that you find index.html file that is the homepage of snipe community.Commited
 
 In home page, it displays signin and signup buttons on top
 

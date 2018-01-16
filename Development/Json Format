@@ -1,0 +1,426 @@
+Service signin:
+Request
+		{
+			"Email" : "email@example.com",
+			"Password" : "***********"
+		}
+
+Response
+		{
+			"success" : "Login Successfull"
+		}
+		{
+			"Failure" : "Invaild Username/Password"
+		}
+
+---------------------------------------------------------------------
+
+Service	Signup:
+	Request
+		{
+			"Firstname" : "text",
+			"Lastname" : "text",
+			"Email" : "email@gmail.com",
+			"Password" : "********",
+			"Confirm Password" : "***********",
+			"Phone" : "+91-99999999",
+			"Gender" : "M/F",
+			"DOB" : "DD/MM/YYYY",
+			"State" : "text",
+			"Country" : "text"
+		}
+
+	Response
+			{
+				"Successfull"
+			}
+			
+			{
+				"Failure",
+				{
+					"Email-ID already exits"
+				}
+			}
+
+			{
+				"Failure",
+				{
+					"Mobile number already exits"
+				}
+			}
+
+------------------------------------------------------------------------
+Ask Question:
+	Request
+	{
+		"Enter your question" : "text",
+		"Tag name" : "text"
+	}
+
+	Response
+	{
+		"success" :  "Question Uploaded Successfull"
+	}
+
+------------------------------------------------------------------------
+Contact Us
+	Request
+	{
+		"Name"   	: "text",
+		"Email"  	: "email@example.com",
+		"Message"	: "text",
+	}
+
+	Response
+	{
+		"success" :  "Message Sent"
+	}
+
+
+------------------------------------------------------------------------
+Forget Password
+	Request
+	{
+		"Enter Mailid" : "email@example.com",
+	}
+
+	Response
+	{
+		"success" : "OTP Sent to your Email"
+	}
+	{
+		"Failure" : "Check your Email Entered"
+	}
+			
+	Request
+	{
+		"Enter OTP"	   : "999999",
+	}
+
+
+Reset Password
+	Request
+	{
+		"Enter New Password" : "*******" ,
+		"Confirm Password"	 : "*******" ,
+	}
+
+	Response
+	{
+		"success" : "Password Reset Successfull"
+	}
+
+	{
+		"Failure" : "Invaild Password"
+	}
+-----------------------------------------------------------------------------
+Post Answer
+	Request
+	{
+		"Answer"		: "text" ,
+	}
+
+    Response	
+	{
+		"Answer Uploaded Successfull"
+	}
+
+	{
+		"Failure" : "Answer Uploaded Failed"
+	}
+-----------------------------------------------------------------------------
+Employee Registeration
+Request
+	{
+		"First Name"	: "text" ,
+		"Last Name"		: "text" ,
+		"Gender"		: "M/F" ,
+		"Joining Year"  : "yyyy" ,
+		"Qualification": "text" ,
+		"Email Id"		: "email@example.com" ,
+		"password"		: "********" ,
+		"phone" 		: "+91-999999999" ,
+	}
+
+
+	Response
+	{
+		"success" :  "Registeration Successfull"
+	}
+
+	Same as User registeration.
+	{
+		"Failure" : "Check the fields Entered"
+	}
+----------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+								ADMIN DASHBOARD
+------------------------------------------------------------------------------
+
+Admin Login
+	Request
+	{
+		"Email"		:	"email@example.com" ,
+		"Password"	:	"********",
+	}	
+
+Response : Same a explained above.
+				{
+					"success" : "Login Successfull"
+				}
+
+				{
+					"Failure" : "Invaild Username/ Password"
+				}
+------------------------------------------------------------------------------
+
+Questions list Report
+
+	Request
+	{
+			"question" : "text"
+	}
+
+	Response
+	{
+			"success"
+	}
+
+------------------------------------------------------------------------------
+
+Latest News Report
+
+	Request
+	{
+			"latest news"	:	"text"
+	}
+
+	Response
+	{
+			"success"
+	}
+------------------------------------------------------------------------------
+
+Blog list Report
+
+	Request
+	{
+			"blog"	:	"text"
+	}
+
+	Response
+
+	{
+			"success"
+	}
+
+------------------------------------------------------------------------------
+
+Users Report
+
+	Request
+	{
+			"new users"		:	"number"
+	}
+
+	Response
+	{
+			"success"
+	}
+-----------------------------------------------------------------------------
+
+Answers Report
+
+	Request
+	{
+			"Answers"		:	"number"
+	}
+
+	Response
+	{
+			"success"
+	}
+-----------------------------------------------------------------------------
+
+Messages Report
+
+	Request
+	{
+			"message"		:	"text"
+	}
+	Response
+	{
+			"success"
+	}
+-----------------------------------------------------------------------------
+
+Employee Page
+
+	Request
+	{
+			"url"		:	"http://www.ravirohith.cf/admin/employee.html",
+			"method"	:	"GET"
+	}
+	Responese
+	{
+			"success"	:	200
+	}
+
+	{
+			"failure"	:	404
+	}
+-----------------------------------------------------------------------------
+
+User Page
+
+	Request
+	{
+			"url"		:	"http://www.ravirohith.cf/admin/users.html",
+			"method"	:	"GET"
+	}
+	Response
+	{
+			"success"	:	200
+	}
+	{
+			"failure"	:	404
+	}
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+							Employee Dashboard
+-----------------------------------------------------------------------------
+
+Questions list Report
+
+	Request
+	{
+			"question" : "text"
+	}
+
+	Response
+	{
+			"success"
+	}
+------------------------------------------------------------------------------
+Latest News Report
+
+	Request
+	{
+			"latest news"	:	"text"
+	}
+
+	Response
+	{
+			"success"
+	}
+------------------------------------------------------------------------------
+
+Blog list Report
+
+	Request
+	{
+			"blog"	:	"text"
+	}
+
+	Response
+
+	{
+			"success"
+	}
+
+------------------------------------------------------------------------------
+
+Questions Report
+
+	Request
+	{
+			"questions"		:	"number"
+	}
+
+	Response
+	{
+			"success"
+	}
+-------------------------------------------------------------------------------
+
+Unanswered Questions Report
+
+	Request
+	{
+			"unanswered questions"		:	"number"
+	}
+
+	Response
+	{
+			"success"
+	}
+-------------------------------------------------------------------------------
+
+Correct Answers Report
+
+	Request
+	{
+			"correct"		:	"number"
+	}
+
+	Response
+	{
+			"success"
+	}
+-------------------------------------------------------------------------------
+
+Wrong Answers Report
+
+	Request
+	{
+			"wrong"		:	"number"
+	}
+
+	Response
+	{
+			"success"
+	}
+-------------------------------------------------------------------------------
+
+Messages Report
+
+	Request
+	{
+			"message"		:	"text"
+	}
+	Response
+	{
+			"success"
+	}
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------
+							BLOG PAGE
+---------------------------------------------------------------------------------
+
+Request
+	{
+			"url"		:	"http://www.ravirohith.cf/blog.html"
+			"method"	:	"GET"
+	}
+
+	Responese
+	{
+			"success"	:	200
+	}
+
+	{
+			"failure"	:	404
+	}
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Jagadish:
+1. Format all the services above as discussed
+2. Add more service requests.
+3. Create a spec for DATE, PHONE, EMAIL-ID, ......
+4. SRS Document updations (with tracking enabled).
+5. Blogs get from database.
+6. EmpID generated by Db.
+7. Remove the Q & Tag for answering Qs
