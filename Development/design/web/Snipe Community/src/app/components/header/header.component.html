@@ -74,10 +74,10 @@
       <!-- /navigation section -->
     </div>
     <!-- //header -->
-  </div>
+ 
 
   
-  <div class="modal fade" id="myModal" role="dialog">
+  <div class="modal fade" id="myModal" role="dialog" name="askquestion" >
     <div class="modal-dialog modal-md">
       <div class="modal-content">
         <div class="modal-header">
@@ -85,29 +85,16 @@
         </div>
 
         <div class="modal-body">
-          <form [formGroup] = "form" (ngSubmit)="onSubmit(form)">
+          <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
 
-            <!-- <fieldset>
-              <legend>
-                <span class="number">1</span>Your basic info</legend>
-              <label for="name">Name:</label>
-              <input type="text" id="name" name="user_name" required="">
-
-              <label for="mail">Email:</label>
-              <input type="email" id="mail" name="user_email" required="">
-            </fieldset> -->
-            
+           
               <legend>
                 <span class="number">2</span>Ask Question</legend>
               <br>
-            
-
-
-
               <label name="tag"> Tag name: </label>
 
 
-              <select name='tag'  class='postform' tabindex="11" formControlName="tag" required="">
+              <select name='tag'  class='postform' tabindex="11"  formControlName="tag" required="">
                 <option value='-1'>Tags</option>
                 <option class="level-0" value="19">html</option>
                 <option class="level-0" value="18">css</option>
@@ -122,12 +109,14 @@
                 <option class="level-0" value="13">other</option>
               </select>
 
-              <label name="">Enter your question</label>
-              <textarea class="form-control" rows="3" name = "que" formControlName = "que" required="" placeholder="Type here..." ></textarea>
+                   <label for="">Enter your question</label>
+
+              <textarea class="form-control" rows="3" required="" placeholder="Type here..."  name="que" formControlName="que" ></textarea>
+
 
 
             <br>
-            <button style="padding-top: 8px; padding-bottom: 8px; font-size: 1.5em"  class="Btn btn-success" value="submit">Submit</button>
+            <button style="padding-top: 8px; padding-bottom: 8px; font-size: 1.5em"   class="Btn btn-success" value="submit">Submit</button>
           </form>
         </div>
 
@@ -329,6 +318,7 @@
     $("#signin1").on("click", function () {
       $('#myModal3').modal('show');
     });
+	
 
     $("#signin2").on("click", function () {
       $('#myModal3').modal('show');
@@ -381,6 +371,479 @@
       </form>
     </div>
   </div>
+  <!-- slider -->
+  <router-outlet></router-outlet>
+  <!-- slider -->
   
-    <router-outlet></router-outlet>
+  <!-- question-ans -->
+
+<div id="">
+<div id="mainContent">
+
+<!-- Center Column -->
+<div id="centerCol" class="left">
+
+<!-- Left Inner Column -->
+<div id="leftColInner" class="left">
+
+<!-- Top Section -->
+<div class="topSection">
+<div class="introBox">
+<div class="mainBox">
+
+</div>
+
+<!-- Welcome Message Box -->
+<div class="">
+<div class="clear"></div>
+</div>
+<!-- / Welcome Message Box -->
+<div class="clear"></div>
+</div>
+</div>
+<!-- / Top Section -->
+
+<!-- Recent / Popular Questions Section -->
+<div id="tabWidget1">
+<!-- Navigation Tabs -->
+<div id="wTabs1">
+<ul>
+<li class="on"><a href="javascript:showWidget(0,1)">Recent</a></li>
+<li><a href="javascript:showWidget(1,1)">Popular</a></li>
+<li><a href="javascript:showWidget(2,1)">Unanswered</a></li>
+</ul>
+</div>
+<div class="reset"></div>
+<!-- /Navigation Tabs -->
+
+<!-- Tabs Content Blocks -->
+<div id="wContent">
+
+<!-- Recent Questions -->
+<div class="wContentBox">
+
+<!-- Question -->
+<div class="questionRow">
+
+<div class="questionBox">
+<div class="memberIcon">
+<a href="profile/demouser/index.html">
+<img alt='' src='http://1.gravatar.com/avatar/d803c25b8e919b3d843a5b8e14744575?s=50&amp;d=http%3A%2F%2Fwordpressqa.com%2Frobust-qa%2Fwp-content%2Fthemes%2Frobust-qa%2Fimages%2Fdefault-user-avatar-2.jpg&amp;r=g' srcset='http://1.gravatar.com/avatar/d803c25b8e919b3d843a5b8e14744575?s=100&#038;d=http%3A%2F%2Fwordpressqa.com%2Frobust-qa%2Fwp-content%2Fthemes%2Frobust-qa%2Fimages%2Fdefault-user-avatar-2.jpg&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />                                            
+</a>
+</div>
+<div class="contentText">
+<h4><a href="career/teste/index.html">rohit</a></h4>
+<p class="bylineCategory">In: <a href="category/index.html">
+<a href="category/career/index.html" rel="category tag">angular</a></a> | December 7, 2017</p>
+</div>
+<div class="clear"></div>
+</div>
+<div class="bylineBox"><a href="career/teste/index.html#respond">
+<span><img src="images/answer-count-icon.jpg" />
+No Answers
+</span></a>
+</div>
+<div class="bylineBox3"><a href="profile/demouser/index.html">
+<span>najeer<img src="images/blue-star-sm.jpg" alt="Blue" title="Blue" />82</span></a></div>
+<div class="clear"></div>
+</div>
+<!-- / Question -->
+<!-- Question -->
+<div class="questionRow">
+
+<div class="questionBox">
+<div class="memberIcon">
+<a href="profile/demouser/index.html">
+<img alt='' src='http://1.gravatar.com/avatar/d803c25b8e919b3d843a5b8e14744575?s=50&amp;d=http%3A%2F%2Fwordpressqa.com%2Frobust-qa%2Fwp-content%2Fthemes%2Frobust-qa%2Fimages%2Fdefault-user-avatar-2.jpg&amp;r=g' srcset='http://1.gravatar.com/avatar/d803c25b8e919b3d843a5b8e14744575?s=100&#038;d=http%3A%2F%2Fwordpressqa.com%2Frobust-qa%2Fwp-content%2Fthemes%2Frobust-qa%2Fimages%2Fdefault-user-avatar-2.jpg&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />                                            </a>
+</div>
+<div class="contentText">
+<h4><a href="career/qa/index.html">ravi</a></h4>
+<p class="bylineCategory">In: <a href="category/index.html"><a href="category/career/index.html" rel="category tag">java</a></a><span> | December 5, 2017</span></p>
+</div>
+<div class="clear"></div>
+</div>
+<div class="bylineBox"><a href="career/qa/index.html#comments">
+<span><img src="images/answer-count-icon.jpg" />
+1 Answer
+</span></a>
+</div>
+<div class="bylineBox3"><a href="profile/demouser/index.html"><span>megha<img src="images/blue-star-sm.jpg" alt="Blue" title="Blue" />82</span></a></div>
+<div class="clear"></div>
+</div>
+<!-- / Question -->
+<!-- Question -->
+<div class="questionRow">
+
+<div class="questionBox">
+<div class="memberIcon">
+<a href="profile/demouser/index.html">
+<img alt='' src='http://1.gravatar.com/avatar/d803c25b8e919b3d843a5b8e14744575?s=50&amp;d=http%3A%2F%2Fwordpressqa.com%2Frobust-qa%2Fwp-content%2Fthemes%2Frobust-qa%2Fimages%2Fdefault-user-avatar-2.jpg&amp;r=g' srcset='http://1.gravatar.com/avatar/d803c25b8e919b3d843a5b8e14744575?s=100&#038;d=http%3A%2F%2Fwordpressqa.com%2Frobust-qa%2Fwp-content%2Fthemes%2Frobust-qa%2Fimages%2Fdefault-user-avatar-2.jpg&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />
+</a>
+</div>
+<div class="contentText">
+<h4><a href="career/demosdfsdf/index.html">sweta</a></h4>
+<p class="bylineCategory">In: <a href="category/index.html">
+<a href="category/career/index.html" rel="category tag">Career</a>
+</a> | November 30, 2017</p>
+</div>
+<div class="clear"></div>
+</div>
+<div class="bylineBox"><a href="career/demosdfsdf/index.html#respond">
+<span><img src="images/answer-count-icon.jpg" />
+No Answers
+</span></a>
+</div>
+<div class="bylineBox3"><a href="profile/demouser/index.html"><span>demouser<img src="images/blue-star-sm.jpg" alt="Blue" title="Blue" />82</span></a></div>
+<div class="clear"></div>
+</div>
+<!-- / Question -->
+<!-- Question -->
+<div class="questionRow">
+
+<div class="questionBox">
+<div class="memberIcon">
+<a href="profile/demouser/index.html">
+<img alt='' src='http://1.gravatar.com/avatar/d803c25b8e919b3d843a5b8e14744575?s=50&amp;d=http%3A%2F%2Fwordpressqa.com%2Frobust-qa%2Fwp-content%2Fthemes%2Frobust-qa%2Fimages%2Fdefault-user-avatar-2.jpg&amp;r=g' srcset='http://1.gravatar.com/avatar/d803c25b8e919b3d843a5b8e14744575?s=100&#038;d=http%3A%2F%2Fwordpressqa.com%2Frobust-qa%2Fwp-content%2Fthemes%2Frobust-qa%2Fimages%2Fdefault-user-avatar-2.jpg&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />
+</a>
+</div>
+<div class="contentText">
+<h4><a href="education/xfgxhnmb/index.html">kishor</a></h4>
+<p class="bylineCategory">In: <a href="category/index.html"><a href="category/education/index.html" rel="category tag">Education</a></a><span> | November 29, 2017</span></p>
+</div>
+<div class="clear"></div>
+</div>
+<div class="bylineBox"><a href="education/xfgxhnmb/index.html#comments">
+<span><img src="images/answer-count-icon.jpg" />
+1 Answer
+</span></a>
+</div>
+<div class="bylineBox3"><a href="profile/demouser/index.html"><span>dayanand<img src="images/blue-star-sm.jpg" alt="Blue" title="Blue" />82</span></a></div>
+<div class="clear"></div>
+</div>
+<!-- / Question -->
+<!-- Question -->
+<div class="questionRow">
+
+<div class="questionBox">
+<div class="memberIcon">
+<a href="profile/demouser/index.html">
+<img alt='' src='http://1.gravatar.com/avatar/d803c25b8e919b3d843a5b8e14744575?s=50&amp;d=http%3A%2F%2Fwordpressqa.com%2Frobust-qa%2Fwp-content%2Fthemes%2Frobust-qa%2Fimages%2Fdefault-user-avatar-2.jpg&amp;r=g' srcset='http://1.gravatar.com/avatar/d803c25b8e919b3d843a5b8e14744575?s=100&#038;d=http%3A%2F%2Fwordpressqa.com%2Frobust-qa%2Fwp-content%2Fthemes%2Frobust-qa%2Fimages%2Fdefault-user-avatar-2.jpg&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />                                            </a>
+</div>
+<div class="contentText">
+<h4><a href="home-improvement/whats-the-travel-time-la-to-san-diego/index.html">amar</a></h4>
+<p class="bylineCategory">In: <a href="category/index.html"><a href="category/home-improvement/index.html" rel="category tag">phython</a></a><span> | October 29, 2017</span></p>
+</div>
+<div class="clear"></div>
+</div>
+<div class="bylineBox"><a href="home-improvement/whats-the-travel-time-la-to-san-diego/index.html#respond">
+<span><img src="images/answer-count-icon.jpg" />
+No Answers
+</span></a>
+</div>
+<div class="bylineBox3"><a href="profile/demouser/index.html"><span>rani<img src="images/blue-star-sm.jpg" alt="Blue" title="Blue" />82</span></a></div>
+<div class="clear"></div>
+</div>
+<!-- / end recent Question -->
+
+<!-- / most recent Question -->
+
+<div class="greyBtn"><a href="recent/index5f69.html?pageNum=2"><span>More Recent Questions &raquo;</span></a></div>
+<div class="clear"></div>
+</div>
+<!-- /end most Recent Questions -->
+
+<!-- Popular Questions  -->
+<div class="wContentBox" style="display:none;">
+
+<!-- Question -->
+<div class="questionRow">
+
+<div class="questionBox">
+<div class="memberIcon">
+<a href="profile/demouser/index.html">
+<img alt='' src='http://1.gravatar.com/avatar/d803c25b8e919b3d843a5b8e14744575?s=50&amp;d=http%3A%2F%2Fwordpressqa.com%2Frobust-qa%2Fwp-content%2Fthemes%2Frobust-qa%2Fimages%2Fdefault-user-avatar-2.jpg&amp;r=g' srcset='http://1.gravatar.com/avatar/d803c25b8e919b3d843a5b8e14744575?s=100&#038;d=http%3A%2F%2Fwordpressqa.com%2Frobust-qa%2Fwp-content%2Fthemes%2Frobust-qa%2Fimages%2Fdefault-user-avatar-2.jpg&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />                                                    </a>
+</div>
+<div class="contentText">
+<h4><a href="education/xfgxhnmb/index.html">dhareesh</a></h4>
+<p class="bylineCategory">In: <a href="category/index.html"><a href="category/education/index.html" rel="category tag">css3</a></a> | November 29, 2017</p>
+</div>
+<div class="clear"></div>
+</div>
+<div class="bylineBox"><a href="education/xfgxhnmb/index.html#comments">
+<span><img src="images/answer-count-icon.jpg" />
+1 Answer
+</span></a>
+</div>
+<div class="bylineBox3"><a href="profile/demouser/index.html"><span>nani<img src="images/blue-star-sm.jpg" alt="Blue" title="Blue" />82</span></a></div>
+<div class="clear"></div>
+</div>
+<!-- / Question -->
+<!-- Question -->
+<div class="questionRow">
+
+<div class="questionBox">
+<div class="memberIcon">
+<a href="profile/demouser/index.html">
+<img alt='' src='http://1.gravatar.com/avatar/d803c25b8e919b3d843a5b8e14744575?s=50&amp;d=http%3A%2F%2Fwordpressqa.com%2Frobust-qa%2Fwp-content%2Fthemes%2Frobust-qa%2Fimages%2Fdefault-user-avatar-2.jpg&amp;r=g' srcset='http://1.gravatar.com/avatar/d803c25b8e919b3d843a5b8e14744575?s=100&#038;d=http%3A%2F%2Fwordpressqa.com%2Frobust-qa%2Fwp-content%2Fthemes%2Frobust-qa%2Fimages%2Fdefault-user-avatar-2.jpg&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />                                                    </a>
+</div>
+<div class="contentText">
+<h4><a href="career/qa/index.html">arun</a></h4>
+<p class="bylineCategory">In: <a href="category/index.html"><a href="category/career/index.html" rel="category tag">javascript</a></a> | December 5, 2017</p>
+</div>
+<div class="clear"></div>
+</div>
+<div class="bylineBox"><a href="career/qa/index.html#comments">
+<span><img src="images/answer-count-icon.jpg" />
+1 Answer
+</span></a>
+</div>
+<div class="bylineBox3"><a href="profile/demouser/index.html"><span>kotresh<img src="images/blue-star-sm.jpg" alt="Blue" title="Blue" />82</span></a></div>
+<div class="clear"></div>
+</div>
+<!-- / Question -->
+
+
+</div>
+<!-- end Popular Questions -->
+
+<!-- Unanswered Questions -->
+<div class="wContentBox" style="display:none;">
+
+
+<!-- Question -->
+<div class="questionRow">
+
+<div class="questionBox">
+<div class="memberIcon">
+<a href="profile/demouser/index.html">
+<img alt='' src='http://1.gravatar.com/avatar/d803c25b8e919b3d843a5b8e14744575?s=50&amp;d=http%3A%2F%2Fwordpressqa.com%2Frobust-qa%2Fwp-content%2Fthemes%2Frobust-qa%2Fimages%2Fdefault-user-avatar-2.jpg&amp;r=g' srcset='http://1.gravatar.com/avatar/d803c25b8e919b3d843a5b8e14744575?s=100&#038;d=http%3A%2F%2Fwordpressqa.com%2Frobust-qa%2Fwp-content%2Fthemes%2Frobust-qa%2Fimages%2Fdefault-user-avatar-2.jpg&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />                                                </a>
+</div>
+<div class="contentText">
+<h4><a href="career/teste/index.html">ameer</a></h4>
+<p class="bylineCategory">In: <a href="index.html"><a href="category/career/index.html" rel="category tag">Career</a></a> | December 7, 2017</p>
+</div>
+<div class="clear"></div>
+</div>
+<div class="bylineBox"><a href="career/teste/index.html#respond">
+<span><img src="images/answer-count-icon.jpg" />
+
+No Answers
+
+</span></a>
+</div>
+<div class="bylineBox3"><a href="profile/demouser/index.html"><span>demouser<img src="images/blue-star-sm.jpg" alt="Blue" title="Blue" />82</span></a></div>
+<div class="clear"></div>
+</div>
+<!-- / Question -->
+
+<!-- Question -->
+<div class="questionRow">
+
+<div class="questionBox">
+<div class="memberIcon">
+<a href="profile/demouser/index.html">
+<img alt='' src='http://1.gravatar.com/avatar/d803c25b8e919b3d843a5b8e14744575?s=50&amp;d=http%3A%2F%2Fwordpressqa.com%2Frobust-qa%2Fwp-content%2Fthemes%2Frobust-qa%2Fimages%2Fdefault-user-avatar-2.jpg&amp;r=g' srcset='http://1.gravatar.com/avatar/d803c25b8e919b3d843a5b8e14744575?s=100&#038;d=http%3A%2F%2Fwordpressqa.com%2Frobust-qa%2Fwp-content%2Fthemes%2Frobust-qa%2Fimages%2Fdefault-user-avatar-2.jpg&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />                                                </a>
+</div>
+<div class="contentText">
+<h4><a href="career/demosdfsdf/index.html">raja</a></h4>
+<p class="bylineCategory">In: <a href="index.html"><a href="category/career/index.html" rel="category tag">hadoop</a></a> | November 30, 2017</p>
+</div>
+<div class="clear"></div>
+</div>
+<div class="bylineBox"><a href="career/demosdfsdf/index.html#respond">
+<span><img src="images/answer-count-icon.jpg" />
+No Answers
+</span></a>
+</div>
+<div class="bylineBox3"><a href="profile/demouser/index.html"><span>demouser<img src="images/blue-star-sm.jpg" alt="Blue" title="Blue" />82</span></a></div>
+<div class="clear"></div>
+</div>
+<!-- / Question -->
+
+<!-- Question -->
+<div class="questionRow">
+
+<div class="questionBox">
+<div class="memberIcon">
+<a href="profile/demouser/index.html">
+<img alt='' src='http://1.gravatar.com/avatar/d803c25b8e919b3d843a5b8e14744575?s=50&amp;d=http%3A%2F%2Fwordpressqa.com%2Frobust-qa%2Fwp-content%2Fthemes%2Frobust-qa%2Fimages%2Fdefault-user-avatar-2.jpg&amp;r=g' srcset='http://1.gravatar.com/avatar/d803c25b8e919b3d843a5b8e14744575?s=100&#038;d=http%3A%2F%2Fwordpressqa.com%2Frobust-qa%2Fwp-content%2Fthemes%2Frobust-qa%2Fimages%2Fdefault-user-avatar-2.jpg&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />                                                </a>
+</div>
+<div class="contentText">
+<h4><a href="home-improvement/whats-the-travel-time-la-to-san-diego/index.html">raghu</a></h4>
+<p class="bylineCategory">In: <a href="index.html"><a href="category/home-improvement/index.html" rel="category tag">big data</a></a> | October 29, 2017</p>
+</div>
+<div class="clear"></div>
+</div>
+<div class="bylineBox"><a href="home-improvement/whats-the-travel-time-la-to-san-diego/index.html#respond">
+<span><img src="images/answer-count-icon.jpg" />
+
+No Answers
+
+</span></a>
+</div>
+<div class="bylineBox3"><a href="profile/demouser/index.html"><span>demouser<img src="images/blue-star-sm.jpg" alt="Blue" title="Blue" />82</span></a></div>
+<div class="clear"></div>
+</div>
+<!-- / Question -->
+
+<!-- Question -->
+<div class="questionRow">
+
+<div class="questionBox">
+<div class="memberIcon">
+<a href="profile/cheesestix/index.html">
+<img alt='' src='http://0.gravatar.com/avatar/02e08124c6a267021015fb0c911603c7?s=50&amp;d=http%3A%2F%2Fwordpressqa.com%2Frobust-qa%2Fwp-content%2Fthemes%2Frobust-qa%2Fimages%2Fdefault-user-avatar-1.jpg&amp;r=g' srcset='http://0.gravatar.com/avatar/02e08124c6a267021015fb0c911603c7?s=100&#038;d=http%3A%2F%2Fwordpressqa.com%2Frobust-qa%2Fwp-content%2Fthemes%2Frobust-qa%2Fimages%2Fdefault-user-avatar-1.jpg&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />                                                </a>
+</div>
+<div class="contentText">
+<h4><a href="career/stay-at-home-mom-looking-for-new-career/index.html">nagu</a></h4>
+<p class="bylineCategory">In: <a href="index.html"><a href="category/career/index.html" rel="category tag">sql</a></a> | September 13, 2013</p>
+</div>
+<div class="clear"></div>
+</div>
+<div class="bylineBox"><a href="career/stay-at-home-mom-looking-for-new-career/index.html#respond">
+<span><img src="images/answer-count-icon.jpg" />
+
+No Answers
+
+</span></a>
+</div>
+<div class="bylineBox3"><a href="profile/cheesestix/index.html"><span>amulya<img src="	images/grey-star-sm.jpg" alt="Grey" title="Grey" />14</span></a></div>
+<div class="clear"></div>
+</div>
+<!-- / Question -->
+
+<!-- Question -->
+<div class="questionRow">
+
+<div class="questionBox">
+<div class="memberIcon">
+<a href="profile/cheesestix/index.html">
+<img alt='' src='http://0.gravatar.com/avatar/02e08124c6a267021015fb0c911603c7?s=50&amp;d=http%3A%2F%2Fwordpressqa.com%2Frobust-qa%2Fwp-content%2Fthemes%2Frobust-qa%2Fimages%2Fdefault-user-avatar-1.jpg&amp;r=g' srcset='http://0.gravatar.com/avatar/02e08124c6a267021015fb0c911603c7?s=100&#038;d=http%3A%2F%2Fwordpressqa.com%2Frobust-qa%2Fwp-content%2Fthemes%2Frobust-qa%2Fimages%2Fdefault-user-avatar-1.jpg&#038;r=g 2x' class='avatar avatar-50 photo' height='50' width='50' />                                                </a>
+</div>
+<div class="contentText">
+<h4><a href="home-improvement/gutters-are-they-really-necessary/index.html">ravindra</a></h4>
+<p class="bylineCategory">In: <a href="index.html"><a href="category/home-improvement/index.html" rel="category tag">jquery</a></a> | September 13, 2013</p>
+</div>
+<div class="clear"></div>
+</div>
+<div class="bylineBox"><a href="home-improvement/gutters-are-they-really-necessary/index.html#respond">
+<span><img src="images/answer-count-icon.jpg" />
+
+No Answers
+
+</span></a>
+</div>
+<div class="bylineBox3"><a href="profile/cheesestix/index.html"><span>muneer<img src="images/grey-star-sm.jpg" alt="Grey" title="Grey" />14</span></a></div>
+<div class="clear"></div>
+</div>
+<!-- / Question -->
+</div>
+<!--end  Unanswered Questions -->
+
+</div>
+<!-- Tabs Content Blocks -->
+<div class="reset"></div>
+</div>
+<!-- Recent / Popular Questions Section -->
+</div>
+<!-- / Left Inner Column -->
+
+<!-- Right Inner Column -->
+<div id="rightColInner" class="left">
+
+<!-- Dynamic Sidebar -->
+
+<div class="sidebarList sidebarSearch">
+<form method="get" id="searchform" action="#" >
+
+<select  name='cat' id='searchWidget' class='postform'  tabindex="11">
+<option value='-1'>All Categories</option>
+<option class="level-0" value="19">html</option>
+<option class="level-0" value="18">css</option>
+<option class="level-0" value="15">java</option>
+<option class="level-0" value="16">Hadoop</option>
+<option class="level-0" value="17">phython</option>
+<option class="level-0" value="14">angular</option>
+<option class="level-0" value="13">javascript</option>
+<option class="level-0" value="13">big data</option>
+<option class="level-0" value="13">jquery</option>
+<option class="level-0" value="13">hibernet</option>
+</select>
+<input type="submit" value="Search" tabindex="8" />
+</form>
+</div>
+<div class="clear"></div>
+<div class="popularCateogries sidebarList2Col"><h4>Popular Categories</h4><ul class='wp-tag-cloud' role='list'>
+<li><a href="#" class="tag-cloud-link tag-link-15 tag-link-position-1" style="font-size: 13px;">html</a></li>
+<li><a href="#" class="tag-cloud-link tag-link-15 tag-link-position-1" style="font-size: 13px;">css</a></li>
+<li><a href="#" class="tag-cloud-link tag-link-15 tag-link-position-1" style="font-size: 13px;">js</a></li>
+<li><a href="#" class="tag-cloud-link tag-link-15 tag-link-position-1" style="font-size: 13px;">java</a></li>
+<li><a href="#" class="tag-cloud-link tag-link-15 tag-link-position-1" style="font-size: 13px;">angular</a></li>
+<li><a href="#" class="tag-cloud-link tag-link-15 tag-link-position-1" style="font-size: 13px;">phython</a></li>
+<li><a href="#" class="tag-cloud-link tag-link-15 tag-link-position-1" style="font-size: 13px;">bigdata</a></li>
+
+</ul>
+<div class="clear"></div>
+</div>		
+<div class="sidebarList">		
+<h4>Recent Questions</h4>		
+<ul>
+<li>
+<a href="career/teste/index.html">rohit</a>
+</li>
+<li>
+<a href="career/qa/index.html">ravi</a>
+</li>
+<li>
+<a href="career/demosdfsdf/index.html">sweta</a>
+</li>
+<li>
+<a href="education/xfgxhnmb/index.html">kishor</a>
+</li>
+<li>
+<a href="home-improvement/whats-the-travel-time-la-to-san-diego/index.html">amar</a>
+</li>
+</ul>
+<div class="clear">
+</div>
+</div>
+<div class="clear">
+</div>
+<div class="topMembers sidebarList2Col">
+<!-- /  employees -->
+<h4>
+<a href="leader-board/index.html">Employees</a>
+</h4>
+<ul>
+<li>
+<a href="profile/demouser/index.html">A</a>
+</li>
+<li>
+<a href="profile/admin/index.html">B</a>
+</li>
+<li>
+<a href="profile/cheesestix/index.html">C</a>
+</li>
+<li><a href="profile/misssunshine/index.html">D</a>
+</li>
+<li><a href="profile/test-user/index.html">E</a></li>
+</ul>
+<div class="clear">
+</div>
+</div>
+</div>
+
+<!-- / end employees -->
+
+<!-- / Right Inner Column -->
+<div class="clear">
+</div>
+</div>
+<!-- / Center Column -->
+<div class="clear"></div>
+</div>
+</div>
+<div class="mainContentBottom"></div>
+</div>
+    
   <app-footer></app-footer>
