@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from './../../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,         // {3}
-    private authService: UserService // {4}
+    private authService: UserService,
+    private router : Router // {4}
   ) {}
 
   ngOnInit() {
@@ -31,16 +33,19 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  // onSubmit() {
-    // if (this.form.valid) {
-      // this.authService.login(this.form.value); // {7}
-    // }
-  //   this.formSubmitAttempt = true;             // {8}
-  // }
+  onSubmit() {
+                // {8}
+  }
 login(data){
+  if (this.form.valid) {
+    this.authService.login(data); // {7}
+  }
+  this.formSubmitAttempt = true; 
   this.authService.login(data)
   .subscribe(
-    (data) => console.log(data),
+    (data) => { console.log(data)
+  this.router.navigate(['/home']);  
+   },
     (error) => console.log(error),
     () => console.log("success")
   );

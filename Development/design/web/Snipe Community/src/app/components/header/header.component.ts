@@ -1,46 +1,37 @@
 import { Component, OnInit,Inject  } from '@angular/core';
 import { NgForm }    from '@angular/forms';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import { Router }  from '@angular/router';
-import { Component }           from '@angular/core';
-import { UserService } from '../../services/user.service'
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UserService } from './../../services/user.service';
+
 import 'rxjs/Rx';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
-  
-  })
+})
 export class HeaderComponent implements OnInit {
+  form: FormGroup;                    // {1}
 
-  form: FormGroup;
- constructor(private fb: FormBuilder,private userService : UserService){}
+  constructor(private fb: FormBuilder,private userService : UserService, private router : Router) { }
+
   ngOnInit() {
-     this.form = this.fb.group({    
-     tag: ['', ],
-      que: ['', ],
-      });
-    
+    this.form = this.fb.group({     // {5}
+      tag: ['', Validators.required],
+      que: ['', Validators.required]
+    });
   }
-  
-
   onSubmit() {
     this.userService.headerUser(this.form.value)
     .subscribe(
-      (data) => console.log(data),
+      (data) => {console.log(data)
+        this.router.navigate(['/home']);
+      },
       (error) => console.log(error),
       () => console.log('success')  
     );
-  
-  
-console.log("data in component"+JSON.stringify(this.form.value));
-     this.call();
-	 }
- call() {
-   this.userService.headerUser(JSON.stringify(this.form.value));
-
+    
   }
 }
-

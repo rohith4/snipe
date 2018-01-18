@@ -8,13 +8,15 @@ import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { TagsComponent } from './components/tags/tags.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { Auth1Guard } from './auth1.guard';
+
 
 const appRoutes: Routes = [
-   { path: 'login', component: LoginComponent},
+   { path: 'login', component: LoginComponent , },
    { path: 'signup', component: SignupComponent},
    { path: '',component: HeaderComponent,
     children: [
-      { path: 'home', component: HomeComponent},
+      { path: 'home', component: HomeComponent,canActivate: [Auth1Guard]},
       { path: 'about', component: AboutusComponent},
       { path: 'blog', component: BlogComponent},
       { path: 'tag', component: TagsComponent},

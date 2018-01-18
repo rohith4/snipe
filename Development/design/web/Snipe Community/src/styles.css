@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    background-color: #dde3ec;
+    padding: 25px;
+    font-size: 14px;
+    color: #444444;
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+ }
+    
+   

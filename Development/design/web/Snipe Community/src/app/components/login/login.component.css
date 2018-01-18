@@ -1,12 +1,27 @@
-body {
-    background: #f1f4f7;
-    padding-top: 60px;
-    font-size: 14px;
-    color: #444444;
-    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif; }
-    
-   
-  
+  .card {
+    background: #30a5ff;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 0 !important;
+    padding-bottom: 0 !important;
+  } 
+
+  @media screen and (min-width:768px) and (max-width:992) {
+    .login_content {
+      margin-left: -10px;
+    }
+  }
+
+  img {
+    margin-bottom: -3px;
+  }
+  .form {
+    width: 100%;
+    padding: 10px 10px;
+  }
+  .submit {
+    background: #467aa9 !important;
+  }
   p {
     color: #777; }
   
