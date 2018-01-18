@@ -1,0 +1,47 @@
+
+
+
+Register
+http://localhost:8080/DemoAPI/rest/registerUser
+
+{"fname":"devarajr",
+"lname":"chennur",
+"address":"Bangalore",
+"emailId":"d.chennur@gmail.com",
+"dob": "12-9-1991",
+"mobileNo":"9876546085",
+"pwd":"0987",
+"state":"Karnataka",
+"country":"India",
+"gender":"male"}
+
+
+Login
+http://localhost:8080/DemoAPI/rest/loginUser
+{
+"emailId":"d.chennur@gmail.com"
+"pwd":"0987"
+}
+
+
+RegisterEmployee(regisgerEmployee)
+http://localhost:8080/DemoAPI/rest/registerEmployee
+{"fname":"devarajr",
+"lname":"chennur",
+"address":"Bangalore",
+"emailId":"d.chennur@gmail.com",
+"dob": "12-9-1991",
+"mobileNo":"9876546085",
+"pwd":"0987",
+"state":"Karnataka",
+"country":"India",
+"gender":"male"}
+
+
+Ask Questions(askq)
+http://localhost:8080/DemoAPI/rest/askq
+{"que":"What is Hibernate"}
+
+Tags
+http://localhost:8080/DemoAPI/rest/tags
+{""}
