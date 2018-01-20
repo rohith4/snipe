@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.demoAPI.rest.entity.Answered;
 import com.demoAPI.rest.entity.EmployeeEntity;
 import com.demoAPI.rest.entity.Questions;
+import com.demoAPI.rest.entity.Recent;
 import com.demoAPI.rest.entity.Tags;
 import com.demoAPI.rest.entity.UserEntity;
 import com.demoAPI.rest.dao.UserRegisterDAO;
@@ -83,7 +86,7 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 				
 			}else{
 				userRegRes.setReturnCode(1);
-				userRegRes.setMessageReturn("Invalid EmailId/Password");
+				userRegRes.setMessageReturn("oooInvalid EmailId/Password");
 				System.out.println("Login UnSussfull");
 			}
 		}else{
@@ -111,6 +114,14 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 		return response;
 	}
 
+	
+
+	
+	
+	
+	
+	
+	
 	@Override
 	public ResponseDTO modifyUser(RequestDTO userReg) {
 		// TODO Auto-generated method stub
@@ -153,10 +164,10 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 		boolean result = userRegisterDao.checkemailId(userReg);
 		if(result){
 			userRegisterDao.updateLoginStatusN(userReg);
-			//response.setReturnCode(0);
+			response.setReturnCode(0);
 			response.setMessageReturn("Logout successfully");
 		}else{
-			//response.setReturnCode(1);
+			response.setReturnCode(1);
 			response.setMessageReturn("Something went wrong");
 		}
 		return response;
@@ -243,40 +254,28 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 		// TODO Auto-generated method stub
 				logger.info("******UserRegisterServiceImpl.Tags**************");
 				ResponseDTO userRegRes = new ResponseDTO();
-			
-				
-				Questions que=new Questions();
-				que.setQue(userReg.getQue());
-				Tags tags=new Tags();
-				tags.setHtml(userReg.getHtml());
-				tags.setCss(userReg.getCss());
-				tags.setHadoop(userReg.getHadoop());
-				tags.setHibernate(userReg.getHibernate());
-				tags.setBigdata(userReg.getBigdata());
-				tags.setJava(userReg.getJava());
-				tags.setJavascript(userReg.getJavascript());
-				tags.setJquery(userReg.getJquery());
-				tags.setPython(userReg.getPython());
-				tags.setOthers(userReg.getOthers());
-				
-				
 				Session session=currentSession();
-				Criteria crt = session.createCriteria(Tags.class);
-				System.out.println("tag is :"+userReg.getHtml());
-				if(userReg.getHtml()=="html")
-				{
-					
-					crt.add(Restrictions.gt("html", userReg.getQue()));
-				}
+				Criteria crt=session.createCriteria(Recent.class);
+				Recent rec=new Recent();
+				rec.setDate(userReg.getDate());
+				rec.setQuestion(userReg.getQuestion());
+				rec.setAns(userReg.getAns());
+				rec.setFname(userReg.getFname());
+				rec.setRating(userReg.getRating());
+				rec.setTag(userReg.getTag());
+				rec.setUname(userReg.getUname());
+			    rec.setAns_status("N");
 				
 				
 				
-				Criteria crq = session.createCriteria(Questions.class);
 				
-				session.save(que);
+			//	Criteria crq = session.createCriteria(Questions.class);
 				
+			
+				session.save(rec);
+				System.out.println("Hi");
 				
-				session.save(tags);
+			//	session.save(tags);
 				
 				
 				
@@ -315,54 +314,117 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 	
 		logger.info("******UserRegisterServiceImpl.Tags**************");
 		ResponseDTO userRegRes = new ResponseDTO();
-	
 		UserEntity user=new UserEntity();
 		
-		Questions que=new Questions();
-		que.setQue(userReg.getQue());
+		
+		Session session  = currentSession();
+		Recent rec=new Recent();
+		rec.setDate(userReg.getDate());
+		rec.setQuestion(userReg.getQuestion());
+		rec.setAns(userReg.getAns());
+		rec.setFname(userReg.getFname());
+		rec.setRating(userReg.getRating());
+		rec.setTag(userReg.getTag());
+		rec.setUname(userReg.getUname());
+	    //rec.setAns_status("N");
+	
+		//Criteria crc = session.createCriteria(Answered.class);
+		
+		//Questions que=new Questions();
+		//Session session=currentSession();
+		Criteria crc1=session.createCriteria(Questions.class);
+	//	que.setQue(userReg.getQue());
 	//	Tags tags=new Tags();
 		Answered ans=new Answered();
-		ans.setAnswered(userReg.getAnswered());
-		ans.setAns_status(userReg.getAns_status());
-		ans.setRating(userReg.getRating());
-	    ans.setFname(userReg.getFname());
+		//EmployeeEntity emp=new EmployeeEntity();
+		logger.info("******UserRegisterServiceImpl.ANSWERQUESTIONS**************");
+		
+		/*boolean result = userRegisterDao.checkemailId(userReg);
+		if(result){*/
+		String pwd= userRegisterDao.getpwd(userReg);
+		System.out.println("Devaraj: "+pwd);
+		System.out.println("Devaraj: "+heapler.getPasswordEncoded(userReg.getPwd(),userReg.getEmailId()));
+		/*	if(pwd.equals(heapler.getPasswordEncoded(userReg.getPwd(),userReg.getEmailId()))){	
+				userRegisterDao.updateLoginStatusY(userReg);
+				userRegRes.setReturnCode(0);
+				userRegRes.setMessageReturn("You can answer the question");
+				ans.setFname(userReg.getFname());
+				*/
+		//		que.setDate(userReg.getDate());
+				System.out.println("date"+userReg.getDate());
+			//	session.save(que);
+				//session.save(ans);
+				if(!userReg.getTag().isEmpty() && userReg.getAns()!= null){
+					
+					userRegisterDao.updateAnsStatusY(userReg);
+					
+				}
+				
+			/*}else{
+				userRegRes.setReturnCode(1);
+				userRegRes.setMessageReturn("Please Login");
+			}*/
+		/*}else{
+			userRegRes.setReturnCode(1);
+			userRegRes.setMessageReturn("Please Login");
+		}*/
 		
 		
 		
-		Session session=currentSession();
-		Criteria crt = session.createCriteria(Answered.class);
-		System.out.println("Answered :"+userReg.getAnswered());
+		
+//		ResponseDTO userRegRes = new ResponseDTO();
 		
 		
-		
-		//Criteria crq = session.createCriteria(Questions.class);
-		session.save(que);
-		session.save(ans);
-		
-		
-		//session.save(tags);
-		
-		
-		
-		System.out.println("Answered Questions "+userReg.getAnswered());
-    
-		userRegRes.setMessageReturn("This question is answered");
-		userRegRes.setReturnMsg("Answered this questions");
-		
-	
 		return userRegRes;
+		
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	//	return null;
 	}
+
+	@Override
+	public ResponseDTO getRecentList(RequestDTO userReg) {
+		// TODO Auto-generated method stub
+		
+		logger.info("******UserRegisterServiceImpl.getRecentList**************");
+		ResponseDTO response=new ResponseDTO();
+		List<Recent> recentList= userRegisterDao.getrecentList(userReg);
+		if(recentList.size()==0){
+			response.setReturnCode(1);
+			response.setMessageReturn("There is No Recent Registered with DEMO-API");
+		}else{
+	//	response.setReturnCode(0);
+			try {
+			Session session=currentSession();
+			Recent rec=new Recent();
+		//	Query q=session.createQuery("from recent fname");
+			Criteria criteria=session.createCriteria(Recent.class);
+		//	count.setProjection(Projections.rowCount());
+			 // criteria.setFirstResult(2);
+		        criteria.setMaxResults(4);
+			
+			
+			
+			System.out.println("Hi from hibernate");
+			List<Recent> recentList1=criteria.list();
+			
+			System.out.println("From date "+rec.getDate()+"todate"+rec.getDate());
+		/*//	 Criteria criteria = session.createCriteria(UserTable.class);
+			    criteria.addOrder(rec.getDate());
+			    criteria.setMaxResults(n);*/
+
+	
+		response.setRecent(recentList1);
+			}catch(Exception e)
+			{
+				System.out.println(e);
+			}
+		}
+		return response;
+	}
+	
+	
+	
+
+	
 
 	
 }

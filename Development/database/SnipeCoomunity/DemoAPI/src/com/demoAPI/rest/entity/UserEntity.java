@@ -32,11 +32,15 @@ public class UserEntity {
 	private String address;
 	
 	@Column(name="MOBILE_NO")
-	private int mobileNo;
+	private String mobileNo;
 	
-	public void setMobileNo(int mobileNo) {
+	public String getMobileNo() {
+		return mobileNo;
+	}
+	public void setMobileNo(String mobileNo) {
 		this.mobileNo = mobileNo;
 	}
+
 	@Column(name="EMAIL_ID")
 	private String emailId;
 	

@@ -62,9 +62,13 @@ public class EmployeeEntity {
 	}
 	
 	@Column(name="EMP_MOBILENO")
-	private int mobileNo;
+	private String mobileNo;
 	
-	public void setMobileNo(int mobileNo) {
+	
+	public String getMobileNo() {
+		return mobileNo;
+	}
+	public void setMobileNo(String mobileNo) {
 		this.mobileNo = mobileNo;
 	}
 	@Column(name="ADDRESS")

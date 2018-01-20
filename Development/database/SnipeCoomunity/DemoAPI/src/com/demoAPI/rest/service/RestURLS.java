@@ -12,6 +12,7 @@ public interface RestURLS {
 	
 	String TAGS="/tags";
 	String ASK_Q="/askq";
+	String RECENT="/recent";
 	String ANSWERED="/answered";
 	String EMPLOYEE_REGISTER="/registerEmployee";
 }

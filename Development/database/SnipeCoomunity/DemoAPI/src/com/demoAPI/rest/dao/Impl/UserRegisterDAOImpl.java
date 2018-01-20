@@ -20,6 +20,7 @@ import com.demoAPI.rest.dao.UserRegisterDAO;
 import com.demoAPI.rest.dto.request.RequestDTO;
 import com.demoAPI.rest.dto.response.ResponseDTO;
 import com.demoAPI.rest.entity.Questions;
+import com.demoAPI.rest.entity.Recent;
 import com.demoAPI.rest.entity.UserEntity;
 import com.demoAPI.rest.util.Helper;
 
@@ -64,7 +65,7 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		System.out.println("Saved");
 		returnMag = "Congratulations!!"+user.getName() +" Registration successfull";
 		
-	//	response.setReturnCode(0);
+		response.setReturnCode(0);
 		response.setMessageReturn(returnMag);
 		return response;
 	}
@@ -151,14 +152,14 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		entity.setLastlogin(new Date());
 		sessionFactory.getCurrentSession().saveOrUpdate(entity);
 	}
-
+	
 	@Override
-	@Transactional(value="transactionManager", rollbackFor=Exception.class)
+    @Transactional(value="transactionManager", rollbackFor=Exception.class)
 	public void updateLoginStatusN(RequestDTO userReg) {
 		// TODO Auto-generated method stub
 		logger.info("******UserRegisterDAOImpl.updateLoginStatusN**************");
 		Criteria crit = currentSession().createCriteria(UserEntity.class);
-		crit.add(Restrictions.eq("mobileNo",userReg.getMobileNo()));	
+		crit.add(Restrictions.eq("emailId",userReg.getEmailId()));	
 		UserEntity entity = (UserEntity)crit.uniqueResult();
 		entity.setLoginStatus("N");
 		sessionFactory.getCurrentSession().saveOrUpdate(entity);
@@ -168,17 +169,24 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 	@Override
 	@Transactional(value="transactionManager", rollbackFor=Exception.class)
 	public boolean checkemailId(RequestDTO userReg) {
-		// TODO Auto-generated method stub
-		logger.info("******UserRegisterDAOImpl.checkMobileNo**************");
-		// TODO Auto-generated method stub
+
+		logger.info("******UserRegisterDAOImpl.checkEmailIdo**************");
+		
 		Session session  = currentSession();
 		Criteria crc = session.createCriteria(UserEntity.class);
 		crc.add(Restrictions.eq("emailId",userReg.getEmailId())).setProjection(Projections.rowCount());
+		System.out.println("email: "+userReg.getEmailId());
 		int count = (int)((long)crc.uniqueResult());
+		
+		System.out.println(count);
 		if(count>0){
+			
+			System.out.println("COrrectdtyhb");
 			return true;
 		}
+		System.out.println("COrrectd");
 		return false;
+		
 	}
 
 	@Override
@@ -199,4 +207,69 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		
 		
 	}
+
+	@Override
+	@Transactional(value="transactionManager", rollbackFor=Exception.class)
+	public List<Recent> getrecentList(RequestDTO userReg) {
+		// TODO Auto-generated method stub
+		
+		
+		
+		
+		
+		
+			logger.info("******UserRegisterDAOImpl.getRecentList**************");
+			// TODO Auto-generated method stub
+			List<Recent> recentList = new ArrayList<Recent>();
+			Session session = currentSession();
+			Criteria crc= session.createCriteria(Recent.class);
+			try{
+				recentList = crc.list();
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			return recentList;
+		
+	}
+	
+
+	
+	@Override
+	@Transactional(value="transactionManager", rollbackFor=Exception.class)
+	public void updateAnsStatusY(RequestDTO userReg) {
+		// TODO Auto-generated method stub
+		logger.info("******UserRegisterDAOImpl.updateANSStatus**************");
+		Criteria crit = currentSession().createCriteria(Recent.class);
+//		crit.add(Restrictions.eq("mobileNo",userReg.getMobileNo()));	
+		//UserEntity entity = (UserEntity)crit.uniqueResult();
+		
+		
+	
+		
+		Recent rec=(Recent)crit.uniqueResult();
+		//entity.setLoginStatus("Y");
+		
+	//	Criteria crit = currentSession().createCriteria(UserEntity.class);
+	//	crit.add(Restrictions.eq("mobileNo",userReg.getMobileNo()));	
+		//UserEntity entity = (UserEntity)crit.uniqueResult();
+		//rec.setLoginStatus("Y");
+		//entity.setLastlogin(new Date());
+		//sessionFactory.getCurrentSession().saveOrUpdate(entity);
+		
+		
+		
+		rec.setAns_status("Y");
+		//entity.setLastlogin(new Date());
+		sessionFactory.getCurrentSession().saveOrUpdate(rec);
+		
+	}
+	
+	
+	
+
+	
+	
+	
+	
+	
 }

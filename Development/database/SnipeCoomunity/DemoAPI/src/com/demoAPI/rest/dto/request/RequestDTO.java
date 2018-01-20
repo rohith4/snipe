@@ -8,11 +8,42 @@ import java.util.Date;
 public class RequestDTO implements Serializable{
 
 	
+	
+	
+	
 	private String address;
-	private int mobileNo;
+	private String mobileNo;
+	
+	private String uname;
+	
+	private String question;
+	
+	private String ans;
+
 	
 	
 	
+	public String getUname() {
+		return uname;
+	}
+	public void setUname(String uname) {
+		this.uname = uname;
+	}
+	public String getQuestion() {
+		return question;
+	}
+	public void setQuestion(String question) {
+		this.question = question;
+	}
+	public String getAns() {
+		return ans;
+	}
+	public void setAns(String ans) {
+		this.ans = ans;
+	}
+	public void setMobileNo(String mobileNo) {
+		this.mobileNo = mobileNo;
+	}
 	private String answered;
 	
 
@@ -141,9 +172,7 @@ public class RequestDTO implements Serializable{
 	
 	
 	
-	public void setMobileNo(int mobileNo) {
-		this.mobileNo = mobileNo;
-	}
+
 	private String emailId;
 	private String pwd;
 
@@ -185,12 +214,7 @@ public class RequestDTO implements Serializable{
 	public void setDob(Date dob) {
 		this.dob = dob;
 	}
-	public Date getDate() {
-		return date;
-	}
-	public void setDate(Date date) {
-		this.date = date;
-	}
+
 	public String getCountry() {
 		return country;
 	}
@@ -228,12 +252,18 @@ public class RequestDTO implements Serializable{
 	private Date dob;
 	
 
-	private Date date;
+	private String date;
 	
 	
 	
 
 	
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}
 	private String country;
 
 	private String state;
@@ -255,7 +285,8 @@ public class RequestDTO implements Serializable{
 		this.address = address;
 	}
 
-	public int getMobileNo() {
+	
+	public String getMobileNo() {
 		return mobileNo;
 	}
 	public String getEmailId() {

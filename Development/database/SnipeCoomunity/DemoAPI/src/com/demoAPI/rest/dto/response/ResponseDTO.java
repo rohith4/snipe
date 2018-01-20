@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.demoAPI.rest.entity.Recent;
 import com.demoAPI.rest.entity.UserEntity;
 
 @SuppressWarnings("serial")
@@ -38,6 +39,18 @@ public String getMessageReturn() {
 	}
 	
 	private List<UserEntity> userEntity;
+
+	public List<Recent> getRecent() {
+		return recent;
+	}
+
+	public void setRecent(List<Recent> recent) {
+		this.recent = recent;
+	}
+
+	private List<Recent> recent;
+	
+	
 	
 	public List<UserEntity> getUserEntity() {
 		return userEntity;

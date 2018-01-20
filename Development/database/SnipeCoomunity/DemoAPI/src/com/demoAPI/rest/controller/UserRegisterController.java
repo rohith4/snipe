@@ -104,4 +104,16 @@ public class UserRegisterController {
 	
 	
 	
+	
+	@RequestMapping(value=RestURLS.RECENT, method=RequestMethod.POST)
+	public @ResponseBody ResponseDTO getrecent(@RequestBody RequestDTO userReg)
+	{
+		logger.info("********UserRigistrationController.Answered*******");
+		System.out.println("");
+		return registrationService.getRecentList(userReg);
+		
+	}
+	
+	
+	
 }

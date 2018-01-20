@@ -1,6 +1,9 @@
 
 
 
+
+
+POST
 Register
 http://localhost:8080/DemoAPI/rest/registerUser
 
@@ -16,6 +19,8 @@ http://localhost:8080/DemoAPI/rest/registerUser
 "gender":"male"}
 
 
+
+POST
 Login
 http://localhost:8080/DemoAPI/rest/loginUser
 {
@@ -23,7 +28,14 @@ http://localhost:8080/DemoAPI/rest/loginUser
 "pwd":"0987"
 }
 
+POST
+http://localhost:8080/DemoAPI/rest/logout
+{
+	
+}
 
+
+POST
 RegisterEmployee(regisgerEmployee)
 http://localhost:8080/DemoAPI/rest/registerEmployee
 {"fname":"devarajr",
@@ -38,10 +50,54 @@ http://localhost:8080/DemoAPI/rest/registerEmployee
 "gender":"male"}
 
 
+POST
 Ask Questions(askq)
 http://localhost:8080/DemoAPI/rest/askq
-{"que":"What is Hibernate"}
+{
 
-Tags
-http://localhost:8080/DemoAPI/rest/tags
-{""}
+ "fname":"Devaraj",
+	
+ "uname":"DevarajRc",
+	
+ "date":"20-1-2018",
+	
+ "rating":"3",
+	
+ "tag":"hibernate",
+	 
+ "ans":"",
+	
+ "question":"What is Hibernate"
+}
+
+POST
+http://localhost:8080/DemoAPI/rest/recent
+{
+
+ 
+"fname":"Devarajtyu",
+
+	
+ 
+"uname":"DevarajRcplkjhb",
+	
+ 
+"date":"19-1-2018",
+	
+ 
+"rating":"4",
+	
+ 
+"tag":"hibernat ",
+	
+ 
+"ans":"Hibernate is ORM tool",
+ 
+
+	
+ 
+"question":"What is Hibernate"
+}
+	
+
+
