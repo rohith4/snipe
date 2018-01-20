@@ -71,7 +71,7 @@ http://localhost:8080/DemoAPI/rest/askq
 }
 
 POST
-http://localhost:8080/DemoAPI/rest/recent
+http://localhost:8080/DemoAPI/rest/answered
 {
 
  
@@ -99,5 +99,9 @@ http://localhost:8080/DemoAPI/rest/recent
 "question":"What is Hibernate"
 }
 	
+POST
+http://localhost:8080/DemoAPI/rest/recent
+{
 
+ }
 
