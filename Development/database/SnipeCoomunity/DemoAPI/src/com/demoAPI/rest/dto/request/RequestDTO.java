@@ -1,7 +1,7 @@
 package com.demoAPI.rest.dto.request;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.*;
 
 
 
@@ -9,8 +9,24 @@ public class RequestDTO implements Serializable{
 
 	
 	
+	private int tag_id;
 	
+  
 	
+	private String empId;
+	
+	public String getEmpId() {
+		return empId;
+	}
+	public void setEmpId(String empId) {
+		this.empId = empId;
+	}
+	public int getTag_id() {
+		return tag_id;
+	}
+	public void setTag_id(int tag_id) {
+		this.tag_id = tag_id;
+	}
 	private String address;
 	private String mobileNo;
 	
@@ -20,18 +36,22 @@ public class RequestDTO implements Serializable{
 	
 	private String ans;
 
+	private Date createdDate;
 	
 	
-	
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
 	public String getUname() {
 		return uname;
 	}
 	public void setUname(String uname) {
 		this.uname = uname;
 	}
-	public String getQuestion() {
-		return question;
-	}
+	
 	public void setQuestion(String question) {
 		this.question = question;
 	}
@@ -189,14 +209,18 @@ public class RequestDTO implements Serializable{
 	public void setTag(String tag) {
 		this.tag = tag;
 	}
-	public String getQue() {
-		return que;
-	}
+	
 	public void setQue(String que) {
 		this.que = que;
 	}
 	public String getFname() {
 		return fname;
+	}
+	public String getQuestion() {
+		return question;
+	}
+	public String getQue() {
+		return que;
 	}
 	public void setFname(String fname) {
 		this.fname = fname;

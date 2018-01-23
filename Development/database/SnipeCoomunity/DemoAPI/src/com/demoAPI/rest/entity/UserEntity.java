@@ -22,6 +22,17 @@ public class UserEntity {
 	private String fname;
 	
 	
+	@Column(name="EMP_ID")
+	private String empId;
+	
+	
+	public String getEmpId() {
+		return empId;
+	}
+	public void setEmpId(String empId) {
+		this.empId = empId;
+	}
+
 	@Column(name="PASSWORD")
 	private String pwd;
 	
@@ -166,5 +177,13 @@ public Date getDate() {
 	}
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
+	}
+	private String sendedmail;
+
+	public String getSendedmail() {
+		return sendedmail;
+	}
+	public String setSendedmail(String sendedmail) {
+		return this.sendedmail = sendedmail;
 	}
 }

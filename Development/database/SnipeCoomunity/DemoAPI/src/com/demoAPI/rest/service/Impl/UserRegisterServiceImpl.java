@@ -1,23 +1,28 @@
 package com.demoAPI.rest.service.Impl;
 
+
 import java.util.Date;
 import java.util.List;
+
+
 
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.demoAPI.rest.entity.Answered;
+import com.demoAPI.rest.entity.Answeres;
 import com.demoAPI.rest.entity.EmployeeEntity;
+import com.demoAPI.rest.entity.Question1;
 import com.demoAPI.rest.entity.Questions;
 import com.demoAPI.rest.entity.Recent;
 import com.demoAPI.rest.entity.Tags;
+import com.demoAPI.rest.entity.Tags1;
 import com.demoAPI.rest.entity.UserEntity;
 import com.demoAPI.rest.dao.UserRegisterDAO;
 import com.demoAPI.rest.dto.request.RequestDTO;
@@ -47,20 +52,22 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 		// TODO Auto-generated method stub
 		logger.info("******UserRegisterServiceImpl.getUserReg**************");
 		ResponseDTO userRegRes = new ResponseDTO();
+		UserEntity user=new UserEntity();
 		System.out.println("Server: "+userReg.getFname());
 	
 		if(!userReg.getEmailId().isEmpty() && userReg.getEmailId()!= null){
 			boolean result = userRegisterDao.checkemailId(userReg);
 			if(result){
-				//userRegRes.setReturnCode(1);
+			//	userRegRes.setReturnCode(1);
 				userRegRes.setMessageReturn("This Eamil Already Registered with DEMOAPI");
 			}else{
-			heapler.sendEmail(userReg.getEmailId(), userReg.getFname());
+		//	heapler.sendEmail(userReg.getEmailId(), userReg.getFname());
 			userRegRes=userRegisterDao.saveUserreg(userReg);
 			}
 		}else{ 	
-			userRegRes.setReturnCode(1);
+		//	userRegRes.setReturnCode(1);
 			userRegRes.setMessageReturn("You are not entered e");
+			
 		}
 		return userRegRes;
 	}
@@ -80,17 +87,17 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 			if(pwd.equals(heapler.getPasswordEncoded(userReg.getPwd(),userReg.getEmailId())))
 			{	
 				userRegisterDao.updateLoginStatusY(userReg);
-				userRegRes.setReturnCode(0);
+			//	userRegRes.setReturnCode(0);
 				userRegRes.setMessageReturn("Login successfully");
 				System.out.println("Login Sussfull");
 				
 			}else{
-				userRegRes.setReturnCode(1);
+				//userRegRes.setReturnCode(1);
 				userRegRes.setMessageReturn("oooInvalid EmailId/Password");
 				System.out.println("Login UnSussfull");
 			}
 		}else{
-			userRegRes.setReturnCode(1);
+			//userRegRes.setReturnCode(1);
 			userRegRes.setMessageReturn("Invalid EmailId/Password");
 			System.out.println("Login UnSussfull");
 		}
@@ -105,7 +112,7 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 		ResponseDTO response=new ResponseDTO();
 		List<UserEntity> userList= userRegisterDao.getUserList(userReg);
 		if(userList.size()==0){
-			response.setReturnCode(1);
+			//response.setReturnCode(1);
 			response.setMessageReturn("There is No User Registered with DEMO-API");
 		}else{
 		response.setReturnCode(0);
@@ -164,10 +171,10 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 		boolean result = userRegisterDao.checkemailId(userReg);
 		if(result){
 			userRegisterDao.updateLoginStatusN(userReg);
-			response.setReturnCode(0);
+		//	response.setReturnCode(0);
 			response.setMessageReturn("Logout successfully");
 		}else{
-			response.setReturnCode(1);
+			//response.setReturnCode(1);
 			response.setMessageReturn("Something went wrong");
 		}
 		return response;
@@ -252,7 +259,7 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 		// TODO Auto-generated method stub
 		
 		// TODO Auto-generated method stub
-				logger.info("******UserRegisterServiceImpl.Tags**************");
+	/*			logger.info("******UserRegisterServiceImpl.Tags**************");
 				ResponseDTO userRegRes = new ResponseDTO();
 				Session session=currentSession();
 				Criteria crt=session.createCriteria(Recent.class);
@@ -264,117 +271,69 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 				rec.setRating(userReg.getRating());
 				rec.setTag(userReg.getTag());
 				rec.setUname(userReg.getUname());
-			    rec.setAns_status("N");
-				
-				
-				
-				
-			//	Criteria crq = session.createCriteria(Questions.class);
-				
-			
+			    rec.setAns_status("N");	
 				session.save(rec);
 				System.out.println("Hi");
-				
-			//	session.save(tags);
-				
-				
 				
 				System.out.println("taghtml"+userReg.getQue());
 		
 				userRegRes.setMessageReturn("This question is submitted and added to corresponding tags");
-				
-				
-			//	session.save(userReg);
 			
-		/*	if(!userReg.getTag().isEmpty() && userReg.getTag()!= null){
-					boolean result = userRegisterDao.checkTag(userReg);
-					if(result){
-						//userRegRes.setReturnCode(1);
-						userRegRes.setMessageReturn("This question is answered already");
-					}else{
-					//heapler.sendEmail(userReg.getEmailId(), userReg.getName());
-					userRegRes=userRegisterDao.saveUserreg(userReg);
-					}
-				}else{ 	
-					//userRegRes.setReturnCode(1);
-					userRegRes.setMessageReturn("You are not entered e");
-				}*/
 				return userRegRes;
+	*/	
+		
+	ResponseDTO userRegRes=new ResponseDTO();
+	Session session=currentSession();
+	Criteria crt=session.createCriteria(Question1.class);
+	Criteria tag=session.createCriteria(Tags1.class);
+    //Criteria ans=session.createCriteria(Answeres.class);
+Answeres ans=new Answeres();
+Question1 que=new Question1();
+
+	que.setQue(userReg.getQuestion());
+	que.setCreatedate(new Date());
+	
+	que.setQue(userReg.getQue());
+	que.setCreatedate(new Date());
+	//que.setTag_id(userReg.getTag_id());
+	System.out.println("question is" +userReg.getQue());
+	if(userReg.getQue().contains("css"))
+	{
+		
+		tag.add(Restrictions.eq("css", userReg.getQue()));
+		que.setTag_id(3);
+		//que.setTag_id();
+		userRegRes.setMessageReturn("This question is submitted and added to corresponding tags");
+	}
+	//session.save(que);
+	//ans.setQ_id(que.getQ_id());
+	session.save(ans);
+	return userRegRes;	
 		
 		
 		
-	//	return null;
+	
 	}
 
 	@Override
 	public ResponseDTO answered(RequestDTO userReg) {
 		// TODO Auto-generated method stub
-		
-		
+		ResponseDTO userRegRes=new ResponseDTO();
+		Answeres ans=new Answeres();
+		Session session=currentSession();
+		Criteria crit=session.createCriteria(Answeres.class);
 	
-		logger.info("******UserRegisterServiceImpl.Tags**************");
-		ResponseDTO userRegRes = new ResponseDTO();
-		UserEntity user=new UserEntity();
+	                Question1 que=new Question1();
+					ans.setAns(userReg.getAns());
+					ans.setCreatedDate(userReg.getCreatedDate());
+					ans.setQuestion(que);
+					session.save(ans);
+					userRegRes.setReturnMsg("Saved");
+			
+			
 		
-		
-		Session session  = currentSession();
-		Recent rec=new Recent();
-		rec.setDate(userReg.getDate());
-		rec.setQuestion(userReg.getQuestion());
-		rec.setAns(userReg.getAns());
-		rec.setFname(userReg.getFname());
-		rec.setRating(userReg.getRating());
-		rec.setTag(userReg.getTag());
-		rec.setUname(userReg.getUname());
-	    //rec.setAns_status("N");
-	
-		//Criteria crc = session.createCriteria(Answered.class);
-		
-		//Questions que=new Questions();
-		//Session session=currentSession();
-		Criteria crc1=session.createCriteria(Questions.class);
-	//	que.setQue(userReg.getQue());
-	//	Tags tags=new Tags();
-		Answered ans=new Answered();
-		//EmployeeEntity emp=new EmployeeEntity();
-		logger.info("******UserRegisterServiceImpl.ANSWERQUESTIONS**************");
-		
-		/*boolean result = userRegisterDao.checkemailId(userReg);
-		if(result){*/
-		String pwd= userRegisterDao.getpwd(userReg);
-		System.out.println("Devaraj: "+pwd);
-		System.out.println("Devaraj: "+heapler.getPasswordEncoded(userReg.getPwd(),userReg.getEmailId()));
-		/*	if(pwd.equals(heapler.getPasswordEncoded(userReg.getPwd(),userReg.getEmailId()))){	
-				userRegisterDao.updateLoginStatusY(userReg);
-				userRegRes.setReturnCode(0);
-				userRegRes.setMessageReturn("You can answer the question");
-				ans.setFname(userReg.getFname());
-				*/
-		//		que.setDate(userReg.getDate());
-				System.out.println("date"+userReg.getDate());
-			//	session.save(que);
-				//session.save(ans);
-				if(!userReg.getTag().isEmpty() && userReg.getAns()!= null){
-					
-					userRegisterDao.updateAnsStatusY(userReg);
-					
-				}
-				
-			/*}else{
-				userRegRes.setReturnCode(1);
-				userRegRes.setMessageReturn("Please Login");
-			}*/
-		/*}else{
-			userRegRes.setReturnCode(1);
-			userRegRes.setMessageReturn("Please Login");
-		}*/
-		
-		
-		
-		
-//		ResponseDTO userRegRes = new ResponseDTO();
-		
-		
+
+
 		return userRegRes;
 		
 
@@ -388,10 +347,11 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 		ResponseDTO response=new ResponseDTO();
 		List<Recent> recentList= userRegisterDao.getrecentList(userReg);
 		if(recentList.size()==0){
-			response.setReturnCode(1);
+		//	response.setReturnCode(1);
 			response.setMessageReturn("There is No Recent Registered with DEMO-API");
 		}else{
 	//	response.setReturnCode(0);
+			response.setRecent(recentList);
 			try {
 			Session session=currentSession();
 			Recent rec=new Recent();
@@ -412,7 +372,7 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 			    criteria.setMaxResults(n);*/
 
 	
-		response.setRecent(recentList1);
+		//response.setRecent(recentList1);
 			}catch(Exception e)
 			{
 				System.out.println(e);
@@ -420,11 +380,34 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 		}
 		return response;
 	}
-	
-	
-	
 
-	
+	@Override
+	public ResponseDTO resetPwd(RequestDTO userReg) {
+		// TODO Auto-generated method stub
+		ResponseDTO response=new ResponseDTO();
+		
+		UserEntity user=new UserEntity();
+		String email=user.setSendedmail(userReg.getEmailId());
+		com.demoAPI.rest.service.Impl.send Send=new send();
+System.out.println("email"+userReg.getEmailId());
+		try
+		
+		{ 
+			Send.otp(email);
+		
+		}catch(Exception e)
+		{
+			System.out.println(e);
+		}
+		response.setReturnMsg("OTP sent ");
+		return response;
+	}
 
+	@Override
+	public ResponseDTO getupdatepwd(RequestDTO userReg) {
+	
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

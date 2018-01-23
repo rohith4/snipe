@@ -79,24 +79,8 @@ http://localhost:8080/DemoAPI/rest/answered
 
 	
  
-"uname":"DevarajRcplkjhb",
-	
- 
-"date":"19-1-2018",
-	
- 
-"rating":"4",
-	
- 
-"tag":"hibernat ",
-	
- 
-"ans":"Hibernate is ORM tool",
- 
 
-	
- 
-"question":"What is Hibernate"
+"ans":"Hibernate is ORM tool"
 }
 	
 POST
@@ -104,4 +88,12 @@ http://localhost:8080/DemoAPI/rest/recent
 {
 
  }
+
+POST
+ResetPassword
+http://localhost:8080/DemoAPI/rest/resetpwd
+{
+"emailId":"d.chennur@gmail.com"
+}
+
 

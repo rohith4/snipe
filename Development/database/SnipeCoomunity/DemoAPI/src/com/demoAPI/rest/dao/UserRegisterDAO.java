@@ -24,5 +24,7 @@ public interface UserRegisterDAO {
 	
 	List<Recent> getrecentList(RequestDTO userReg);
 	
+	//String getTag(RequestDTO userReg);
 	boolean checkTag(RequestDTO userReg);
+	boolean checkAns(RequestDTO userReg);
 }

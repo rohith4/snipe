@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
@@ -23,6 +24,7 @@ import com.demoAPI.rest.entity.Questions;
 import com.demoAPI.rest.entity.Recent;
 import com.demoAPI.rest.entity.UserEntity;
 import com.demoAPI.rest.util.Helper;
+import com.itextpdf.text.log.SysoCounter;
 
 @Repository()
 public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO{
@@ -48,8 +50,9 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		user.setDob(userReg.getDob());
 		user.setAddress(userReg.getAddress());
 		user.setEmailId(userReg.getEmailId());
-		//user.setDob("");
-		//user.setName(userReg.getName());
+		user.setEmpId("snipe"+user.getUserRef());
+		System.out.println(user.getUserRef());
+	
 		user.setMobileNo(userReg.getMobileNo());
 		//user.setAddress(userReg.getAddress());
     	user.setPwd(userReg.getPwd());
@@ -64,9 +67,12 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		session.save(user);
 		System.out.println("Saved");
 		returnMag = "Congratulations!!"+user.getName() +" Registration successfull";
+		 response.setReturnMsg(returnMag);
+			
 		
-		response.setReturnCode(0);
-		response.setMessageReturn(returnMag);
+	    //response.setUserEntity(user);
+		
+		response.setMessageReturn("EmpId is"+user.getUserRef());
 		return response;
 	}
 
@@ -236,31 +242,51 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 	
 	@Override
 	@Transactional(value="transactionManager", rollbackFor=Exception.class)
+	public boolean checkAns(RequestDTO userReg) {
+		logger.info("******UserRegisterDAOImpl.checkMobileNo**************");
+		// TODO Auto-generated method stub
+		Session session  = currentSession();
+		Criteria crc = session.createCriteria(Recent.class);
+		crc.add(Restrictions.eq("fname",userReg.getFname()))
+		.setProjection(Projections.rowCount());
+		int count = (int)((long)crc.uniqueResult());
+		System.out.println(""+userReg.getFname());
+		if(count>0){
+			return true;
+		}
+		return false;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@Override
+	@Transactional(value="transactionManager", rollbackFor=Exception.class)
 	public void updateAnsStatusY(RequestDTO userReg) {
 		// TODO Auto-generated method stub
-		logger.info("******UserRegisterDAOImpl.updateANSStatus**************");
+
 		Criteria crit = currentSession().createCriteria(Recent.class);
-//		crit.add(Restrictions.eq("mobileNo",userReg.getMobileNo()));	
-		//UserEntity entity = (UserEntity)crit.uniqueResult();
+	//	Criteria crit1 = currentSession().createCriteria(UserEntity.class);
+	//	String tag= userRegisterDao.getpwd(userReg);
+		logger.info("******UserRegisterDAOImpl.updateAnsStatusY**************");
+	//if(fname.equals(heapler.getTag(userReg.getTag(),userReg.getAns())))
+		crit.add(Restrictions.eq("fname",userReg.getFname()));	
 		
-		
-	
-		
+
 		Recent rec=(Recent)crit.uniqueResult();
-		//entity.setLoginStatus("Y");
-		
-	//	Criteria crit = currentSession().createCriteria(UserEntity.class);
-	//	crit.add(Restrictions.eq("mobileNo",userReg.getMobileNo()));	
-		//UserEntity entity = (UserEntity)crit.uniqueResult();
-		//rec.setLoginStatus("Y");
-		//entity.setLastlogin(new Date());
-		//sessionFactory.getCurrentSession().saveOrUpdate(entity);
-		
-		
-		
+	//	rec.setFname("DRFGC");
 		rec.setAns_status("Y");
-		//entity.setLastlogin(new Date());
+		rec.setAns(userReg.getAns());
+		System.out.println("hsdkjfhsdkjfhsdkj");
 		sessionFactory.getCurrentSession().saveOrUpdate(rec);
+
+		
 		
 	}
 	

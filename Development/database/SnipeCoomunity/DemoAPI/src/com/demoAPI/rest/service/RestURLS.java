@@ -15,4 +15,6 @@ public interface RestURLS {
 	String RECENT="/recent";
 	String ANSWERED="/answered";
 	String EMPLOYEE_REGISTER="/registerEmployee";
+	String UPDATEPWD="/updatepwd";
+	String RESETPWD="/resetpwd";
 }

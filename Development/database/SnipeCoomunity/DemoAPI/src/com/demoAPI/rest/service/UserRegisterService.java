@@ -23,5 +23,7 @@ public interface UserRegisterService  {
 	ResponseDTO getTags(RequestDTO userReg);
 	ResponseDTO getEmployeeRegist(RequestDTO userReg);
 	ResponseDTO getRecentList(RequestDTO userReg);
+	ResponseDTO getupdatepwd(RequestDTO userReg);
+	ResponseDTO resetPwd(RequestDTO userReg);
 	
 }

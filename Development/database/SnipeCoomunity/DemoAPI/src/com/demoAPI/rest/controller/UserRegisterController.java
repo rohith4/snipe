@@ -115,5 +115,26 @@ public class UserRegisterController {
 	}
 	
 	
+	@RequestMapping(value=RestURLS.UPDATEPWD, method=RequestMethod.POST)
+	public @ResponseBody ResponseDTO updatepwd(@RequestBody RequestDTO userReg)
+	{
+		logger.info("********UserRigistrationController.Answered*******");
+		System.out.println("");
+		return registrationService.getupdatepwd(userReg);
+		
+	}
+	
+	
+	
+	@RequestMapping(value=RestURLS.RESETPWD, method=RequestMethod.POST)
+	public @ResponseBody ResponseDTO resetPwd(@RequestBody RequestDTO userReg)
+	{
+		logger.info("********UserRigistrationController.ResetPassword*******");
+		System.out.println("");
+		return registrationService.resetPwd(userReg);
+		
+	}
+	
+	
 	
 }
