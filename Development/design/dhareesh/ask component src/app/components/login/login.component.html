@@ -1,0 +1,15 @@
+<div class="login">
+  <h1>Login</h1>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <input type="text" name="u" placeholder="Username" required="required" formControlName="userName" />
+    <span class="text-danger" *ngIf="isFieldInvalid('userName')">Name is required</span>
+    <input type="password" name="p" placeholder="Password" required="required" formControlName="password" />
+    <span class="text-danger" *ngIf="isFieldInvalid('password')">Password is required</span>
+    <div class="form-check">
+        <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" value="Remember me" checked="" formControlName="">Remember me
+          </label>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block btn-large" >Let me in.</button>
+  </form>
+</div>
