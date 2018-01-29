@@ -88,7 +88,7 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 			{	
 				userRegisterDao.updateLoginStatusY(userReg);
 			//	userRegRes.setReturnCode(0);
-				userRegRes.setMessageReturn("Login successfully");
+				userRegRes.setMessageReturn(userReg.getEmailId());
 				System.out.println("Login Sussfull");
 				
 			}else{
@@ -158,7 +158,7 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 			response.setMessageReturn(user.getName()+" user deleted successfully");
 		}else{
 			//response.setReturnCode(1);
-			response.setMessageReturn("No user found for particular MobileNo");
+			response.setMessageReturn("No user found for particular EmailId");
 		}
 		return response;
 	}
@@ -290,24 +290,40 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 Answeres ans=new Answeres();
 Question1 que=new Question1();
 
-	que.setQue(userReg.getQuestion());
+//	que.setQue(userReg.getQuestion());
 	que.setCreatedate(new Date());
 	
-	que.setQue(userReg.getQue());
+//	que.setQue(userReg.getQue());
 	que.setCreatedate(new Date());
 	//que.setTag_id(userReg.getTag_id());
-	System.out.println("question is" +userReg.getQue());
-	if(userReg.getQue().contains("css"))
+	System.out.println("question is" +userReg.getQuestion());
+	/*if(userReg.getQue().contains("css"))
 	{
 		
 		tag.add(Restrictions.eq("css", userReg.getQue()));
 		que.setTag_id(3);
 		//que.setTag_id();
 		userRegRes.setMessageReturn("This question is submitted and added to corresponding tags");
-	}
+	}*/
 	//session.save(que);
 	//ans.setQ_id(que.getQ_id());
-	session.save(ans);
+	
+	
+	// Question1 que=new Question1();
+	Tags1 tag1=new Tags1();
+	que.setQue(userReg.getQuestion());
+	tag1.setTag_name(userReg.getTag());
+    que.setTag_id(tag1);
+	session.save(que);
+	
+		
+		userRegRes.setReturnMsg("Saved");
+	
+	
+	
+	
+//	session.save(que);
+	userRegRes.setMessageReturn("This question is submitted and added to corresponding tags");
 	return userRegRes;	
 		
 		
@@ -339,13 +355,20 @@ Question1 que=new Question1();
 
 	}
 
-	@Override
-	public ResponseDTO getRecentList(RequestDTO userReg) {
+	/*	@Override
+	public Recent getRecentList(RequestDTO userReg) {
 		// TODO Auto-generated method stub
 		
 		logger.info("******UserRegisterServiceImpl.getRecentList**************");
 		ResponseDTO response=new ResponseDTO();
-		List<Recent> recentList= userRegisterDao.getrecentList(userReg);
+		
+		 List<Recent> recent=userRegisterDao.getrecentList(response);
+		
+	return	 recent.stream().filter(t ->t.getFname()==userReg.getFname()).findFirst().get();
+		*/
+		
+		
+/*		List<Recent> recentList= userRegisterDao.getrecentList(userReg);
 		if(recentList.size()==0){
 		//	response.setReturnCode(1);
 			response.setMessageReturn("There is No Recent Registered with DEMO-API");
@@ -367,9 +390,9 @@ Question1 que=new Question1();
 			List<Recent> recentList1=criteria.list();
 			
 			System.out.println("From date "+rec.getDate()+"todate"+rec.getDate());
-		/*//	 Criteria criteria = session.createCriteria(UserTable.class);
+		//	 Criteria criteria = session.createCriteria(UserTable.class);
 			    criteria.addOrder(rec.getDate());
-			    criteria.setMaxResults(n);*/
+			    criteria.setMaxResults(n);
 
 	
 		//response.setRecent(recentList1);
@@ -378,8 +401,8 @@ Question1 que=new Question1();
 				System.out.println(e);
 			}
 		}
-		return response;
-	}
+		return response;*/
+//	}
 
 	@Override
 	public ResponseDTO resetPwd(RequestDTO userReg) {
@@ -409,5 +432,68 @@ System.out.println("email"+userReg.getEmailId());
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public ResponseDTO getRecentList(RequestDTO userReg) {
+		
+		
+		
+		logger.info("******UserRegisterServiceImpl.getRecentList**************");
+		ResponseDTO response=new ResponseDTO();
+		//System.out.println(""+fname);
+		//RequestDTO userReg=new RequestDTO();
+		 List<Recent> recent=userRegisterDao.getrecentList(userReg);
+		
+	//return	 recent.stream().filter(t ->t.getFname()==userReg.getFname()).findFirst().get();
+		//	List<UserEntity> userList= userRegisterDao.getUserList(userReg);
+	/*	 Session session=currentSession();
+		 Criteria criteria=session.createCriteria(Recent.class);
+		 criteria.setMaxResults(4);*/
+		 response.setRecent(recent);
+		return response;
+	}
+
+	@Override
+	public ResponseDTO deleteEmployee(RequestDTO userReg) {
+		// TODO Auto-generated method stub
+		
+		// TODO Auto-generated method stub
+		logger.info("******UserRegisterServiceImpl.deleteUser**************");
+		ResponseDTO response=new ResponseDTO();
+	EmployeeEntity user=new EmployeeEntity();
+		boolean result = userRegisterDao.checkemailId(userReg);
+		if(result){
+			userRegisterDao.deleteUser(userReg);
+			//response.setReturnCode(0);
+			response.setMessageReturn(user.getFname()+" user deleted successfully");
+		}else{
+			//response.setReturnCode(1);
+			response.setMessageReturn("No user found for particular MobileNo");
+		}
+		return response;
+		
+		
+		
+		//return null;
+	}
+
+	
+
+/*	@Override
+	public ResponseDTO getRecentList(RequestDTO userReg) {
+		// TODO Auto-generated method stub
+		logger.info("******UserRegisterServiceImpl.getRecentList**************");
+		ResponseDTO response=new ResponseDTO();
+		System.out.println("hkjhjkh");
+		 List<Recent> recent=userRegisterDao.getrecentList(response);
+		
+	//return	 recent.stream().filter(t ->t.getFname()==userReg.getFname()).findFirst().get();
+		
+		 Session session=currentSession();
+		 Criteria criteria=session.createCriteria(Recent.class);
+		 criteria.setMaxResults(4);
+		 response.setRecent(recent);
+		return response;
+	}*/
 	
 }

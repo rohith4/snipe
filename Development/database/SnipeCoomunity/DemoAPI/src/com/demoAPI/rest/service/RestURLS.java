@@ -10,11 +10,13 @@ public interface RestURLS {
 	String DEMO_REST_DELETEUSER = "/deleteUser";
 	String DEMO_REST_LOGOUT="/logout";
 	
+	
 	String TAGS="/tags";
 	String ASK_Q="/askq";
 	String RECENT="/recent";
 	String ANSWERED="/answered";
 	String EMPLOYEE_REGISTER="/registerEmployee";
+	String DELETE_EMPLOYEE="/deleteEmployee";
 	String UPDATEPWD="/updatepwd";
 	String RESETPWD="/resetpwd";
 }

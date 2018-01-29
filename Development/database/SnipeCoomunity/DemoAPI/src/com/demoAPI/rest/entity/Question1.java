@@ -2,11 +2,15 @@ package com.demoAPI.rest.entity;
 
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.Criteria;
@@ -23,6 +27,16 @@ public class Question1 {
 	
 	
 	
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="tag_id")
+    private Tags1 tag_id;
+	
+	
+
+	public void setTag_id(Tags1 tag_id) {
+		this.tag_id = tag_id;
+	}
+
 	public int getQ_id() {
 		return q_id;
 	}
@@ -41,6 +55,10 @@ public class Question1 {
 
 	public String getEmp_id() {
 		return emp_id;
+	}
+
+	public Tags1 getTag_id() {
+		return tag_id;
 	}
 
 	public void setEmp_id(String emp_id) {
@@ -69,9 +87,7 @@ public class Question1 {
 		this.status = status;
 	}
 
-	public int getTag_id() {
-		return tag_id;
-	}
+	
 
 	
 
@@ -79,10 +95,7 @@ public class Question1 {
 		return Createdate;
 	}
 
-	public void setTag_id(int tag_id) {
-		this.tag_id = tag_id;
-	}
-
+	
 
 
 	@Column(name="Question")
@@ -101,6 +114,5 @@ public class Question1 {
 	@Column(name="Status")
 	private String status;
 	
-	@Column(name="Tag_Id")
-	private int tag_id;
+
 }

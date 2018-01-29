@@ -20,6 +20,7 @@ import com.demoAPI.rest.dao.HibernateDao;
 import com.demoAPI.rest.dao.UserRegisterDAO;
 import com.demoAPI.rest.dto.request.RequestDTO;
 import com.demoAPI.rest.dto.response.ResponseDTO;
+import com.demoAPI.rest.entity.EmployeeEntity;
 import com.demoAPI.rest.entity.Questions;
 import com.demoAPI.rest.entity.Recent;
 import com.demoAPI.rest.entity.UserEntity;
@@ -140,9 +141,9 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 	public void deleteUser(RequestDTO userReg) {
 		logger.info("******UserRegisterDAOImpl.deleteUser**************");
 		// TODO Auto-generated method stub
-		Criteria crit = sessionFactory.getCurrentSession().createCriteria(UserEntity.class);
-		crit.add(Restrictions.eq("mobileNo", userReg.getMobileNo()));
-		UserEntity delentity = (UserEntity)crit.uniqueResult();
+		Criteria crit = sessionFactory.getCurrentSession().createCriteria(EmployeeEntity.class);
+		crit.add(Restrictions.eq("emailId", userReg.getEmailId()));
+		EmployeeEntity delentity = (EmployeeEntity)crit.uniqueResult();
 		sessionFactory.getCurrentSession().delete(delentity);
 	}
 
@@ -179,7 +180,7 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		logger.info("******UserRegisterDAOImpl.checkEmailIdo**************");
 		
 		Session session  = currentSession();
-		Criteria crc = session.createCriteria(UserEntity.class);
+		Criteria crc = session.createCriteria(EmployeeEntity.class);
 		crc.add(Restrictions.eq("emailId",userReg.getEmailId())).setProjection(Projections.rowCount());
 		System.out.println("email: "+userReg.getEmailId());
 		int count = (int)((long)crc.uniqueResult());
@@ -288,6 +289,12 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 
 		
 		
+	}
+
+	@Override
+	public List<Recent> getrecentList(ResponseDTO response) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

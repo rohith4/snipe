@@ -55,18 +55,7 @@ Ask Questions(askq)
 http://localhost:8080/DemoAPI/rest/askq
 {
 
- "fname":"Devaraj",
-	
- "uname":"DevarajRc",
-	
- "date":"20-1-2018",
-	
- "rating":"3",
-	
- "tag":"hibernate",
-	 
- "ans":"",
-	
+
  "question":"What is Hibernate"
 }
 
@@ -81,6 +70,7 @@ http://localhost:8080/DemoAPI/rest/answered
  
 
 "ans":"Hibernate is ORM tool"
+
 }
 	
 POST

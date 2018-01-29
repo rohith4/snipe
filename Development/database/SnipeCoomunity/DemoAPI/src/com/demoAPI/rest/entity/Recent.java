@@ -15,6 +15,13 @@ public class Recent {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	@Column(name="UNAME")
 	private String uname;
 	public String getUname() {

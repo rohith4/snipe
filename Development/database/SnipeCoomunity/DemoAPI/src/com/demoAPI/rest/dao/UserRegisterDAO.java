@@ -22,9 +22,10 @@ public interface UserRegisterDAO {
 	void updateLoginStatusN(RequestDTO userReg);
 	
 	
-	List<Recent> getrecentList(RequestDTO userReg);
+	List<Recent> getrecentList(ResponseDTO response);
 	
 	//String getTag(RequestDTO userReg);
 	boolean checkTag(RequestDTO userReg);
 	boolean checkAns(RequestDTO userReg);
+	List<Recent> getrecentList(RequestDTO userReg);
 }

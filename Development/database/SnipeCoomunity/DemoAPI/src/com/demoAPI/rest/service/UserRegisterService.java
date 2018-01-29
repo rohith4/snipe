@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.demoAPI.rest.dto.request.RequestDTO;
 import com.demoAPI.rest.dto.response.ResponseDTO;
+import com.demoAPI.rest.entity.Recent;
 import com.demoAPI.rest.entity.UserEntity;
 
 public interface UserRegisterService  {
@@ -22,8 +23,11 @@ public interface UserRegisterService  {
 	ResponseDTO askquestion(RequestDTO userReg);
 	ResponseDTO getTags(RequestDTO userReg);
 	ResponseDTO getEmployeeRegist(RequestDTO userReg);
-	ResponseDTO getRecentList(RequestDTO userReg);
+	
 	ResponseDTO getupdatepwd(RequestDTO userReg);
 	ResponseDTO resetPwd(RequestDTO userReg);
+//	ResponseDTO getRecentList(RequestDTO userReg);
+	ResponseDTO getRecentList(RequestDTO userReg);
+	ResponseDTO deleteEmployee(RequestDTO userReg);
 	
 }

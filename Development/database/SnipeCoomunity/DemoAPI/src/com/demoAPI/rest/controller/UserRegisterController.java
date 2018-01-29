@@ -1,14 +1,22 @@
 package com.demoAPI.rest.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.demoAPI.rest.dto.request.RequestDTO;
 import com.demoAPI.rest.dto.response.ResponseDTO;
+import com.demoAPI.rest.entity.Recent;
+import com.demoAPI.rest.entity.UserEntity;
 import com.demoAPI.rest.service.RestURLS;
 import com.demoAPI.rest.service.UserRegisterService;
 import com.itextpdf.text.log.SysoCounter;
@@ -55,11 +63,40 @@ public class UserRegisterController {
 		return registrationService.getLogin(userReg);
 	}
 	
-	@RequestMapping(value = RestURLS.DEMO_REST_GETUSERS, method = RequestMethod.POST)
-	public @ResponseBody ResponseDTO getUsersList(@RequestBody RequestDTO userReg) {
-		logger.info("******UserRegistrationController.getUsersList**************");
-		return registrationService.getUsersList(userReg); 
+	
+	
+	
+	
+	
+	
+	
+	
+	@RequestMapping(value = "/users", method = RequestMethod.GET, produces = "application/json")
+	//@RequestMapping(value = RestURLS.DEMO_REST_GETUSERS, method = RequestMethod.POST)
+	
+	//public @ResponseBody ResponseDTO getUsersList(@RequestBody RequestDTO userReg) {
+		public @ResponseBody ResponseDTO getUsers( RequestDTO userReg,HttpServletRequest request, HttpServletResponse response) throws Exception {
+		logger.info("getUsers: Received request: " + request.getRequestURL().toString()
+				+ ((request.getQueryString() == null) ? "" : "?" + request.getQueryString().toString()));
+	      return registrationService.getUsersList(userReg);
+		
+		
+		//logger.info("******UserRegistrationController.getUsersList**************");
+		//return registrationService.getUsersList(userReg); 
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	@RequestMapping(value = RestURLS.DEMO_REST_MODIFYUSER, method = RequestMethod.POST)
 	public @ResponseBody ResponseDTO modifyUser(@RequestBody RequestDTO userReg) {
@@ -67,12 +104,27 @@ public class UserRegisterController {
 		return registrationService.modifyUser(userReg);	
 	}
 	
+
 	@RequestMapping(value = RestURLS.DEMO_REST_DELETEUSER, method = RequestMethod.POST)
 	public @ResponseBody ResponseDTO deleteUser(@RequestBody RequestDTO userReg) {
 		logger.info("******UserRegistrationController.deleteUser**************");
 		System.out.println();
 		return registrationService.deleteUser(userReg);
 	}
+	
+	
+	
+	
+	@RequestMapping(value = RestURLS.DELETE_EMPLOYEE, method = RequestMethod.POST)
+	public @ResponseBody ResponseDTO deleteEmployee(@RequestBody RequestDTO userReg) {
+		logger.info("******UserRegistrationController.deleteUser**************");
+		System.out.println();
+		return registrationService.deleteEmployee(userReg);
+	}
+	
+	
+	
+	
 	
 	@RequestMapping(value = RestURLS.DEMO_REST_LOGOUT, method = RequestMethod.POST)
 	public @ResponseBody ResponseDTO logoutUser(@RequestBody RequestDTO userReg) {
@@ -103,16 +155,46 @@ public class UserRegisterController {
 	}
 	
 	
+
 	
 	
-	@RequestMapping(value=RestURLS.RECENT, method=RequestMethod.POST)
-	public @ResponseBody ResponseDTO getrecent(@RequestBody RequestDTO userReg)
+	
+	
+	
+
+	@RequestMapping(value = RestURLS.RECENT, method = RequestMethod.GET, produces = "application/json")
+	//@RequestMapping(value = RestURLS.DEMO_REST_GETUSERS, method = RequestMethod.POST)
+	
+	//public @ResponseBody ResponseDTO getUsersList(@RequestBody RequestDTO userReg) {
+		public @ResponseBody ResponseDTO getrecent( RequestDTO userReg,HttpServletRequest request, HttpServletResponse response) throws Exception {
+		logger.info("getUsers: Received request: " + request.getRequestURL().toString()
+				+ ((request.getQueryString() == null) ? "" : "?" + request.getQueryString().toString()));
+	      return registrationService.getRecentList(userReg);
+		
+		
+		//logger.info("******UserRegistrationController.getUsersList**************");
+		//return registrationService.getUsersList(userReg); 
+	}
+	
+	 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+/*	@RequestMapping(value=RestURLS.RECENT,method=RequestMethod.POST)
+	public @ResponseBody ResponseDTO getrecent(@RequestBody @PathVariable String fname)
 	{
 		logger.info("********UserRigistrationController.Answered*******");
-		System.out.println("");
-		return registrationService.getRecentList(userReg);
+		System.out.println(""+fname);
+		return registrationService.getRecentList(fname);
 		
 	}
+	*/
 	
 	
 	@RequestMapping(value=RestURLS.UPDATEPWD, method=RequestMethod.POST)
