@@ -88,7 +88,7 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 			{	
 				userRegisterDao.updateLoginStatusY(userReg);
 			//	userRegRes.setReturnCode(0);
-				userRegRes.setMessageReturn(userReg.getEmailId());
+				userRegRes.setMessageReturn("Login successfully");
 				System.out.println("Login Sussfull");
 				
 			}else{

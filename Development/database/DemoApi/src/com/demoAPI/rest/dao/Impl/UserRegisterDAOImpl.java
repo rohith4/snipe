@@ -180,7 +180,7 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		logger.info("******UserRegisterDAOImpl.checkEmailIdo**************");
 		
 		Session session  = currentSession();
-		Criteria crc = session.createCriteria(EmployeeEntity.class);
+		Criteria crc = session.createCriteria(UserEntity.class);
 		crc.add(Restrictions.eq("emailId",userReg.getEmailId())).setProjection(Projections.rowCount());
 		System.out.println("email: "+userReg.getEmailId());
 		int count = (int)((long)crc.uniqueResult());
