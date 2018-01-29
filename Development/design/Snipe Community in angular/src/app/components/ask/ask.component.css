@@ -52,3 +52,6 @@ app-footer {
 .content {
 	padding-bottom: 200px;
 }
+.modal-header{
+	position: center;
+}

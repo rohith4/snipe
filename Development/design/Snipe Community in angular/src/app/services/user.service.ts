@@ -11,64 +11,65 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class UserService {
-  private loggedIn = new BehaviorSubject<boolean>(false);
-
-  get isLoggedIn() {
-    return this.loggedIn.asObservable(); // {2}
+ isLogged(): Promise<boolean> {
+   if (typeof(Storage) !== 'undefined') {
+     if (sessionStorage.getItem('User')) {
+       return Promise.resolve(true);
+     }
+   }
+   return Promise.resolve(false);
+ }
+  constructor(private http: Http, private router: Router) {
   }
 
-  constructor(private http: Http, private router: Router) {}
-
-   signUpUser(data:any){
-   var body = JSON.stringify(data);
-   var headers = new Headers();
+   signUpUser(data: any) {
+   const body = JSON.stringify(data);
+   const headers = new Headers();
    headers.append('Content-Type', 'application/json');
-   return this.http.post('http://192.168.1.101:8081/DemoAPI/rest/registerUser', body,
-    { headers: headers }).map((data: Response) => data.json());
-}
-login(data) {
-  console.log(data);
-  return this.http.post('http://192.168.1.101:8081/DemoAPI/rest/loginUser', data
-    ).map(res => res.json());
-}
-
-headerUser(data) {
-  console.log(data);
-  return this.http.post('http://192.168.1.101:8081/DemoAPI/rest/askq', data
-    ).map(res => res.json());
-}
-
- // signUpUser(form) {
-// return this.http.post('http://localhost:8081/DemoAPI/rest/registerUser', {form}).map(res => res.json())
-//   }
-
-  // login(userdata: any) {
-  //   if (userdata.userName === 'najeerbjp@gmail.com' && userdata.password === '123' ) { // {3}
-  //     this.loggedIn.next(true);
-  //     this.router.navigate(['/']);
-  //   }
-  // }
-
-  logout() {                            // {4}
-    this.loggedIn.next(false);
-    this.router.navigate(['/login']);
+   return this.http.post('http://192.168.1.125:8082/DemoAPI/rest/registerUser', body,
+    { headers: headers }).map((res: Response) => res.json());
   }
+
+  login(data): Observable<boolean> {
+    console.log(data);
+    return this.http.post('http://192.168.1.125:8082/DemoAPI/rest/loginUser', data
+      ).map(res => res.json());
+    }
+
+    headerUser(data) {
+      console.log(data);
+      return this.http.post('http://192.168.1.125:8082/DemoAPI/rest/askq', data
+      ).map(res => res.json());
+    }
+
+    askUser(data:any){
+      var body = JSON.stringify(data);
+      var headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      return this.http.post('http://192.168.1.125:8082/DemoAPI/rest/askq'	, body,
+       { headers: headers }).map((data: Response) => data.json());
+   }
+
+
+  // logout() {                            // {4}
+  //   this.isLogged.next(false);
+  //   this.router.navigate(['/login']);
+  //   localStorage.removeItem('profile');
+  //   localStorage.removeItem('id_token');
+  //   this.userProfile = undefined;
+  // }
 
   // Get a list of all events
   getUsers(): Observable <any[]> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({ headers: headers });
     return this.http.get('/api/users', options)
       .map(response => response.json().data)
       .catch(this.handleErrors);
-  
-    }
-  
-  
+   }
 
   // Error handling
   private handleErrors (error: Response | any) {
     return Observable.throw(error.json().message || 'backend server error');
   }
 }
-
