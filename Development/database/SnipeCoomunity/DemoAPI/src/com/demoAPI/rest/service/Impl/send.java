@@ -84,7 +84,7 @@ public class send extends HttpServlet {
 		{
 			protected PasswordAuthentication getPasswordAuthentication()
 			{
-				return new PasswordAuthentication("d.chennur@gmail.com","973_devaraj");
+				return new PasswordAuthentication("dummyemailaddresssnp@yahoo.com","9739668309");
 			}
 		}
 		

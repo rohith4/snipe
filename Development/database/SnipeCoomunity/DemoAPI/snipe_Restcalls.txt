@@ -73,7 +73,7 @@ http://localhost:8080/DemoAPI/rest/answered
 
 }
 	
-POST
+GET
 http://localhost:8080/DemoAPI/rest/recent
 {
 
