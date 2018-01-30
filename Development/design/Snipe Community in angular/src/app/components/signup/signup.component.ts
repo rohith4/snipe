@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UserService } from '../../services/user.service'
+import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-signup',
@@ -10,7 +10,12 @@ import { Router } from '@angular/router';
 })
 
 export class SignupComponent implements OnInit {
+  register(form: FormGroup) {
+    form.reset();
+   }
   form: FormGroup;
+  successMessage:string = '';
+  errorMessage:string = '';
  constructor(private fb: FormBuilder, private router : Router, private userService : UserService){}
   ngOnInit() {
      this.form = this.fb.group({    
@@ -20,7 +25,6 @@ export class SignupComponent implements OnInit {
       pwd: ['', Validators.required],
       address: ['', Validators.required],
       mobileNo: ['', Validators.required],
-      
      gender:[''],
       dob:[''],
       state:[''],
@@ -30,12 +34,19 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit() {
+   this.successMessage = '';  
+   this.errorMessage = '';
     this.userService.signUpUser(this.form.value)
     .subscribe( 
       (data) => { console.log(data);
-    this.router.navigate(['/login']);        
-       },
-      (error) => console.log(error),
+    this.successMessage ='Click Here go Login.';
+    // this.router.navigate(['/home']); 
+    
+      },       
+    
+      (error) => {console.log(error)
+        this.errorMessage = 'user could not be updated';
+      },
       () => console.log('success')  
     );
   }
