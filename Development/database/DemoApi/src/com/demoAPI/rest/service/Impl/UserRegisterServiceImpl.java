@@ -51,7 +51,7 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 	@Override
 	public ResponseDTO getUserRegist(RequestDTO userReg) {
 		// TODO Auto-generated method stub
-		logger.info("******UserRegisterServiceImpl.getUserReg**************");
+		logger.info("******UserRegisterServiceImpl.getUserRegdjf**************");
 		ResponseDTO userRegRes = new ResponseDTO();
 		UserEntity user=new UserEntity();
 		System.out.println("Server: "+userReg.getFname());

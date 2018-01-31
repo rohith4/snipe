@@ -3,6 +3,9 @@ package com.demoAPI.rest.dao.Impl;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import javax.transaction.Transaction;
+
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -70,13 +73,15 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		user.setLoginStatus("N");
 		session.save(user);
 		System.out.println("Saved");
+		
 		returnMag = "Congratulations!!"+user.getName() +" Registration successfull";
+		System.out.println(""+userReg.getFname());
 		 response.setReturnMsg(returnMag);
 			
 		
 	    //response.setUserEntity(user);
 		
-		response.setMessageReturn("EmpId is"+user.getUserRef());
+		response.setMessageReturn("E"+user.getUserRef());
 		return response;
 	}
 
@@ -233,20 +238,38 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 	public boolean checkanswered(RequestDTO userReg) {
 		// TODO Auto-generated method stub
 		
-logger.info("******UserRegisterDAOImpl.checkEmailIdo**************");
+logger.info("******UserRegisterDAOImpl.checkANswered**************");
 		
-		Session session  = currentSession();
-		Criteria crc = session.createCriteria(Question1.class);
+		
 		Question1 que=new Question1();
-		que.setAns(userReg.getAns());
+	//	Criteria crc = session.createCriteria(Question1.class);
+		
+		que.setAns(userReg.getAnswered());
+		System.out.println("answerd"+userReg.getAnswered());
 		
 	//	Criteria crit=session.createCriteria(Answeres.class);
 		List<Question1> quelist=new ArrayList<Question1>();
 	/*	Query query = session.createQuery("select que.status from Question1 que where que.status = 'N'");
 		//query.setParameter("code", "7277");
 		System.out.println("query"+query);
-		if(query.equals("N")){*/
-			Query query1 = session.createQuery("update Question1 set ans ='user' where userRef=288");
+		//if(query.equals("N")){*/
+		//update User set name=:n where id=:i
+		
+		
+	    //org.hibernate.Transaction tx=session.beginTransaction();  
+		Session session  = currentSession();
+	    Query q=session.createQuery("update Question1 set ans=:n where id=:i");  
+	    q.setParameter("n",userReg.getAnswered());  
+	    q.setParameter("i",288);  
+	      
+	    int status=q.executeUpdate();  
+	    System.out.println(status);  
+	//    tx.commit();  
+		
+		
+		
+		
+			//Query query1 = session.createQuery("update Question1 set ans ='user' where q_id=288");
 	//	}
 		//List list = query.list();
 		//quelist = query.list();
