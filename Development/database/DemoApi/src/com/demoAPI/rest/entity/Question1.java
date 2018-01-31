@@ -25,18 +25,49 @@ public class Question1 {
 	@Column(name="Q_id") 
 	private int q_id;
 	
+	@Column(name="Question")
+private String question;
+	
+	@Column(name="Ratings")
+private String ratings;
 	
 	
-	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="tag_id")
-    private Tags1 tag_id;
 	
-	
-
-	public void setTag_id(Tags1 tag_id) {
-		this.tag_id = tag_id;
+	public String getRatings() {
+		return ratings;
 	}
 
+	public void setRatings(String ratings) {
+		this.ratings = ratings;
+	}
+
+	public String getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(String question) {
+		this.question = question;
+	}
+
+
+
+
+	@Column(name="tag_name")
+private String tag_name;
+
+	public String getTag_name() {
+	return tag_name;
+}
+
+public void setTag_name(String tag_name) {
+	this.tag_name = tag_name;
+}
+
+
+
+
+	//@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	
 	public int getQ_id() {
 		return q_id;
 	}
@@ -45,21 +76,12 @@ public class Question1 {
 		this.q_id = q_id;
 	}
 
-	public String getQue() {
-		return que;
-	}
-
-	public void setQue(String que) {
-		this.que = que;
-	}
 
 	public String getEmp_id() {
 		return emp_id;
 	}
 
-	public Tags1 getTag_id() {
-		return tag_id;
-	}
+	
 
 	public void setEmp_id(String emp_id) {
 		this.emp_id = emp_id;
@@ -98,13 +120,24 @@ public class Question1 {
 	
 
 
-	@Column(name="Question")
-	private String que;
+	@Column(name="Answer")
+	private String ans;
 	
 	
 	@Column(name="Emp_Id")
 	private String emp_id;
 	
+	public String getAns() {
+		return ans;
+	}
+
+	public void setAns(String ans) {
+		this.ans = ans;
+	}
+
+
+
+
 	@Column(name="CreatedDate")
 	private java.util.Date Createdate;
 	

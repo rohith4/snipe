@@ -11,6 +11,7 @@ public interface RestURLS {
 	String DEMO_REST_LOGOUT="/logout";
 	
 	
+	String RECENTQ="/recentq";
 	String TAGS="/tags";
 	String ASK_Q="/askq";
 	String RECENT="/recent";

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.demoAPI.rest.entity.Question1;
 import com.demoAPI.rest.entity.Recent;
 import com.demoAPI.rest.entity.UserEntity;
 
@@ -39,6 +40,15 @@ public String getMessageReturn() {
 	}
 	
 	private List<UserEntity> userEntity;
+	private List<Question1> question1;
+
+	public List<Question1> getQuestion1() {
+		return question1;
+	}
+
+	public void setQuestion1(List<Question1> question1) {
+		this.question1 = question1;
+	}
 
 	public List<Recent> getRecent() {
 		return recent;

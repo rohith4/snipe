@@ -1,5 +1,5 @@
 
-
+install ng serve --open
 
 
 

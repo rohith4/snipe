@@ -20,9 +20,12 @@ import com.demoAPI.rest.dao.HibernateDao;
 import com.demoAPI.rest.dao.UserRegisterDAO;
 import com.demoAPI.rest.dto.request.RequestDTO;
 import com.demoAPI.rest.dto.response.ResponseDTO;
+import com.demoAPI.rest.entity.Answeres;
 import com.demoAPI.rest.entity.EmployeeEntity;
+import com.demoAPI.rest.entity.Question1;
 import com.demoAPI.rest.entity.Questions;
 import com.demoAPI.rest.entity.Recent;
+//import com.demoAPI.rest.entity.Tags1;
 import com.demoAPI.rest.entity.UserEntity;
 import com.demoAPI.rest.util.Helper;
 import com.itextpdf.text.log.SysoCounter;
@@ -91,6 +94,24 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 	}
 	
 	
+	/*
+	@Override
+	@Transactional(value="transactionManager", rollbackFor=Exception.class)
+	public String getTagId(RequestDTO userReg) {
+		logger.info("******UserRegisterDAOImpl.getquestions**************");
+		// TODO Auto-generated method stub
+		Session session = currentSession();
+		Criteria crc = session.createCriteria(Question1.class);
+		crc.add(Restrictions.eq("tag_name",userReg.getTag_id()))
+		.setProjection(Projections.property("que"));
+		
+		System.out.println("Hellow");
+		Object tag_name = (String) crc.uniqueResult();
+		
+		return (String) tag_name;
+	}
+	*/
+	
 
 
 	
@@ -103,8 +124,18 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		List<UserEntity> userList = new ArrayList<UserEntity>();
 		Session session = currentSession();
 		Criteria crc= session.createCriteria(UserEntity.class);
+		
+	//	Session session  = currentSession();
+		//Criteria crc = session.createCriteria(UserEntity.class);
+		Query query = session.createQuery("select userentity.address from UserEntity userentity where userentity.userRef = 275");
+		//query.setParameter("code", "275");
+		//List list = query.list();
+		
+		
+		
+		
 		try{
-			userList = crc.list();
+			userList = query.list();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -195,25 +226,60 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		return false;
 		
 	}
-
+	
+	
+	
 	@Override
+	public boolean checkanswered(RequestDTO userReg) {
+		// TODO Auto-generated method stub
+		
+logger.info("******UserRegisterDAOImpl.checkEmailIdo**************");
+		
+		Session session  = currentSession();
+		Criteria crc = session.createCriteria(Question1.class);
+		Question1 que=new Question1();
+		que.setAns(userReg.getAns());
+		
+	//	Criteria crit=session.createCriteria(Answeres.class);
+		List<Question1> quelist=new ArrayList<Question1>();
+	/*	Query query = session.createQuery("select que.status from Question1 que where que.status = 'N'");
+		//query.setParameter("code", "7277");
+		System.out.println("query"+query);
+		if(query.equals("N")){*/
+			Query query1 = session.createQuery("update Question1 set ans ='user' where userRef=288");
+	//	}
+		//List list = query.list();
+		//quelist = query.list();
+		System.out.println("answered");
+		return true;
+		
+		
+		
+		
+	}
+	
+	
+
+	/*@Override
 	public boolean checkTag(RequestDTO userReg) {
 		// TODO Auto-generated method stub
 		
 		logger.info("******UserRegisterDAOImpl.checkTags**************");
 		// TODO Auto-generated method stub
 		Session session  = currentSession();
-		Criteria crc = session.createCriteria(Questions.class);
-		crc.add(Restrictions.eq("que",userReg.getTag())).setProjection(Projections.rowCount());
+		Criteria crc = session.createCriteria(Tags1.class);
+		crc.add(Restrictions.eq("tag_name",userReg.getTag_name())).setProjection(Projections.rowCount());
+		System.out.println("sjdfldksjjkdslfjl");
 		int count = (int)((long)crc.uniqueResult());
 		if(count>0){
+			System.out.println("sjdfldksj");
 			return true;
 		}
 		return false;
 		
 		
 		
-	}
+	}*/
 
 	@Override
 	@Transactional(value="transactionManager", rollbackFor=Exception.class)
@@ -296,6 +362,28 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<Question1> getqueList(RequestDTO userReg) {
+		// TODO Auto-generated method stub
+		
+		
+		Session session=currentSession();
+		Criteria crit=session.createCriteria(Answeres.class);
+		List<Question1> quelist=new ArrayList<Question1>();
+		Query query = session.createQuery("select que.question from Question1 que where que.status = 'N'");
+		//query.setParameter("code", "7277");
+		System.out.println(query);
+		if(query.equals("N")){
+			Query query1 = session.createQuery("select question from Question1");
+		}
+		//List list = query.list();
+		quelist = query.list();
+		return quelist;
+	}
+
+
+
 	
 	
 	

@@ -17,7 +17,7 @@ public interface UserRegisterService  {
 	ResponseDTO deleteUser(RequestDTO userReg);
 	ResponseDTO logoutUser(RequestDTO userReg);
 	
-//	List<Recent> getrecentList(RequestDTO userReg);
+	List<Recent> getrecentList(RequestDTO userReg);
 	
 	
 	ResponseDTO askquestion(RequestDTO userReg);
@@ -27,7 +27,11 @@ public interface UserRegisterService  {
 	ResponseDTO getupdatepwd(RequestDTO userReg);
 	ResponseDTO resetPwd(RequestDTO userReg);
 //	ResponseDTO getRecentList(RequestDTO userReg);
-	ResponseDTO getRecentList(RequestDTO userReg);
+	//ResponseDTO getRecentList(RequestDTO userReg);
 	ResponseDTO deleteEmployee(RequestDTO userReg);
+	//ResponseDTO getrecentQuestions(RequestDTO userReg);
+	ResponseDTO getrecentQeustion(RequestDTO userReg);
+//	Recent getRecentList(RequestDTO userReg);
+	ResponseDTO answered1(RequestDTO userReg);
 	
 }

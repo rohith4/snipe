@@ -37,6 +37,16 @@ public class UserRegisterController {
 	
 	
 	
+	@RequestMapping(value = RestURLS.RECENTQ, method = RequestMethod.POST)
+	public @ResponseBody ResponseDTO getrecentQuestions(@RequestBody RequestDTO userReg) {
+		logger.info("******UserRegistrationController.getUserReg**************");
+		return registrationService.getrecentQeustion(userReg);
+	}
+
+	
+	
+	
+	
 	
 	@RequestMapping(value = RestURLS.EMPLOYEE_REGISTER, method = RequestMethod.POST)
 	public @ResponseBody ResponseDTO getEmployeeReg(@RequestBody RequestDTO userReg) {
@@ -62,6 +72,20 @@ public class UserRegisterController {
 		logger.info("******UserRegistrationController.getLogin**************");
 		return registrationService.getLogin(userReg);
 	}
+	
+	
+	
+
+	@RequestMapping(value = "/answered", method = RequestMethod.POST, produces = "application/json")
+	public @ResponseBody ResponseDTO answered1( RequestDTO userReg,HttpServletRequest request, HttpServletResponse response) throws Exception 
+	{
+		logger.info("********UserRigistrationController.Answered*******");
+		System.out.println("");
+		return registrationService.answered1(userReg);
+		
+		
+	}
+	
 	
 	
 	
@@ -139,29 +163,35 @@ public class UserRegisterController {
 	{
 		logger.info("********UserRigistrationController.Ak Questions*******");
 		System.out.println("");
-		return registrationService.getTags(userReg);
+		return registrationService.askquestion(userReg);
 		
 	}
 	
 	
 	
-	@RequestMapping(value=RestURLS.ANSWERED, method=RequestMethod.POST)
-	public @ResponseBody ResponseDTO answered(@RequestBody RequestDTO userReg)
+	//@RequestMapping(value=RestURLS.ANSWERED, method=RequestMethod.POST)
+	
+	@RequestMapping(value = "/unanswered", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody ResponseDTO answered( RequestDTO userReg,HttpServletRequest request, HttpServletResponse response) throws Exception 
 	{
 		logger.info("********UserRigistrationController.Answered*******");
 		System.out.println("");
 		return registrationService.answered(userReg);
 		
+		
 	}
 	
 	
+	
+	
+	
 
 	
 	
 	
 	
 	
-
+/*
 	@RequestMapping(value = RestURLS.RECENT, method = RequestMethod.GET, produces = "application/json")
 	//@RequestMapping(value = RestURLS.DEMO_REST_GETUSERS, method = RequestMethod.POST)
 	
@@ -175,7 +205,7 @@ public class UserRegisterController {
 		//logger.info("******UserRegistrationController.getUsersList**************");
 		//return registrationService.getUsersList(userReg); 
 	}
-	
+	*/
 	 
 	
 	
@@ -184,17 +214,17 @@ public class UserRegisterController {
 	
 	
 	
+/*	
 	
-	
-/*	@RequestMapping(value=RestURLS.RECENT,method=RequestMethod.POST)
+	@RequestMapping(value=RestURLS.RECENT,method=RequestMethod.POST)
 	public @ResponseBody ResponseDTO getrecent(@RequestBody @PathVariable String fname)
 	{
 		logger.info("********UserRigistrationController.Answered*******");
 		System.out.println(""+fname);
-		return registrationService.getRecentList(fname);
+		return registrationService.getrecentList(fname);
 		
-	}
-	*/
+	}*/
+	
 	
 	
 	@RequestMapping(value=RestURLS.UPDATEPWD, method=RequestMethod.POST)

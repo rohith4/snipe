@@ -199,8 +199,16 @@ public class RequestDTO implements Serializable{
 	
 	private String fname;
 	
-	private String que;
 	
+	
+	private String tag_name;
+	
+	public String getTag_name() {
+		return tag_name;
+	}
+	public void setTag_name(String tag_name) {
+		this.tag_name = tag_name;
+	}
 	private String tag;
 	
 	public String getTag() {
@@ -210,18 +218,14 @@ public class RequestDTO implements Serializable{
 		this.tag = tag;
 	}
 	
-	public void setQue(String que) {
-		this.que = que;
-	}
+	
 	public String getFname() {
 		return fname;
 	}
 	public String getQuestion() {
 		return question;
 	}
-	public String getQue() {
-		return que;
-	}
+	
 	public void setFname(String fname) {
 		this.fname = fname;
 	}

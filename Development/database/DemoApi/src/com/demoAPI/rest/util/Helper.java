@@ -77,4 +77,15 @@ public class Helper {
 			e.printStackTrace();
 		}
 	}
+
+	public Object getTagid(int tag_id, String question) {
+		// TODO Auto-generated method stub
+		logger.info("******Helper.getPasswordEncoded**************");
+	//	Md5PasswordEncoder m5encoder=new Md5PasswordEncoder();
+	//	return m5encoder.encodePassword(password,key);
+      int tag_id1=tag_id;  
+		return tag_id1;
+		
+	
+	}
 }

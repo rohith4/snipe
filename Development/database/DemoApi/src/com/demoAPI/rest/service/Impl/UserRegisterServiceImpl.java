@@ -1,6 +1,7 @@
 package com.demoAPI.rest.service.Impl;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
-
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,8 +22,8 @@ import com.demoAPI.rest.entity.EmployeeEntity;
 import com.demoAPI.rest.entity.Question1;
 import com.demoAPI.rest.entity.Questions;
 import com.demoAPI.rest.entity.Recent;
-import com.demoAPI.rest.entity.Tags;
-import com.demoAPI.rest.entity.Tags1;
+//import com.demoAPI.rest.entity.Tags;
+//import com.demoAPI.rest.entity.Tags1;
 import com.demoAPI.rest.entity.UserEntity;
 import com.demoAPI.rest.dao.UserRegisterDAO;
 import com.demoAPI.rest.dto.request.RequestDTO;
@@ -105,11 +106,100 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 		
 	}
 	
+	
+	
+	
+	@Override
+	public ResponseDTO answered1(RequestDTO userReg) {
+		// TODO Auto-generated method stub
+		logger.info("******UserRegisterServiceImpl.Answered**************");
+		ResponseDTO userRegRes = new ResponseDTO();
+		boolean result = userRegisterDao.checkanswered(userReg);
+		
+		userRegRes.setMessageReturn("Answered");
+		
+		return userRegRes;
+	}
+
+	
+	
+	
+	
+	
+	@Override
+	public ResponseDTO getrecentQeustion(RequestDTO userReg) {
+		// TODO Auto-generated method stub
+		/*logger.info("******UserRegisterServiceImpl.gerecentQuestions**************");
+		ResponseDTO userRegRes = new ResponseDTO();
+	//	boolean result = userRegisterDao.checkTag(userReg);
+		System.out.println("Heloooowerew");
+		//if(result)
+		{
+		//String tagid= userRegisterDao.getTagId(userReg);
+		//System.out.println(":alkfjdasdkldfkal;rkjtrwke "+tagid);
+		System.out.println(": "+userReg.getTag_id());
+		System.out.println(" "+heapler.getPasswordEncoded(userReg.getPwd(),userReg.getEmailId()));
+		System.out.println("tagid is: "+userReg.getTag_id());
+			//if(tagid.equals(heapler.getTagid(userReg.getTag_id(),userReg.getQuestion())))
+			{	
+			//	userRegisterDao.updateLoginStatusY(userReg);
+			//	userRegRes.setReturnCode(0);
+				
+				System.out.println("Login Sussfull");
+				userRegRes.setMessageReturn("Login successfully");
+				System.out.println("Login Sussfull");
+				
+			}else{
+				//userRegRes.setReturnCode(1);
+				userRegRes.setMessageReturn("oooInvalid EmailId/Password");
+				System.out.println("Login UnSussfull");
+			}
+		}else{
+			//userRegRes.setReturnCode(1);
+			userRegRes.setMessageReturn("Invalid EmailId/Password");
+			System.out.println("Login UnSussfull");
+		}
+		return userRegRes;*/
+		return null;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@Override
 	public ResponseDTO getUsersList(RequestDTO userReg) {
 		// TODO Auto-generated method stub
 		logger.info("******UserRegisterServiceImpl.getUsersList**************");
 		ResponseDTO response=new ResponseDTO();
+		
+		
+		
+		
+		
+		
 		List<UserEntity> userList= userRegisterDao.getUserList(userReg);
 		if(userList.size()==0){
 			//response.setReturnCode(1);
@@ -191,17 +281,21 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 		
 		Session session  = currentSession();
 		UserEntity user = new UserEntity();
-		Questions que=new Questions();
+		Question1 que=new Question1();
 		Criteria crc = session.createCriteria(Questions.class);
 		
-		que.setQue(userReg.getQue());
+		que.setQuestion(userReg.getQuestion());
+		que.setTag_name(userReg.getTag_name());
+		que.setRatings(userReg.getRating());
+		que.setCreatedate(new Date());
+		que.setStatus("N");
 		
 		
 		
 	//	user.setLoginStatus("Y");
 		session.save(que);
 		System.out.println("Saved");
-		returnMag = " "+que.getQue()+" "+" Question Submitted Successfully";
+		returnMag = " "+que.getQuestion()+" "+" Question Submitted Successfully";
 		
 	//	response.setReturnCode(0);
 		response.setMessageReturn(returnMag);
@@ -285,7 +379,7 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 	ResponseDTO userRegRes=new ResponseDTO();
 	Session session=currentSession();
 	Criteria crt=session.createCriteria(Question1.class);
-	Criteria tag=session.createCriteria(Tags1.class);
+	//Criteria tag=session.createCriteria(Tags1.class);
     //Criteria ans=session.createCriteria(Answeres.class);
 Answeres ans=new Answeres();
 Question1 que=new Question1();
@@ -310,10 +404,10 @@ Question1 que=new Question1();
 	
 	
 	// Question1 que=new Question1();
-	Tags1 tag1=new Tags1();
-	que.setQue(userReg.getQuestion());
-	tag1.setTag_name(userReg.getTag());
-    que.setTag_id(tag1);
+//	Tags1 tag1=new Tags1();
+//	que.setQue(userReg.getQuestion());
+	//tag1.setTag_name(userReg.getTag());
+    //que.setTag_id(tag1);
 	session.save(que);
 	
 		
@@ -334,23 +428,11 @@ Question1 que=new Question1();
 	@Override
 	public ResponseDTO answered(RequestDTO userReg) {
 		// TODO Auto-generated method stub
-		ResponseDTO userRegRes=new ResponseDTO();
-		Answeres ans=new Answeres();
-		Session session=currentSession();
-		Criteria crit=session.createCriteria(Answeres.class);
-	
-	                Question1 que=new Question1();
-					ans.setAns(userReg.getAns());
-					ans.setCreatedDate(userReg.getCreatedDate());
-					ans.setQuestion(que);
-					session.save(ans);
-					userRegRes.setReturnMsg("Saved");
-			
-			
+		ResponseDTO response=new ResponseDTO();
 		
-
-
-		return userRegRes;
+		List<Question1> queList= userRegisterDao.getqueList(userReg);
+		response.setQuestion1(queList);
+		return response;
 		
 
 	}
@@ -433,25 +515,7 @@ System.out.println("email"+userReg.getEmailId());
 		return null;
 	}
 
-	@Override
-	public ResponseDTO getRecentList(RequestDTO userReg) {
-		
-		
-		
-		logger.info("******UserRegisterServiceImpl.getRecentList**************");
-		ResponseDTO response=new ResponseDTO();
-		//System.out.println(""+fname);
-		//RequestDTO userReg=new RequestDTO();
-		 List<Recent> recent=userRegisterDao.getrecentList(userReg);
-		
-	//return	 recent.stream().filter(t ->t.getFname()==userReg.getFname()).findFirst().get();
-		//	List<UserEntity> userList= userRegisterDao.getUserList(userReg);
-	/*	 Session session=currentSession();
-		 Criteria criteria=session.createCriteria(Recent.class);
-		 criteria.setMaxResults(4);*/
-		 response.setRecent(recent);
-		return response;
-	}
+
 
 	@Override
 	public ResponseDTO deleteEmployee(RequestDTO userReg) {
@@ -476,6 +540,15 @@ System.out.println("email"+userReg.getEmailId());
 		
 		//return null;
 	}
+
+	@Override
+	public List<Recent> getrecentList(RequestDTO userReg) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+
 
 	
 
