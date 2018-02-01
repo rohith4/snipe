@@ -80,6 +80,13 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 		// TODO Auto-generated method stub
 		logger.info("******UserRegisterServiceImpl.getLogin**************");
 		ResponseDTO userRegRes = new ResponseDTO();
+		UserEntity user=new UserEntity();
+		Session session  = currentSession();
+		Criteria crc = session.createCriteria(UserEntity.class);
+	/*	Query query=session.createQuery("select userentity.userRef from UserEntity userentity where userentity.emailId=:email");
+		query.setParameter("email", userReg.getEmailId());*/
+		
+		
 		boolean result = userRegisterDao.checkemailId(userReg);
 		if(result)
 		{
@@ -91,7 +98,7 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 			{	
 				userRegisterDao.updateLoginStatusY(userReg);
 			//	userRegRes.setReturnCode(0);
-				userRegRes.setMessageReturn("Login successfully");
+				userRegRes.setMessageReturn("Login successfully"+user.getUserRef());
 				System.out.println("Login Sussfull");
 				
 			}else{
