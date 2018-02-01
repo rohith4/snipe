@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.demoAPI.rest.entity.EmployeeEntity;
 import com.demoAPI.rest.entity.Question1;
 import com.demoAPI.rest.entity.Recent;
 import com.demoAPI.rest.entity.UserEntity;
@@ -18,7 +19,15 @@ public class ResponseDTO implements Serializable{
 	private int hostCode=SUCCESS;
 	private String messageReturn;
 	
-	
+	private List<EmployeeEntity> employeeentity;
+	public List<EmployeeEntity> getEmployeeentity() {
+		return employeeentity;
+	}
+
+	public void setEmployeeentity(List<EmployeeEntity> employeeentity) {
+		this.employeeentity = employeeentity;
+		
+	}
 	
 	
 	public String getReturnMsg() {

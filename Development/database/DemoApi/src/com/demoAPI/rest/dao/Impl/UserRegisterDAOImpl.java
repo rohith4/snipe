@@ -57,30 +57,21 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		user.setDob(userReg.getDob());
 		user.setAddress(userReg.getAddress());
 		user.setEmailId(userReg.getEmailId());
-		user.setEmpId("snipe"+user.getUserRef());
+		//user.setEmpId("snipe"+user.getUserRef());
 		System.out.println(user.getUserRef());
-	
 		user.setMobileNo(userReg.getMobileNo());
-		//user.setAddress(userReg.getAddress());
     	user.setPwd(userReg.getPwd());
 		user.setState(userReg.getState());
 		user.setCountry(userReg.getCountry());
-		
-		user.setGender("Male");
-		
+		user.setGender(userReg.getGender());
 		user.setDate(new Date());
 		user.setPwd(hepler.getPasswordEncoded(userReg.getPwd(),userReg.getEmailId()));
 		user.setLoginStatus("N");
 		session.save(user);
 		System.out.println("Saved");
-		
 		returnMag = "Congratulations!!"+user.getName() +" Registration successfull";
 		System.out.println(""+userReg.getFname());
-		 response.setReturnMsg(returnMag);
-			
-		
-	    //response.setUserEntity(user);
-		
+		 response.setReturnMsg(returnMag);	
 		response.setMessageReturn("E"+user.getUserRef());
 		return response;
 	}
@@ -96,30 +87,7 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		.setProjection(Projections.property("pwd"));
 		String pwd = (String) crc.uniqueResult();
 		return pwd;
-	}
-	
-	
-	/*
-	@Override
-	@Transactional(value="transactionManager", rollbackFor=Exception.class)
-	public String getTagId(RequestDTO userReg) {
-		logger.info("******UserRegisterDAOImpl.getquestions**************");
-		// TODO Auto-generated method stub
-		Session session = currentSession();
-		Criteria crc = session.createCriteria(Question1.class);
-		crc.add(Restrictions.eq("tag_name",userReg.getTag_id()))
-		.setProjection(Projections.property("que"));
-		
-		System.out.println("Hellow");
-		Object tag_name = (String) crc.uniqueResult();
-		
-		return (String) tag_name;
-	}
-	*/
-	
-
-
-	
+	}	
 	
 	@Override
 	@Transactional(value="transactionManager", rollbackFor=Exception.class)
@@ -129,16 +97,8 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		List<UserEntity> userList = new ArrayList<UserEntity>();
 		Session session = currentSession();
 		Criteria crc= session.createCriteria(UserEntity.class);
-		
-	//	Session session  = currentSession();
-		//Criteria crc = session.createCriteria(UserEntity.class);
-		Query query = session.createQuery("select userentity.address from UserEntity userentity where userentity.userRef = 275");
-		//query.setParameter("code", "275");
-		//List list = query.list();
-		
-		
-		
-		
+		Query query = session.createQuery(" from UserEntity");
+		query.setMaxResults(5);
 		try{
 			userList = query.list();
 		}catch(Exception e){
@@ -146,6 +106,7 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		}
 		return userList;
 	}
+	
 
 	@Override
 	@Transactional(value="transactionManager", rollbackFor=Exception.class)
@@ -214,9 +175,30 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 	public boolean checkemailId(RequestDTO userReg) {
 
 		logger.info("******UserRegisterDAOImpl.checkEmailIdo**************");
-		
 		Session session  = currentSession();
 		Criteria crc = session.createCriteria(UserEntity.class);
+		crc.add(Restrictions.eq("emailId",userReg.getEmailId())).setProjection(Projections.rowCount());
+		System.out.println("email: "+userReg.getEmailId());
+		int count = (int)((long)crc.uniqueResult());
+		System.out.println(count);
+		if(count>0){
+			
+			System.out.println("EmailId is exited");
+			return true;
+		}
+		System.out.println("COrrectd");
+		return false;
+		
+	}
+	
+	
+	@Override
+	@Transactional(value="transactionManager", rollbackFor=Exception.class)
+	public boolean checkemailIdE(RequestDTO userReg) {
+
+		logger.info("******UserRegisterDAOImpl.checkEmailIdo**************");
+		Session session  = currentSession();
+		Criteria crc = session.createCriteria(EmployeeEntity.class);
 		crc.add(Restrictions.eq("emailId",userReg.getEmailId())).setProjection(Projections.rowCount());
 		System.out.println("email: "+userReg.getEmailId());
 		int count = (int)((long)crc.uniqueResult());
@@ -224,7 +206,7 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		System.out.println(count);
 		if(count>0){
 			
-			System.out.println("COrrectdtyhb");
+			System.out.println("EmailId is exited");
 			return true;
 		}
 		System.out.println("COrrectd");
@@ -234,88 +216,40 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
 	@Override
 	public boolean checkanswered(RequestDTO userReg) {
 		// TODO Auto-generated method stub
-		
-logger.info("******UserRegisterDAOImpl.checkANswered**************");
-		
-		
+		logger.info("******UserRegisterDAOImpl.checkANswered**************");
+		Session session=currentSession();
 		Question1 que=new Question1();
-	//	Criteria crc = session.createCriteria(Question1.class);
-		
-		que.setAns(userReg.getAnswered());
-		System.out.println("answerd"+userReg.getAnswered());
-		
-	//	Criteria crit=session.createCriteria(Answeres.class);
-		List<Question1> quelist=new ArrayList<Question1>();
-	/*	Query query = session.createQuery("select que.status from Question1 que where que.status = 'N'");
-		//query.setParameter("code", "7277");
-		System.out.println("query"+query);
-		//if(query.equals("N")){*/
-		//update User set name=:n where id=:i
-		
-		
-	    //org.hibernate.Transaction tx=session.beginTransaction();  
-		Session session  = currentSession();
-	    Query q=session.createQuery("update Question1 set ans=:n where id=:i");  
-	    q.setParameter("n",userReg.getAnswered());  
-	    q.setParameter("i",288);  
-	      
-	    int status=q.executeUpdate();  
-	    System.out.println(status);  
-	//    tx.commit();  
-		
-		
-		
-		
-			//Query query1 = session.createQuery("update Question1 set ans ='user' where q_id=288");
-	//	}
-		//List list = query.list();
-		//quelist = query.list();
-		System.out.println("answered");
-		return true;
-		
-		
-		
-		
+		Criteria crc = session.createCriteria(Question1.class);
+		ResponseDTO userRegRes = new ResponseDTO();
+		que.setAns(userReg.getAns());
+		System.out.println("answerd"+userReg.getAns());
+		String hql="update Question1 as Q set "+"ans=:n,"+"status=:y"+" where q_id=:i";
+	    Query q=session.createQuery(hql);  
+	    q.setParameter("n",userReg.getAns());  
+	    q.setParameter("i",userReg.getQ_id());
+	    q.setParameter("y","Y");
+	    int status1=q.executeUpdate();  
+	    System.out.println(status1);  
+	    System.out.println("answered");
+		return true;		
 	}
 	
 	
-
-	/*@Override
-	public boolean checkTag(RequestDTO userReg) {
-		// TODO Auto-generated method stub
-		
-		logger.info("******UserRegisterDAOImpl.checkTags**************");
-		// TODO Auto-generated method stub
-		Session session  = currentSession();
-		Criteria crc = session.createCriteria(Tags1.class);
-		crc.add(Restrictions.eq("tag_name",userReg.getTag_name())).setProjection(Projections.rowCount());
-		System.out.println("sjdfldksjjkdslfjl");
-		int count = (int)((long)crc.uniqueResult());
-		if(count>0){
-			System.out.println("sjdfldksj");
-			return true;
-		}
-		return false;
-		
-		
-		
-	}*/
-
 	@Override
 	@Transactional(value="transactionManager", rollbackFor=Exception.class)
 	public List<Recent> getrecentList(RequestDTO userReg) {
 		// TODO Auto-generated method stub
-		
-		
-		
-		
-		
-		
 			logger.info("******UserRegisterDAOImpl.getRecentList**************");
-			// TODO Auto-generated method stub
 			List<Recent> recentList = new ArrayList<Recent>();
 			Session session = currentSession();
 			Criteria crc= session.createCriteria(Recent.class);
@@ -348,72 +282,96 @@ logger.info("******UserRegisterDAOImpl.checkANswered**************");
 	}
 
 	
-	
-	
-	
-	
-	
-	
-	
-	
 	@Override
 	@Transactional(value="transactionManager", rollbackFor=Exception.class)
 	public void updateAnsStatusY(RequestDTO userReg) {
 		// TODO Auto-generated method stub
 
 		Criteria crit = currentSession().createCriteria(Recent.class);
-	//	Criteria crit1 = currentSession().createCriteria(UserEntity.class);
-	//	String tag= userRegisterDao.getpwd(userReg);
 		logger.info("******UserRegisterDAOImpl.updateAnsStatusY**************");
-	//if(fname.equals(heapler.getTag(userReg.getTag(),userReg.getAns())))
 		crit.add(Restrictions.eq("fname",userReg.getFname()));	
-		
-
 		Recent rec=(Recent)crit.uniqueResult();
-	//	rec.setFname("DRFGC");
 		rec.setAns_status("Y");
 		rec.setAns(userReg.getAns());
 		System.out.println("hsdkjfhsdkjfhsdkj");
 		sessionFactory.getCurrentSession().saveOrUpdate(rec);
-
-		
-		
 	}
 
-	@Override
-	public List<Recent> getrecentList(ResponseDTO response) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	@Override
 	public List<Question1> getqueList(RequestDTO userReg) {
 		// TODO Auto-generated method stub
-		
-		
 		Session session=currentSession();
 		Criteria crit=session.createCriteria(Answeres.class);
 		List<Question1> quelist=new ArrayList<Question1>();
 		Query query = session.createQuery("select que.question from Question1 que where que.status = 'N'");
-		//query.setParameter("code", "7277");
 		System.out.println(query);
 		if(query.equals("N")){
 			Query query1 = session.createQuery("select question from Question1");
 		}
-		//List list = query.list();
 		quelist = query.list();
 		return quelist;
 	}
 
+	@Override
+	public List<Question1> getRecentQ(RequestDTO userReg) {
+		// TODO Auto-generated method stub
+		
+		List<Question1> RecentQ = new ArrayList<Question1>();
+		Session session = currentSession();
+		Criteria crc= session.createCriteria(Question1.class);
+		Query query = session.createQuery("select que.question from Question1 que");
+		query.setMaxResults(5);
+		try{
+			RecentQ = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return RecentQ;
+	}
 
+	@Override
+	public List<Question1> getPopularQ(RequestDTO userReg) {
+		// TODO Auto-generated method stub	
+		logger.info("******UserRegisterDAOImpl.PopularQ**************");
+		// TODO Auto-generated method stub
+		List<Question1> popularQ = new ArrayList<Question1>();
+		Session session = currentSession();
+		Criteria crc= session.createCriteria(Question1.class);
+		String hql="select que.question from Question1 que where que.ratings>:r";
+		Query query = session.createQuery(hql);
+		query.setParameter("r","3");
+		System.out.println("Result");
+		try{
+			popularQ = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return popularQ;
+	}
 
-	
-	
-	
-
-	
-	
-	
-	
+	@Override
+	public List<EmployeeEntity> getEmployeeList(RequestDTO userReg) {
+		// TODO Auto-generated method stub
+		
+		
+		logger.info("******UserRegisterDAOImpl.getUserList**************");
+		// TODO Auto-generated method stub
+		List<EmployeeEntity> emplist = new ArrayList<EmployeeEntity>();
+		Session session = currentSession();
+		Criteria crc= session.createCriteria(UserEntity.class);
+		Query query = session.createQuery(" from EmployeeEntity");
+		//query.setMaxResults(5);
+		try{
+			emplist = query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return emplist;
+		
+		
+		
+	}
 	
 }

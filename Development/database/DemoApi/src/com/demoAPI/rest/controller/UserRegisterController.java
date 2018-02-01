@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.demoAPI.rest.dto.request.RequestDTO;
 import com.demoAPI.rest.dto.response.ResponseDTO;
+import com.demoAPI.rest.entity.Lists;
 import com.demoAPI.rest.entity.Recent;
 import com.demoAPI.rest.entity.UserEntity;
 import com.demoAPI.rest.service.RestURLS;
@@ -44,10 +45,6 @@ public class UserRegisterController {
 	}
 
 	
-	
-	
-	
-	
 	@RequestMapping(value = RestURLS.EMPLOYEE_REGISTER, method = RequestMethod.POST)
 	public @ResponseBody ResponseDTO getEmployeeReg(@RequestBody RequestDTO userReg) {
 		logger.info("******UserRegistrationController.getUserReg**************");
@@ -55,16 +52,11 @@ public class UserRegisterController {
 	}
 	
 	
-	
-
 	@RequestMapping(value = RestURLS.TAGS, method = RequestMethod.POST)
 	public @ResponseBody ResponseDTO getTags(@RequestBody RequestDTO userReg) {
 		logger.info("******UserRegistrationController.getUserReg**************");
 		return registrationService.getTags(userReg);
 	}
-	
-	
-	
 	
 	
 	@RequestMapping(value = RestURLS.DEMO_REST_LOGIN, method = RequestMethod.POST)
@@ -76,43 +68,45 @@ public class UserRegisterController {
 	
 	
 
-	@RequestMapping(value = "/answered", method = RequestMethod.POST, produces = "application/json")
-	public @ResponseBody ResponseDTO answered1( RequestDTO userReg,HttpServletRequest request, HttpServletResponse response) throws Exception 
+	@RequestMapping(value = "/answered", method = RequestMethod.POST)
+	public @ResponseBody ResponseDTO answered1(@RequestBody RequestDTO userReg)  
 	{
 		logger.info("********UserRigistrationController.Answered*******");
 		System.out.println("");
 		return registrationService.answered1(userReg);
-		
-		
 	}
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	@RequestMapping(value = "/users", method = RequestMethod.GET, produces = "application/json")
-	//@RequestMapping(value = RestURLS.DEMO_REST_GETUSERS, method = RequestMethod.POST)
-	
-	//public @ResponseBody ResponseDTO getUsersList(@RequestBody RequestDTO userReg) {
-		public @ResponseBody ResponseDTO getUsers( RequestDTO userReg,HttpServletRequest request, HttpServletResponse response) throws Exception {
+		@RequestMapping(value = "/users", method = RequestMethod.GET, produces = "application/json")
+		public @ResponseBody Lists getUsers( RequestDTO userReg,HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("getUsers: Received request: " + request.getRequestURL().toString()
 				+ ((request.getQueryString() == null) ? "" : "?" + request.getQueryString().toString()));
 	      return registrationService.getUsersList(userReg);
-		
-		
-		//logger.info("******UserRegistrationController.getUsersList**************");
-		//return registrationService.getUsersList(userReg); 
 	}
+		
+		
+		
+		
+		@RequestMapping(value = "/employee", method = RequestMethod.GET, produces = "application/json")
+		public @ResponseBody Lists getEmployee( RequestDTO userReg,HttpServletRequest request, HttpServletResponse response) throws Exception {
+		logger.info("getUsers: Received request: " + request.getRequestURL().toString()
+				+ ((request.getQueryString() == null) ? "" : "?" + request.getQueryString().toString()));
+	      return registrationService.getEmployeeList(userReg);
+	}
+		
+		
 	
 	
 	
 	
-	
+	@RequestMapping(value = "/popularq", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody ResponseDTO getPopularq( RequestDTO userReg,HttpServletRequest request, HttpServletResponse response) throws Exception {
+	logger.info("getUsers: Received request: " + request.getRequestURL().toString()
+			+ ((request.getQueryString() == null) ? "" : "?" + request.getQueryString().toString()));
+      return registrationService.getPopularq(userReg);
+}
+
 	
 	
 	
@@ -168,9 +162,6 @@ public class UserRegisterController {
 	}
 	
 	
-	
-	//@RequestMapping(value=RestURLS.ANSWERED, method=RequestMethod.POST)
-	
 	@RequestMapping(value = "/unanswered", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody ResponseDTO answered( RequestDTO userReg,HttpServletRequest request, HttpServletResponse response) throws Exception 
 	{
@@ -180,53 +171,8 @@ public class UserRegisterController {
 		
 		
 	}
-	
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
-/*
-	@RequestMapping(value = RestURLS.RECENT, method = RequestMethod.GET, produces = "application/json")
-	//@RequestMapping(value = RestURLS.DEMO_REST_GETUSERS, method = RequestMethod.POST)
-	
-	//public @ResponseBody ResponseDTO getUsersList(@RequestBody RequestDTO userReg) {
-		public @ResponseBody ResponseDTO getrecent( RequestDTO userReg,HttpServletRequest request, HttpServletResponse response) throws Exception {
-		logger.info("getUsers: Received request: " + request.getRequestURL().toString()
-				+ ((request.getQueryString() == null) ? "" : "?" + request.getQueryString().toString()));
-	      return registrationService.getRecentList(userReg);
-		
-		
-		//logger.info("******UserRegistrationController.getUsersList**************");
-		//return registrationService.getUsersList(userReg); 
-	}
-	*/
 	 
-	
-	
-	
-	
-	
-	
-	
-/*	
-	
-	@RequestMapping(value=RestURLS.RECENT,method=RequestMethod.POST)
-	public @ResponseBody ResponseDTO getrecent(@RequestBody @PathVariable String fname)
-	{
-		logger.info("********UserRigistrationController.Answered*******");
-		System.out.println(""+fname);
-		return registrationService.getrecentList(fname);
 		
-	}*/
-	
-	
-	
 	@RequestMapping(value=RestURLS.UPDATEPWD, method=RequestMethod.POST)
 	public @ResponseBody ResponseDTO updatepwd(@RequestBody RequestDTO userReg)
 	{

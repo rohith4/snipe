@@ -64,7 +64,7 @@ public class RequestDTO implements Serializable{
 	public void setMobileNo(String mobileNo) {
 		this.mobileNo = mobileNo;
 	}
-	private String answered;
+	
 	
 
 	
@@ -80,21 +80,24 @@ public class RequestDTO implements Serializable{
 	//private String fname;
 	
 	
+	private int q_id;
+	
 	
 	private String html;
 	
+	public int getQ_id() {
+		return q_id;
+	}
+	public void setQ_id(int q_id) {
+		this.q_id = q_id;
+	}
 	private String css;
 	
 	private String java;
 	
 	private String hadoop;
 	
-	public String getAnswered() {
-		return answered;
-	}
-	public void setAnswered(String answered) {
-		this.answered = answered;
-	}
+	
 	public String getAns_status() {
 		return ans_status;
 	}
