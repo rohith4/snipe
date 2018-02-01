@@ -18,6 +18,7 @@ import com.demoAPI.rest.dto.response.ResponseDTO;
 import com.demoAPI.rest.entity.Lists;
 import com.demoAPI.rest.entity.Recent;
 import com.demoAPI.rest.entity.UserEntity;
+import com.demoAPI.rest.entity.UserList;
 import com.demoAPI.rest.service.RestURLS;
 import com.demoAPI.rest.service.UserRegisterService;
 import com.itextpdf.text.log.SysoCounter;
@@ -37,19 +38,15 @@ public class UserRegisterController {
 	}
 	
 	
-	
-	@RequestMapping(value = RestURLS.RECENTQ, method = RequestMethod.POST)
-	public @ResponseBody ResponseDTO getrecentQuestions(@RequestBody RequestDTO userReg) {
+	@RequestMapping(value = "/recentq", method = RequestMethod.GET, produces = "application/json")
+//	@RequestMapping(value = RestURLS.RECENTQ, method = RequestMethod.POST)
+	public @ResponseBody ResponseDTO getrecentQuestions( RequestDTO userReg,HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("******UserRegistrationController.getUserReg**************");
 		return registrationService.getrecentQeustion(userReg);
 	}
 
 	
-	@RequestMapping(value = RestURLS.EMPLOYEE_REGISTER, method = RequestMethod.POST)
-	public @ResponseBody ResponseDTO getEmployeeReg(@RequestBody RequestDTO userReg) {
-		logger.info("******UserRegistrationController.getUserReg**************");
-		return registrationService.getEmployeeRegist(userReg);
-	}
+	
 	
 	
 	@RequestMapping(value = RestURLS.TAGS, method = RequestMethod.POST)
@@ -89,7 +86,7 @@ public class UserRegisterController {
 		
 		
 		@RequestMapping(value = "/employee", method = RequestMethod.GET, produces = "application/json")
-		public @ResponseBody Lists getEmployee( RequestDTO userReg,HttpServletRequest request, HttpServletResponse response) throws Exception {
+		public @ResponseBody UserList getEmployee( RequestDTO userReg,HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("getUsers: Received request: " + request.getRequestURL().toString()
 				+ ((request.getQueryString() == null) ? "" : "?" + request.getQueryString().toString()));
 	      return registrationService.getEmployeeList(userReg);
@@ -105,16 +102,7 @@ public class UserRegisterController {
 	logger.info("getUsers: Received request: " + request.getRequestURL().toString()
 			+ ((request.getQueryString() == null) ? "" : "?" + request.getQueryString().toString()));
       return registrationService.getPopularq(userReg);
-}
-
-	
-	
-	
-	
-	
-	
-	
-	
+}	
 	
 	@RequestMapping(value = RestURLS.DEMO_REST_MODIFYUSER, method = RequestMethod.POST)
 	public @ResponseBody ResponseDTO modifyUser(@RequestBody RequestDTO userReg) {

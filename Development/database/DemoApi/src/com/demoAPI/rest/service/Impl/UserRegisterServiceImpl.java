@@ -26,6 +26,7 @@ import com.demoAPI.rest.entity.Recent;
 //import com.demoAPI.rest.entity.Tags;
 //import com.demoAPI.rest.entity.Tags1;
 import com.demoAPI.rest.entity.UserEntity;
+import com.demoAPI.rest.entity.UserList;
 import com.demoAPI.rest.dao.UserRegisterDAO;
 import com.demoAPI.rest.dto.request.RequestDTO;
 import com.demoAPI.rest.dto.response.ResponseDTO;
@@ -155,25 +156,18 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 	public Lists getUsersList(RequestDTO userReg) {
 		// TODO Auto-generated method stub
 		logger.info("******UserRegisterServiceImpl.getUsersList**************");
-		ResponseDTO response=new ResponseDTO();
 		Lists list=new Lists();
+	//	Lists list=new Lists();
 		List<UserEntity> userList= userRegisterDao.getUserList(userReg);
-		if(userList.size()==0){
+		/*if(userList.size()==0){
 			//response.setReturnCode(1);
 			response.setMessageReturn("There is No User Registered with DEMO-API");
 		}else{
-	//	response.setReturnCode(0);
+	//	response.setReturnCode(0);*/
 	  list.setUserentity(userList);
-		}
+		//}
 		return list;
 	}
-
-	
-
-	
-	
-	
-	
 	
 	
 	@Override
@@ -439,20 +433,20 @@ System.out.println("email"+userReg.getEmailId());
 	}
 
 	@Override
-	public Lists getEmployeeList(RequestDTO userReg) {
+	public UserList getEmployeeList(RequestDTO userReg) {
 		// TODO Auto-generated method stub
 		
 		
 		logger.info("******UserRegisterServiceImpl.getUsersList**************");
 		ResponseDTO response=new ResponseDTO();
-		Lists list=new Lists();
+		UserList list=new UserList();
 		List<EmployeeEntity> empList= userRegisterDao.getEmployeeList(userReg);
 		if(empList.size()==0){
 			//response.setReturnCode(1);
 			response.setMessageReturn("There is No User Registered with DEMO-API");
 		}else{
 	//	response.setReturnCode(0);
-	  list.setEmployeeentity(empList);
+	  list.setEmplist(empList);
 		}
 		return list;
 		

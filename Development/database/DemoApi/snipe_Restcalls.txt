@@ -77,13 +77,8 @@ GET
 http://localhost:8080/DemoAPI/rest/recent
 {
 
- }
-
-GET
-http://localhost:8080/DemoAPI/rest/answered
-{
-
 }
+
 
 
 
@@ -95,3 +90,34 @@ http://localhost:8080/DemoAPI/rest/resetpwd
 }
 
 
+GET
+http://localhost:8080/DemoAPI/rest/popularq
+{
+
+}
+
+
+GET
+http://localhost:8080/DemoAPI/rest/unanswered
+{
+
+}
+
+
+GET
+http://localhost:8080/DemoAPI/rest/employee
+{
+
+}
+
+POST
+http://localhost:8080/DemoAPI/rest/answered
+{
+"q_id":"288",
+"ans":"Answered"
+}
+
+GET
+http://localhost:8080/DemoAPI/rest/recentq
+{
+}

@@ -1,6 +1,7 @@
 package com.demoAPI.rest.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,8 +19,11 @@ public class UserEntity {
 	@Column(name="USER_REF")
 	private int userRef;
 	
+
 	@Column(name="FNAME")
 	private String fname;
+	
+
 	
 	
 	@Column(name="EMP_ID")

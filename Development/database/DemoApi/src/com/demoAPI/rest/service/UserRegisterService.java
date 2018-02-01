@@ -7,6 +7,7 @@ import com.demoAPI.rest.dto.response.ResponseDTO;
 import com.demoAPI.rest.entity.Lists;
 import com.demoAPI.rest.entity.Recent;
 import com.demoAPI.rest.entity.UserEntity;
+import com.demoAPI.rest.entity.UserList;
 
 public interface UserRegisterService  {
 
@@ -35,6 +36,6 @@ public interface UserRegisterService  {
 //	Recent getRecentList(RequestDTO userReg);
 	ResponseDTO answered1(RequestDTO userReg);
 	ResponseDTO getPopularq(RequestDTO userReg);
-	Lists getEmployeeList(RequestDTO userReg);
+	UserList getEmployeeList(RequestDTO userReg);
 	
 }

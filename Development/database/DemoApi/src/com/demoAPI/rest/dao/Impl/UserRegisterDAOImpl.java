@@ -25,6 +25,7 @@ import com.demoAPI.rest.dto.request.RequestDTO;
 import com.demoAPI.rest.dto.response.ResponseDTO;
 import com.demoAPI.rest.entity.Answeres;
 import com.demoAPI.rest.entity.EmployeeEntity;
+import com.demoAPI.rest.entity.Lists;
 import com.demoAPI.rest.entity.Question1;
 import com.demoAPI.rest.entity.Questions;
 import com.demoAPI.rest.entity.Recent;
@@ -98,7 +99,7 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		Session session = currentSession();
 		Criteria crc= session.createCriteria(UserEntity.class);
 		Query query = session.createQuery(" from UserEntity");
-		query.setMaxResults(5);
+	//	query.setMaxResults(5);
 		try{
 			userList = query.list();
 		}catch(Exception e){
@@ -305,7 +306,7 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		Session session=currentSession();
 		Criteria crit=session.createCriteria(Answeres.class);
 		List<Question1> quelist=new ArrayList<Question1>();
-		Query query = session.createQuery("select que.question from Question1 que where que.status = 'N'");
+		Query query = session.createQuery("select que.question, que.q_id,que.tag_name from Question1 que where que.status = 'N'");
 		System.out.println(query);
 		if(query.equals("N")){
 			Query query1 = session.createQuery("select question from Question1");
