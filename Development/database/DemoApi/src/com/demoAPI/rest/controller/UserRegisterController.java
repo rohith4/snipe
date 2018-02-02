@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.demoAPI.rest.dto.request.RequestDTO;
 import com.demoAPI.rest.dto.response.ResponseDTO;
 import com.demoAPI.rest.entity.Lists;
+import com.demoAPI.rest.entity.Question;
 import com.demoAPI.rest.entity.Recent;
+import com.demoAPI.rest.entity.RecentQuestions;
 import com.demoAPI.rest.entity.UserEntity;
 import com.demoAPI.rest.entity.UserList;
 import com.demoAPI.rest.service.RestURLS;
@@ -44,6 +46,11 @@ public class UserRegisterController {
 		logger.info("******UserRegistrationController.getUserReg**************");
 		return registrationService.getrecentQeustion(userReg);
 	}
+	
+	
+	
+	
+
 
 	
 	
@@ -76,11 +83,24 @@ public class UserRegisterController {
 	
 	
 		@RequestMapping(value = "/users", method = RequestMethod.GET, produces = "application/json")
-		public @ResponseBody Lists getUsers( RequestDTO userReg,HttpServletRequest request, HttpServletResponse response) throws Exception {
+		public @ResponseBody List<UserEntity> getUsers( RequestDTO userReg,HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("getUsers: Received request: " + request.getRequestURL().toString()
 				+ ((request.getQueryString() == null) ? "" : "?" + request.getQueryString().toString()));
 	      return registrationService.getUsersList(userReg);
 	}
+		
+		
+		
+		@RequestMapping(value = "/recentQs", method = RequestMethod.GET, produces = "application/json")
+//		@RequestMapping(value = RestURLS.RECENTQ, method = RequestMethod.POST)
+		public @ResponseBody List<Question> getrecentQuestionQs( RequestDTO userReg,HttpServletRequest request, HttpServletResponse response) throws Exception {
+			logger.info("******UserRegistrationController.getUserReg**************");
+			return registrationService.getrecentQeustionQs(userReg);
+		}
+		
+		
+		
+		
 		
 		
 		

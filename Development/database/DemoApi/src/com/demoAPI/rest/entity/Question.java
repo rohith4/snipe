@@ -18,7 +18,7 @@ import org.hibernate.Criteria;
 
 @Entity
 @Table(name="Question1")
-public class Question1 {
+public class Question {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -78,13 +78,13 @@ public void setTag_name(String tag_name) {
 
 
 	public String getEmp_id() {
-		return emp_id;
+		return emp_name;
 	}
 
 	
 
 	public void setEmp_id(String emp_id) {
-		this.emp_id = emp_id;
+		this.emp_name = emp_name;
 	}
 
 
@@ -124,8 +124,8 @@ public void setTag_name(String tag_name) {
 	private String ans;
 	
 	
-	@Column(name="Emp_Id")
-	private String emp_id;
+	@Column(name="Emp_name")
+	private String emp_name;
 	
 	public String getAns() {
 		return ans;

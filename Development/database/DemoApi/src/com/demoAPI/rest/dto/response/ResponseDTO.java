@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.demoAPI.rest.entity.EmployeeEntity;
-import com.demoAPI.rest.entity.Question1;
+import com.demoAPI.rest.entity.Question;
 import com.demoAPI.rest.entity.Recent;
 import com.demoAPI.rest.entity.UserEntity;
 
@@ -49,13 +49,13 @@ public String getMessageReturn() {
 	}
 	
 	private List<UserEntity> userEntity;
-	private List<Question1> question1;
+	private List<Question> question1;
 
-	public List<Question1> getQuestion1() {
+	public List<Question> getQuestion1() {
 		return question1;
 	}
 
-	public void setQuestion1(List<Question1> question1) {
+	public void setQuestion1(List<Question> question1) {
 		this.question1 = question1;
 	}
 

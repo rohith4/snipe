@@ -5,7 +5,9 @@ import java.util.List;
 import com.demoAPI.rest.dto.request.RequestDTO;
 import com.demoAPI.rest.dto.response.ResponseDTO;
 import com.demoAPI.rest.entity.Lists;
+import com.demoAPI.rest.entity.Question;
 import com.demoAPI.rest.entity.Recent;
+import com.demoAPI.rest.entity.RecentQuestions;
 import com.demoAPI.rest.entity.UserEntity;
 import com.demoAPI.rest.entity.UserList;
 
@@ -14,7 +16,7 @@ public interface UserRegisterService  {
 	ResponseDTO getUserRegist(RequestDTO userReg);
 	ResponseDTO answered(RequestDTO userReg);
 	ResponseDTO getLogin(RequestDTO userReg);
-	Lists getUsersList(RequestDTO userReg);
+	List<UserEntity> getUsersList(RequestDTO userReg);
 	ResponseDTO modifyUser(RequestDTO userReg);
 	ResponseDTO deleteUser(RequestDTO userReg);
 	ResponseDTO logoutUser(RequestDTO userReg);
@@ -37,5 +39,6 @@ public interface UserRegisterService  {
 	ResponseDTO answered1(RequestDTO userReg);
 	ResponseDTO getPopularq(RequestDTO userReg);
 	UserList getEmployeeList(RequestDTO userReg);
+	List<Question> getrecentQeustionQs(RequestDTO userReg);
 	
 }

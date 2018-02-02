@@ -6,8 +6,9 @@ import com.demoAPI.rest.dto.request.RequestDTO;
 import com.demoAPI.rest.dto.response.ResponseDTO;
 import com.demoAPI.rest.entity.EmployeeEntity;
 import com.demoAPI.rest.entity.Lists;
-import com.demoAPI.rest.entity.Question1;
+import com.demoAPI.rest.entity.Question;
 import com.demoAPI.rest.entity.Recent;
+import com.demoAPI.rest.entity.RecentQuestions;
 import com.demoAPI.rest.entity.UserEntity;
 
 public interface UserRegisterDAO {
@@ -31,12 +32,13 @@ public interface UserRegisterDAO {
 	//boolean checkTag(RequestDTO userReg);
 	boolean checkAns(RequestDTO userReg);
 	List<Recent> getrecentList(RequestDTO userReg);
-	List<Question1> getqueList(RequestDTO userReg);
+	List<Question> getqueList(RequestDTO userReg);
 	boolean checkanswered(RequestDTO userReg);
-	List<Question1> getRecentQ(RequestDTO userReg);
-	List<Question1> getPopularQ(RequestDTO userReg);
+	List<Question> getRecentQ(RequestDTO userReg);
+	List<Question> getPopularQ(RequestDTO userReg);
 	boolean checkemailIdE(RequestDTO userReg);
 	List<EmployeeEntity> getEmployeeList(RequestDTO userReg);
+	List<Question> getrecentQuestionQs(RequestDTO userReg);
 	
 	//String getTagId(RequestDTO userReg);
 }

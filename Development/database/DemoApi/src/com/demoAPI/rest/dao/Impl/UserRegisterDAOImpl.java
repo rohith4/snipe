@@ -1,5 +1,6 @@
 package com.demoAPI.rest.dao.Impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,6 +17,7 @@ import org.hibernate.criterion.Projections;
 
 
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,9 +28,10 @@ import com.demoAPI.rest.dto.response.ResponseDTO;
 import com.demoAPI.rest.entity.Answeres;
 import com.demoAPI.rest.entity.EmployeeEntity;
 import com.demoAPI.rest.entity.Lists;
-import com.demoAPI.rest.entity.Question1;
+import com.demoAPI.rest.entity.Question;
 import com.demoAPI.rest.entity.Questions;
 import com.demoAPI.rest.entity.Recent;
+import com.demoAPI.rest.entity.RecentQuestions;
 //import com.demoAPI.rest.entity.Tags1;
 import com.demoAPI.rest.entity.UserEntity;
 import com.demoAPI.rest.util.Helper;
@@ -98,10 +101,18 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		List<UserEntity> userList = new ArrayList<UserEntity>();
 		Session session = currentSession();
 		Criteria crc= session.createCriteria(UserEntity.class);
-		Query query = session.createQuery(" from UserEntity");
+				/* .setProjection(Projections.projectionList()
+					      .add(Projections.property("fname"), "fname")
+					      .add(Projections.property("lname"), "lname"))
+					    .setResultTransformer(Transformers.aliasToBean(UserEntity.class));
+				*/
+				
+				
+				
+	//	Query query = session.createQuery(" from UserEntity");
 	//	query.setMaxResults(5);
 		try{
-			userList = query.list();
+			userList = crc.list();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -229,8 +240,8 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		// TODO Auto-generated method stub
 		logger.info("******UserRegisterDAOImpl.checkANswered**************");
 		Session session=currentSession();
-		Question1 que=new Question1();
-		Criteria crc = session.createCriteria(Question1.class);
+		Question que=new Question();
+		Criteria crc = session.createCriteria(Question.class);
 		ResponseDTO userRegRes = new ResponseDTO();
 		que.setAns(userReg.getAns());
 		System.out.println("answerd"+userReg.getAns());
@@ -301,11 +312,11 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 
 
 	@Override
-	public List<Question1> getqueList(RequestDTO userReg) {
+	public List<Question> getqueList(RequestDTO userReg) {
 		// TODO Auto-generated method stub
 		Session session=currentSession();
 		Criteria crit=session.createCriteria(Answeres.class);
-		List<Question1> quelist=new ArrayList<Question1>();
+		List<Question> quelist=new ArrayList<Question>();
 		Query query = session.createQuery("select que.question, que.q_id,que.tag_name from Question1 que where que.status = 'N'");
 		System.out.println(query);
 		if(query.equals("N")){
@@ -316,12 +327,12 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 	}
 
 	@Override
-	public List<Question1> getRecentQ(RequestDTO userReg) {
+	public List<Question> getRecentQ(RequestDTO userReg) {
 		// TODO Auto-generated method stub
 		
-		List<Question1> RecentQ = new ArrayList<Question1>();
+		List<Question> RecentQ = new ArrayList<Question>();
 		Session session = currentSession();
-		Criteria crc= session.createCriteria(Question1.class);
+		Criteria crc= session.createCriteria(Question.class);
 		Query query = session.createQuery("select que.question from Question1 que");
 		query.setMaxResults(5);
 		try{
@@ -333,13 +344,13 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 	}
 
 	@Override
-	public List<Question1> getPopularQ(RequestDTO userReg) {
+	public List<Question> getPopularQ(RequestDTO userReg) {
 		// TODO Auto-generated method stub	
 		logger.info("******UserRegisterDAOImpl.PopularQ**************");
 		// TODO Auto-generated method stub
-		List<Question1> popularQ = new ArrayList<Question1>();
+		List<Question> popularQ = new ArrayList<Question>();
 		Session session = currentSession();
-		Criteria crc= session.createCriteria(Question1.class);
+		Criteria crc= session.createCriteria(Question.class);
 		String hql="select que.question from Question1 que where que.ratings>:r";
 		Query query = session.createQuery(hql);
 		query.setParameter("r","3");
@@ -373,6 +384,39 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		
 		
 		
+	}
+
+	@Override
+	public List<Question> getrecentQuestionQs(RequestDTO userReg) {
+		// TODO Auto-generated method stub
+
+		logger.info("******UserRegisterDAOImpl.getUserList**************");
+		// TODO Auto-generated method stub
+		List<Question> RQ = new ArrayList<Question>();
+		Session session = currentSession();
+		Criteria crc= session.createCriteria(Question.class);
+				
+			//	Query query = session.createQuery("from Question1");
+		
+	/*	
+		try{
+		  String sql = "select que.Createdate, que.question, que.status, que.tag_name, que.emp_name,"
+	                 + " que.ans"
+	                 + " from Question1 que ";
+		Query query = session.createQuery(sql);
+		*/
+
+		
+		
+		
+		
+		//query.setMaxResults(5);
+		try{
+			RQ = crc.list();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return RQ;
 	}
 	
 }

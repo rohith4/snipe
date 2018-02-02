@@ -24,17 +24,17 @@ public class Answeres {
 
 	   @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 		@JoinColumn(name="Question_FK")
-	private Question1 Question;
+	private Question Question;
 	
 	
 
  
-	public Question1 getQuestion() {
+	public Question getQuestion() {
 		return Question;
 	}
 
 
-	public void setQuestion(Question1 question) {
+	public void setQuestion(Question question) {
 		Question = question;
 	}
 

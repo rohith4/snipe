@@ -20,9 +20,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.demoAPI.rest.entity.Answeres;
 import com.demoAPI.rest.entity.EmployeeEntity;
 import com.demoAPI.rest.entity.Lists;
-import com.demoAPI.rest.entity.Question1;
+import com.demoAPI.rest.entity.Question;
 import com.demoAPI.rest.entity.Questions;
 import com.demoAPI.rest.entity.Recent;
+import com.demoAPI.rest.entity.RecentQuestions;
 //import com.demoAPI.rest.entity.Tags;
 //import com.demoAPI.rest.entity.Tags1;
 import com.demoAPI.rest.entity.UserEntity;
@@ -123,7 +124,7 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 		// TODO Auto-generated method stub
 		logger.info("******UserRegisterServiceImpl.Answered**************");
 		ResponseDTO userRegRes = new ResponseDTO();
-		Question1 que=new Question1();
+		Question que=new Question();
 	    que.setAns(userReg.getAns());
 		System.out.println("name"+userReg.getAns());
 		boolean result = userRegisterDao.checkanswered(userReg);
@@ -146,7 +147,7 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 		// TODO Auto-generated method stub
 				logger.info("******UserRegisterServiceImpl.getUsersList**************");
 				ResponseDTO response=new ResponseDTO();
-				List<Question1> RecentQ= userRegisterDao.getRecentQ(userReg);
+				List<Question> RecentQ= userRegisterDao.getRecentQ(userReg);
 				if(RecentQ.size()==0){
 					//response.setReturnCode(1);
 					response.setMessageReturn("There is No User Registered with DEMO-API");
@@ -160,10 +161,11 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 	
 	
 	@Override
-	public Lists getUsersList(RequestDTO userReg) {
+	public List<UserEntity> getUsersList(RequestDTO userReg) {
 		// TODO Auto-generated method stub
 		logger.info("******UserRegisterServiceImpl.getUsersList**************");
 		Lists list=new Lists();
+		ResponseDTO response=new ResponseDTO();
 	//	Lists list=new Lists();
 		List<UserEntity> userList= userRegisterDao.getUserList(userReg);
 		/*if(userList.size()==0){
@@ -171,9 +173,9 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 			response.setMessageReturn("There is No User Registered with DEMO-API");
 		}else{
 	//	response.setReturnCode(0);*/
-	  list.setUserentity(userList);
+	//	response.setUserEntity(userList);
 		//}
-		return list;
+		return userList;
 	}
 	
 	
@@ -239,7 +241,7 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 		
 		Session session  = currentSession();
 		UserEntity user = new UserEntity();
-		Question1 que=new Question1();
+		Question que=new Question();
 		Criteria crc = session.createCriteria(Questions.class);
 		
 		que.setQuestion(userReg.getQuestion());
@@ -312,10 +314,10 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 		
 	ResponseDTO userRegRes=new ResponseDTO();
 	Session session=currentSession();
-	Criteria crt=session.createCriteria(Question1.class);
+	Criteria crt=session.createCriteria(Question.class);
 
 Answeres ans=new Answeres();
-Question1 que=new Question1();
+Question que=new Question();
 
 
 	que.setCreatedate(new Date());
@@ -347,7 +349,7 @@ Question1 que=new Question1();
 		// TODO Auto-generated method stub
 		ResponseDTO response=new ResponseDTO();
 		
-		List<Question1> queList= userRegisterDao.getqueList(userReg);
+		List<Question> queList= userRegisterDao.getqueList(userReg);
 		response.setQuestion1(queList);
 		return response;
 		
@@ -425,7 +427,7 @@ System.out.println("email"+userReg.getEmailId());
 		
 		logger.info("******UserRegisterServiceImpl.getUsersList**************");
 		ResponseDTO response=new ResponseDTO();
-		List<Question1> popularlist= userRegisterDao.getPopularQ(userReg);
+		List<Question> popularlist= userRegisterDao.getPopularQ(userReg);
 		//System.out.println(popularlist);
 		if(popularlist.size()==0){
 			//response.setReturnCode(1);
@@ -444,7 +446,7 @@ System.out.println("email"+userReg.getEmailId());
 		// TODO Auto-generated method stub
 		
 		
-		logger.info("******UserRegisterServiceImpl.getUsersList**************");
+		logger.info("******UserRegisterServiceImpl.getEmployeeList**************");
 		ResponseDTO response=new ResponseDTO();
 		UserList list=new UserList();
 		List<EmployeeEntity> empList= userRegisterDao.getEmployeeList(userReg);
@@ -460,5 +462,24 @@ System.out.println("email"+userReg.getEmailId());
 		
 		
 	}
+
+	@Override
+	public List<Question>getrecentQeustionQs(RequestDTO userReg) {
+		// TODO Auto-generated method stub
+	
+		
+		logger.info("******UserRegisterServiceImpl.getQuestionsList**************");
+		ResponseDTO response=new ResponseDTO();
+	//	RecentQuestions recentQs=new RecentQuestions();
+		List<Question> recentQ= userRegisterDao.getrecentQuestionQs(userReg);
+		if(recentQ.size()==0){
+			//response.setReturnCode(1);
+			response.setMessageReturn("There is No User Registered with DEMO-API");
+		}else{
+	//	response.setReturnCode(0);
+			response.setQuestion1(recentQ);
+		}
+		return recentQ;	
+		}
 	
 }
