@@ -41,6 +41,7 @@ public class UserRegisterController {
 	
 	
 	@RequestMapping(value = "/recentq", method = RequestMethod.GET, produces = "application/json")
+
 //	@RequestMapping(value = RestURLS.RECENTQ, method = RequestMethod.POST)
 	public @ResponseBody ResponseDTO getrecentQuestions( RequestDTO userReg,HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("******UserRegistrationController.getUserReg**************");

@@ -58,7 +58,7 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 		ResponseDTO userRegRes = new ResponseDTO();
 		UserEntity user=new UserEntity();
 		System.out.println("Server: "+userReg.getFname());
-	
+	System.out.println("dfjidsjgfkls");
 		if(!userReg.getEmailId().isEmpty() && userReg.getEmailId()!= null){
 			boolean result = userRegisterDao.checkemailId(userReg);
 			if(result){
