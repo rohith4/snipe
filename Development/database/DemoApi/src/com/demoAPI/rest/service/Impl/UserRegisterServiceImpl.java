@@ -14,6 +14,7 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,6 +46,10 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 	private static final Logger logger = Logger.getLogger(UserRegisterServiceImpl.class);
 	@Autowired
 	Helper heapler;
+	
+
+	JdbcTemplate jdbcTemplate;
+	
 	@Autowired
 	UserRegisterDAO userRegisterDao;
 	
@@ -184,8 +189,8 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 		// TODO Auto-generated method stub
 		logger.info("******UserRegisterServiceImpl.modifyUser**************");
 		ResponseDTO response=new ResponseDTO();
-		boolean result = userRegisterDao.modifyUser(userReg);
-		if(result){
+		int result = userRegisterDao.modifyUser(userReg);
+		if(result>1){
 			//response.setReturnCode(0);
 			response.setMessageReturn("User emailId modified successfully");
 		}else{
@@ -275,13 +280,15 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 		String returnMag ="";
 		ResponseDTO response= new ResponseDTO();
 		Session session  = currentSession();
-		UserEntity user = new UserEntity();
+	//	UserEntity user = new UserEntity();
 		EmployeeEntity emp=new EmployeeEntity();
 		Criteria crc = session.createCriteria(EmployeeEntity.class);
 		emp.setFname(userReg.getFname());
 		emp.setLname(userReg.getLname());
 		emp.setDob(userReg.getDob());
-		emp.setAddress(userReg.getAddress());
+		emp.setQualification(userReg.getQualification());
+		emp.setDoj(userReg.getDoj());
+		emp.setAddress(userReg.getAddress());//
 		emp.setEmailId(userReg.getEmailId());
 		//user.setDob("");
 		//user.setName(userReg.getName());
@@ -296,7 +303,7 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 		emp.setLoginStatus("N");
 		session.save(emp);
 		System.out.println("Saved");
-		returnMag = "Congratulations!!"+user.getName() +" Registration successfull";
+		returnMag = "Congratulations!!"+emp.getFname() +" Registration successfull";
 		
 	//	response.setReturnCode(0);
 		response.setMessageReturn(returnMag);
@@ -442,22 +449,23 @@ System.out.println("email"+userReg.getEmailId());
 	}
 
 	@Override
-	public UserList getEmployeeList(RequestDTO userReg) {
+	public List<EmployeeEntity> getEmployeeList(RequestDTO userReg) {
 		// TODO Auto-generated method stub
 		
 		
 		logger.info("******UserRegisterServiceImpl.getEmployeeList**************");
 		ResponseDTO response=new ResponseDTO();
-		UserList list=new UserList();
+	//	List<EmployeeEntity> list=new UserList();
 		List<EmployeeEntity> empList= userRegisterDao.getEmployeeList(userReg);
 		if(empList.size()==0){
 			//response.setReturnCode(1);
 			response.setMessageReturn("There is No User Registered with DEMO-API");
 		}else{
 	//	response.setReturnCode(0);
-	  list.setEmplist(empList);
+			response.setEmployeeentity(empList);
+	//  list.setEmplist(empList);
 		}
-		return list;
+		return empList;
 		
 		
 		
@@ -481,5 +489,54 @@ System.out.println("email"+userReg.getEmailId());
 		}
 		return recentQ;	
 		}
+
+	@Override
+	public ResponseDTO ContactUs(RequestDTO userReg) {
+		// TODO Auto-generated method stub
+		String returnMag="";
+		ResponseDTO response=new ResponseDTO();
+		Session session=currentSession();
+		com.demoAPI.rest.entity.ContactUs contact =new com.demoAPI.rest.entity.ContactUs();
+		Criteria crc = session.createCriteria(EmployeeEntity.class);
+		contact.setEmailId(userReg.getEmailId());
+		contact.setMessage(userReg.getMessage());
+		contact.setName(userReg.getName());
+		session.save(contact);
+		System.out.println("Saved");
+		returnMag = "Congratulations!!"+contact.getName() +" Your message submitted";
+	//	response.setReturnCode(0);
+		response.setMessageReturn(returnMag);
+		return response;
+
+		
+//		return null;
+	}
+
+	@Override
+	public ResponseDTO upDateEmployee(RequestDTO userReg) {
+		// TODO Auto-generated method stub
+		ResponseDTO response=new ResponseDTO();
+		
+	//	Response response = CommonUtils.getResponseObject("Update employee data");
+		try {
+		//	String sql = "UPDATE employee_register SET username=?,email=?,password=?,phoneNumber=? WHERE emp_id=?";
+			String hql="update employee set fname=:fname,emailId=:email, pwd=:password,lname=:lname,qualification=:qualification where emailId=:email";
+
+			int res = jdbcTemplate.update(hql,userReg.getFname(),userReg.getLname(),userReg.getEmailId(),userReg.getPwd(),userReg.getQualification());
+			
+
+			if (res == 1) {
+				response.setMessageReturn("Success");
+			} else {
+				//response.setStatus(StatusCode.ERROR.name());
+			}
+		} catch (Exception e) {
+			logger.error("Exception in update employee data", e);
+		//	response.setStatus(StatusCode.ERROR.name());
+		//	response.setErrors(e.getMessage());
+		}
+		return response;
+	//	return null;
+	}
 	
 }

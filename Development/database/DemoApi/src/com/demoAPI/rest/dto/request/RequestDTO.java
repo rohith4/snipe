@@ -8,11 +8,44 @@ import java.sql.*;
 public class RequestDTO implements Serializable{
 
 	
+	private String name;
 	
+	//private String emailId;
+	
+	private String message;
+	
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
 	private int tag_id;
 	
-  
+   
+	private String qualification;
 	
+	private Date doj;
+	
+	public String getQualification() {
+		return qualification;
+	}
+	public void setQualification(String qualification) {
+		this.qualification = qualification;
+	}
+	public Date getDoj() {
+		return doj;
+	}
+	public void setDoj(Date doj) {
+		this.doj = doj;
+	}
 	private String empId;
 	
 	public String getEmpId() {

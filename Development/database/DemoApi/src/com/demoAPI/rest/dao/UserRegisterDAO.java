@@ -21,7 +21,7 @@ public interface UserRegisterDAO {
 	
 	
 	void updateAnsStatusY(RequestDTO userReg);
-	boolean modifyUser(RequestDTO userReg);
+	int modifyUser(RequestDTO userReg);
 	void deleteUser(RequestDTO userReg);
 	void updateLoginStatusN(RequestDTO userReg);
 	

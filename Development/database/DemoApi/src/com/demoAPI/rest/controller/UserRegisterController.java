@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.demoAPI.rest.dto.request.RequestDTO;
 import com.demoAPI.rest.dto.response.ResponseDTO;
+import com.demoAPI.rest.entity.EmployeeEntity;
 import com.demoAPI.rest.entity.Lists;
 import com.demoAPI.rest.entity.Question;
 import com.demoAPI.rest.entity.Recent;
@@ -38,6 +39,26 @@ public class UserRegisterController {
 		logger.info("******UserRegistrationController.getUserReg**************");
 		return registrationService.getUserRegist(userReg);
 	}
+
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	@RequestMapping(value ="/contact", method = RequestMethod.POST)
+	public @ResponseBody ResponseDTO ContactUs(@RequestBody RequestDTO userReg) {
+		logger.info("******UserRegistrationController.getUserReg**************");
+		return registrationService.ContactUs(userReg);
+	}
+	
+	
+	
+	
 	
 	
 	@RequestMapping(value = "/recentq", method = RequestMethod.GET, produces = "application/json")
@@ -107,7 +128,7 @@ public class UserRegisterController {
 		
 		
 		@RequestMapping(value = "/employee", method = RequestMethod.GET, produces = "application/json")
-		public @ResponseBody UserList getEmployee( RequestDTO userReg,HttpServletRequest request, HttpServletResponse response) throws Exception {
+		public @ResponseBody List<EmployeeEntity> getEmployee( RequestDTO userReg,HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("getUsers: Received request: " + request.getRequestURL().toString()
 				+ ((request.getQueryString() == null) ? "" : "?" + request.getQueryString().toString()));
 	      return registrationService.getEmployeeList(userReg);
@@ -124,12 +145,27 @@ public class UserRegisterController {
 			+ ((request.getQueryString() == null) ? "" : "?" + request.getQueryString().toString()));
       return registrationService.getPopularq(userReg);
 }	
-	
-	@RequestMapping(value = RestURLS.DEMO_REST_MODIFYUSER, method = RequestMethod.POST)
+	@RequestMapping(value = "/editemp", method = RequestMethod.PUT, produces = "application/json")
+	//@RequestMapping(value = RestURLS.DEMO_REST_MODIFYUSER, method = RequestMethod.POST)
 	public @ResponseBody ResponseDTO modifyUser(@RequestBody RequestDTO userReg) {
 		logger.info("******UserRegistrationController.modifyUser**************");
 		return registrationService.modifyUser(userReg);	
 	}
+	
+	
+	/*public @ResponseBody ResponseDTO updateRegister(@RequestBody RequestDTO  userReg, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		logger.info("saveemployee: Received request URL: " + request.getRequestURL().toString()
+				+ ((request.getQueryString() == null) ? "" : "?" + request.getQueryString().toString()));
+	//	logger.info("saveEmployee: Received request: " + CommonUtils.getJson(employee));
+		return registrationService.upDateEmployee(userReg);
+	}*/
+	
+	
+	
+	
+	
+	
 	
 
 	@RequestMapping(value = RestURLS.DEMO_REST_DELETEUSER, method = RequestMethod.POST)
@@ -148,6 +184,20 @@ public class UserRegisterController {
 		System.out.println();
 		return registrationService.deleteEmployee(userReg);
 	}
+	
+	
+	@RequestMapping(value = "/deleteemp", method = RequestMethod.DELETE, produces = "application/json")
+	public @ResponseBody ResponseDTO deleteRegister(@RequestBody RequestDTO emailId, EmployeeEntity employee, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		logger.info("deleteemployee: Received request URL: " + request.getRequestURL().toString()
+				+ ((request.getQueryString() == null) ? "" : "?" + request.getQueryString().toString()));
+	//	logger.info("deleteEmployee: Received request: " + CommonUtils.getJson(employee));
+		return registrationService.deleteEmployee(emailId);
+	}
+	
+	
+	
+	
 	
 	
 	

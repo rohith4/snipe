@@ -58,6 +58,7 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		Criteria crc = session.createCriteria(UserEntity.class);
 		user.setFname(userReg.getFname());
 		user.setLname(userReg.getLname());
+		
 		user.setDob(userReg.getDob());
 		user.setAddress(userReg.getAddress());
 		user.setEmailId(userReg.getEmailId());
@@ -122,27 +123,45 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 
 	@Override
 	@Transactional(value="transactionManager", rollbackFor=Exception.class)
-	public boolean modifyUser(RequestDTO userReg) {
+	public int modifyUser(RequestDTO userReg) {
 		logger.info("******UserRegisterDAOImpl.modifyUser**************");
 		// TODO Auto-generated method stub
 		boolean modifyUser = true;
-		Criteria crit = currentSession().createCriteria(UserEntity.class);
-		crit.add(Restrictions.eq("mobileNo",userReg.getMobileNo()));
-		UserEntity userUpdate;
-		userUpdate =(UserEntity)crit.uniqueResult();
+		Criteria crit = currentSession().createCriteria(EmployeeEntity.class);
+		
+		
+		String hql="update EmployeeEntity as emp set "+"fname=:fname,"+"lname=:lname"+" where emailId=:emailId";
+	   // Query q=session.createQuery(hql);
+		Query q=currentSession().createQuery(hql);
+	    q.setParameter("fname",userReg.getFname());  
+	    q.setParameter("lname",userReg.getLname());
+	    q.setParameter("emailId",userReg.getEmailId());
+	 int status1=q.executeUpdate();  
+	    if(status1>1)System.out.println("updated");
+	    else{System.out.println("Not found");}
+	      
+	    
+		
+		
+		
+		//crit.add(Restrictions.eq("emailId",userReg.getEmailId()));
+		/*EmployeeEntity userUpdate;
+		userUpdate =(EmployeeEntity)crit.uniqueResult();
 		List list = crit.list();
 		if(list.isEmpty()){
 			System.out.println("No data found");
 			modifyUser = false;
 		}
-		else{
-			Criteria crit1 = currentSession().createCriteria(UserEntity.class);
-			crit1.add(Restrictions.eq("mobileNo",userReg.getMobileNo()));	
-			UserEntity entity = (UserEntity)crit1.uniqueResult();
+		else{*/
+			/*Criteria crit1 = currentSession().createCriteria(EmployeeEntity.class);
+			crit1.add(Restrictions.eq("emailId",userReg.getEmailId()));	
+			EmployeeEntity entity = (EmployeeEntity)crit1.uniqueResult();
 		//	entity.setName(userReg.getName());
 			sessionFactory.getCurrentSession().saveOrUpdate(entity);
-		}
-		return modifyUser;
+			modifyUser=true;*/
+		//}
+		//return modifyUser;
+		return status1;
 	}
 
 	@Override
@@ -245,11 +264,14 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		ResponseDTO userRegRes = new ResponseDTO();
 		que.setAns(userReg.getAns());
 		System.out.println("answerd"+userReg.getAns());
-		String hql="update Question1 as Q set "+"ans=:n,"+"status=:y"+" where q_id=:i";
+		
+		/*"UPDATE Employee set salary = :salary "  + 
+        "WHERE id = :employee_id";*/
+		String hql="update Question set "+"ans=:n,status=:y where q_id=:i";
 	    Query q=session.createQuery(hql);  
 	    q.setParameter("n",userReg.getAns());  
 	    q.setParameter("i",userReg.getQ_id());
-	    q.setParameter("y","Y");
+	    q.setParameter("y","Yes");
 	    int status1=q.executeUpdate();  
 	    System.out.println(status1);  
 	    System.out.println("answered");
@@ -317,7 +339,7 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		Session session=currentSession();
 		Criteria crit=session.createCriteria(Answeres.class);
 		List<Question> quelist=new ArrayList<Question>();
-		Query query = session.createQuery("select que.question, que.q_id,que.tag_name from Question1 que where que.status = 'N'");
+		Query query = session.createQuery("select que.question, que.q_id,que.tag_name from Question que where que.status = 'N'");
 		System.out.println(query);
 		if(query.equals("N")){
 			Query query1 = session.createQuery("select question from Question1");
@@ -351,7 +373,7 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		List<Question> popularQ = new ArrayList<Question>();
 		Session session = currentSession();
 		Criteria crc= session.createCriteria(Question.class);
-		String hql="select que.question from Question1 que where que.ratings>:r";
+		String hql="select que.question from Question que where que.ratings>:r";
 		Query query = session.createQuery(hql);
 		query.setParameter("r","3");
 		System.out.println("Result");
@@ -372,7 +394,7 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		// TODO Auto-generated method stub
 		List<EmployeeEntity> emplist = new ArrayList<EmployeeEntity>();
 		Session session = currentSession();
-		Criteria crc= session.createCriteria(UserEntity.class);
+		Criteria crc= session.createCriteria(EmployeeEntity.class);
 		Query query = session.createQuery(" from EmployeeEntity");
 		//query.setMaxResults(5);
 		try{

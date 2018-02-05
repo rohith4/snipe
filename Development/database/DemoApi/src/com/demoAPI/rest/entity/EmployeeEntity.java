@@ -25,6 +25,27 @@ public class EmployeeEntity {
 	
 	@Column(name="DATE")
 	private Date date;
+
+   
+
+	@Column(name="Qualification")
+	private String qualification;
+	
+	
+	public String getQualification() {
+		return qualification;
+	}
+	public void setQualification(String qualification) {
+		this.qualification = qualification;
+	}
+	public Date getDoj() {
+		return doj;
+	}
+	public void setDoj(Date doj) {
+		this.doj = doj;
+	}
+	@Column(name="DOJ")
+	private Date doj;
 	
 	
 	

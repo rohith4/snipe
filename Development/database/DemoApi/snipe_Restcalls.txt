@@ -37,7 +37,7 @@ http://localhost:8080/DemoAPI/rest/logout
 
 POST
 RegisterEmployee(regisgerEmployee)
-http://localhost:8080/DemoAPI/rest/registerEmployee
+http://localhost:8080/DemoAPI/rest/admin/registerEmployee
 {"fname":"devarajr",
 "lname":"chennur",
 "address":"Bangalore",
@@ -47,6 +47,8 @@ http://localhost:8080/DemoAPI/rest/registerEmployee
 "pwd":"0987",
 "state":"Karnataka",
 "country":"India",
+"qualification":"BCA",
+"date":"2018-01-12",
 "gender":"male"}
 
 
@@ -54,8 +56,7 @@ POST
 Ask Questions(askq)
 http://localhost:8080/DemoAPI/rest/askq
 {
-
-
+ "tag":"hibernate"
  "question":"What is Hibernate"
 }
 
@@ -64,30 +65,12 @@ http://localhost:8080/DemoAPI/rest/answered
 {
 
  
-"fname":"Devarajtyu",
-
-	
- 
-
+"q_id":"185"
 "ans":"Hibernate is ORM tool"
 
 }
-	
-GET
-http://localhost:8080/DemoAPI/rest/recent
-{
-
-}
 
 
-
-
-POST
-ResetPassword
-http://localhost:8080/DemoAPI/rest/resetpwd
-{
-"emailId":"d.chennur@gmail.com"
-}
 
 
 GET
@@ -110,7 +93,7 @@ http://localhost:8080/DemoAPI/rest/employee
 
 }
 
-POST
+POST(Answer question with q_id)
 http://localhost:8080/DemoAPI/rest/answered
 {
 "q_id":"288",
@@ -118,6 +101,21 @@ http://localhost:8080/DemoAPI/rest/answered
 }
 
 GET
-http://localhost:8080/DemoAPI/rest/recentq
+http://localhost:8080/DemoAPI/rest/recentQs
 {
+}
+
+PUT
+http://localhost:8080/DemoAPI/rest/editemp
+{
+"emailId":"najeerbjp@gmail.com",
+"fname":"Devaraj",
+"lname":"BJP"
+}
+
+
+DELETE
+http://localhost:8080/DemoAPI/rest/deleteemp
+{
+"emailId":"najeerbjp@gmail.com"
 }
