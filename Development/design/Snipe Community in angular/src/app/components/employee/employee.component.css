@@ -1,21 +1,35 @@
 h1{
-    color: black;
+    color: blue;
+    background-color: antiquewhite;
+    width: 38%;
+}
+ h2{
+    color:blue;
+    background-color: antiquewhite;
+    width: 15%;
+    
 }
 .form-group label{
     font-size: 1em;
 
 }
-.btn{
-width:60px;
-margin-left: 5px;
-}
 
-/* .container{
-    border: 5px lightgreen solid;
-    margin-top: 7px;
-    margin-bottom: 7px;     
-} */
-.alert{
-    margin-top: 15px;
-    margin-bottom: 0pxx;
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 16px 12px;
+    font-size: 14px;
+    line-height: 205.428571;
+    color: #0a0f13;
+    width: 55%;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 9px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
