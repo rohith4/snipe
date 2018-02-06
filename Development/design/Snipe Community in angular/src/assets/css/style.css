@@ -1226,9 +1226,11 @@ section.portfolio-w3ls h3,
 .contact_w3agile h3 {
     color: #ffffff;
 }
-
+.agilehead{
+    background: url(../images/banner.jpg) no-repeat 0px 0px fixed;
+}
 .contact_w3agile {
-    background: url(../images/bgc.jpg) no-repeat 0px 0px fixed;
+    
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -1306,6 +1308,7 @@ section.portfolio-w3ls h3,
 .contact_w3agile form input[type="email"]:hover,
 .contact_w3agile textarea:hover {
     border: 2px solid #8e44ad;
+   
     -webkit-transition: 0.5s all;
     -moz-transition: 0.5s all;
     -o-transition: 0.5s all;

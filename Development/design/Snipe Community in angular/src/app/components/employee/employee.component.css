@@ -1,0 +1,21 @@
+h1{
+    color: black;
+}
+.form-group label{
+    font-size: 1em;
+
+}
+.btn{
+width:60px;
+margin-left: 5px;
+}
+
+/* .container{
+    border: 5px lightgreen solid;
+    margin-top: 7px;
+    margin-bottom: 7px;     
+} */
+.alert{
+    margin-top: 15px;
+    margin-bottom: 0pxx;
+}

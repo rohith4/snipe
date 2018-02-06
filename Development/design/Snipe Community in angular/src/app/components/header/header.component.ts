@@ -19,9 +19,23 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.form = this.fb.group({     // {5}
       tag: ['', Validators.required],
-      que: ['', Validators.required]
+      que: ['', Validators.required] 
     });
   }
+   
+  isLogged = false;
+
+  constructor(private auth: AuthenticationService, private router: Router) {
+    this.isLogged = this.auth.isLoggedIn();
+  }
+
+  logout() {
+    sessionStorage.removeItem('User');
+    this.router.navigate(['/home']);
+  }
+
+
+
   // onSubmit(form) {
   //   this.userService.headerUser(this.form.value)
   //   .subscribe(

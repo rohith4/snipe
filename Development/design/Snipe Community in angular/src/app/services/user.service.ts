@@ -26,19 +26,40 @@ export class UserService {
    const body = JSON.stringify(data);
    const headers = new Headers();
    headers.append('Content-Type', 'application/json');
-   return this.http.post('http://192.168.1.125:8082/DemoAPI/rest/registerUser', body,
+   return this.http.post('http://192.168.1.111:8082/DemoAPI/rest/registerUser', body,
     { headers: headers }).map((res: Response) => res.json());
   }
 
+
+
   login(data): Observable<boolean> {
     console.log(data);
-    return this.http.post('http://192.168.1.125:8082/DemoAPI/rest/loginUser', data
+    return this.http.post('http://192.168.1.111:8082/DemoAPI/rest/loginUser', data
       ).map(res => res.json());
+    
     }
-
+    
+    askEmp(data: any) {
+      const body = JSON.stringify(data);
+      const headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      return this.http.post('http://192.168.1.111:8082/DemoAPI/rest/askq', body,
+       { headers: headers }).map((data: Response) => data.json());
+   }
+   addEmployee(model) {
+    console.log(model);
+    return this.http.post('http://192.168.1.111:8082/DemoAPI/rest/registerEmployee', model
+      ).map(res => res.json());
+  }
+  
+  deleteEmployee(emailId) {
+    console.log(emailId);
+    return this.http.post('http://192.168.1.111:8082/DemoAPI/rest/registerEmployee', emailId
+      ).map(res => res.json());
+  }
     headerUser(data) {
       console.log(data);
-      return this.http.post('http://192.168.1.125:8082/DemoAPI/rest/askq', data
+      return this.http.post('http://192.168.1.111:8082/DemoAPI/rest/askq', data
       ).map(res => res.json());
     }
 
@@ -46,13 +67,13 @@ export class UserService {
       var body = JSON.stringify(data);
       var headers = new Headers();
       headers.append('Content-Type', 'application/json');
-      return this.http.post('http://192.168.1.125:8082/DemoAPI/rest/askq'	, body,
+      return this.http.post('http://192.168.1.111:8082/DemoAPI/rest/askq'	, body,
        { headers: headers }).map((data: Response) => data.json());
    }
 
 
   // logout() {                            // {4}
-  //   this.isLogged.next(false);
+  //   this.isLogged.next(false); 
   //   this.router.navigate(['/login']);
   //   localStorage.removeItem('profile');
   //   localStorage.removeItem('id_token');

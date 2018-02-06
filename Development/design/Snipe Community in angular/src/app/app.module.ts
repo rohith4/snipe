@@ -15,12 +15,15 @@ import { BlogComponent } from './components/blog/blog.component';
 import { TagsComponent } from './components/tags/tags.component';
 import { AskComponent } from './components/ask/ask.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { EmployeeComponent } from './components/employee/employee.component';
+import { UsersComponent } from './components/users/users.component';
 import { HomeComponent } from './components/home/home.component';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Auth1Guard } from './auth1.guard';
 import { AuthGuard } from './auth.guard';
 
-
+import { EmpdashboardComponent } from './components/empdashboard/empdashboard.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +38,10 @@ import { AuthGuard } from './auth.guard';
     TagsComponent,
     ContactComponent,
     HomeComponent,
+    DashboardComponent,
+    EmployeeComponent,
+    UsersComponent,
+    EmpdashboardComponent,
 ],
   imports: [
     BrowserModule,

@@ -14,21 +14,41 @@
 
       <div class="col-md-4 w3l_header_right w3l-r">
       </div>
+<!-- //For-Gallery-js --
+<div class="col-md-3 w3l_header_right w3l-r">
+      <ul class="nav navbar-nav">
+        <li><a  *ngIf="loggedIn" routerLink="my-log">My Log</a></li>
+         
+      </ul>
+      <ul>
+        <li><a *ngIf="isLogged" (click)="logout()">Logout</a></li>
+        <li><a *ngIf="!isLogged" [routerLink]="['/signup']">Sign Up</a></li>
+        <li><a *ngIf="!isLogged" [routerLink]="['/login']">Login</a></li>
+      </ul>
+    </div>
 
-      <div class="col-md-3 w3l_header_right w3l-r">
-        <ul>
-          <li>
-            <a [routerLink]="['/login']" class="play-icon popup-with-zoom-anim">Sign In</a>
-          </li>
-          
-          <li>
-            <a [routerLink]="['/signup']" class="play-icon popup-with-zoom-anim">Sign Up</a>
-          </li>
-        </ul>
-      </div>
       <div class="clearfix"> </div>
     </div>
+<!-- //For-Gallery-js -->
+
+<div class="col-md-3 w3l_header_right w3l-r">
+      
+      <ul>
+        
+        <li><a  [routerLink]="['/signup']">Sign Up</a></li>
+        <li><a  [routerLink]="['/login']">Login</a></li>
+        <li><a  (click)="logout()">Logout</a></li>
+
+      </ul>
+    </div>
+
+      <div class="clearfix"> </div>
+    </div>
+
+
+
   </div>
+
   
   <!-- <div class="header-bottom">
     <!-- navigation section -->

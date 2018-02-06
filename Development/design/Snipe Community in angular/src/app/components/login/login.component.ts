@@ -31,7 +31,7 @@ data: Object = {};
 
   public login(data): void {
     this.authService.login(data).subscribe((result: any) => {
-      if (result.messageReturn == "Login successfully") {
+      if (result.messageReturn == "Login successfully0") {
         console.log(result.messageReturn);
         if (typeof (Storage) !== 'undefined') {
           sessionStorage.setItem('User', data.emailId);
