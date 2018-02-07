@@ -107,7 +107,7 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 				userRegRes.setReturnCode(0);
 			//	lresponse.setMessageReturn("success");
 				lresponse.setReturnCode(1);
-				userRegRes.setMessageReturn("Login successfully"+user.getUserRef());
+				userRegRes.setMessageReturn("Login successfully"+user.getUserId());
 				System.out.println("Login Sussfull");
 				
 			}else{
@@ -399,9 +399,10 @@ System.out.println("email"+userReg.getEmailId());
 		logger.info("******UserRegisterServiceImpl.deleteUser**************");
 		ResponseDTO response=new ResponseDTO();
 	EmployeeEntity user=new EmployeeEntity();
-		boolean result = userRegisterDao.checkemailIdE(userReg);
-		if(result){
-			userRegisterDao.deleteUser(userReg);
+		boolean result = userRegisterDao.checkEmpId(userReg);
+		if(result)
+		{
+			userRegisterDao.deleteEmployee(userReg);
 			//response.setReturnCode(0);
 			response.setMessageReturn(user.getFname()+" user deleted successfully");
 		}else{
@@ -557,7 +558,7 @@ System.out.println("email"+userReg.getEmailId());
 				userRegisterDao.updateLoginStatusYE(userReg);
 			//	userRegRes.setReturnCode(0);
 				lresponse.setMessageReturn("success");
-				lresponse.setReturnCode(1);
+				lresponse.setReturnCode(2);
 			//	userRegRes.setMessageReturn("Login successfully"+user.getUserRef());
 				System.out.println("Login Sussfull");
 				

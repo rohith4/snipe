@@ -42,6 +42,8 @@ public interface UserRegisterDAO {
 	void updateLoginStatusYE(RequestDTO userReg);
 	void updateLoginStatusNE(RequestDTO userReg);
 	ResponseDTO saveEmprreg(RequestDTO userReg);
+	boolean checkEmpId(RequestDTO userReg);
+	void deleteEmployee(RequestDTO userReg);
 	
 	//String getTagId(RequestDTO userReg);
 }

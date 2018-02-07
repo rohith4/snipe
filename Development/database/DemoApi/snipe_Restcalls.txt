@@ -19,6 +19,13 @@ http://localhost:8080/DemoAPI/rest/registerUser
 "gender":"male"}
 
 
+DELETE
+http://localhost:8080/DemoAPI/rest/deleteUser
+{
+"empId":"356"
+}
+
+
 
 POST
 Login
@@ -33,6 +40,7 @@ http://localhost:8080/DemoAPI/rest/logout
 {
 	
 }
+
 
 
 POST
@@ -51,6 +59,38 @@ http://localhost:8080/DemoAPI/rest/admin/registerEmployee
 "date":"2018-01-12",
 "gender":"male"}
 
+DELETE
+http://localhost:8080/DemoAPI/rest/admin/deleteemp
+{
+"empId":"356"
+}
+
+
+PUT
+http://localhost:8080/DemoAPI/rest/admin/deleteemp
+
+{
+
+{"fname":"devarajr",
+"lname":"chennur",
+"address":"Bengaluru",
+"emailId":"d.chennur@gmail.com",
+"dob": "12-9-1991",
+"mobileNo":"9876546085",
+"pwd":"0987",
+"state":"Karnataka",
+"country":"India",
+"qualification":"BCA",
+"date":"2018-01-12",
+"gender":"male"}
+}
+
+
+GET
+http://localhost:8080/DemoAPI/rest/admin/employee
+{
+
+}
 
 POST
 Ask Questions(askq)
@@ -63,8 +103,6 @@ http://localhost:8080/DemoAPI/rest/askq
 POST
 http://localhost:8080/DemoAPI/rest/answered
 {
-
- 
 "q_id":"185"
 "ans":"Hibernate is ORM tool"
 
@@ -87,12 +125,6 @@ http://localhost:8080/DemoAPI/rest/unanswered
 }
 
 
-GET
-http://localhost:8080/DemoAPI/rest/employee
-{
-
-}
-
 POST(Answer question with q_id)
 http://localhost:8080/DemoAPI/rest/answered
 {
@@ -105,17 +137,6 @@ http://localhost:8080/DemoAPI/rest/recentQs
 {
 }
 
-PUT
-http://localhost:8080/DemoAPI/rest/editemp
-{
-"emailId":"najeerbjp@gmail.com",
-"fname":"Devaraj",
-"lname":"BJP"
-}
 
 
-DELETE
-http://localhost:8080/DemoAPI/rest/deleteemp
-{
-"emailId":"najeerbjp@gmail.com"
-}
+

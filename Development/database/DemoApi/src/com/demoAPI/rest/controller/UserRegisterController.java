@@ -177,8 +177,11 @@ public class UserRegisterController {
 	
 	
 
-	@RequestMapping(value = RestURLS.DEMO_REST_DELETEUSER, method = RequestMethod.POST)
-	public @ResponseBody ResponseDTO deleteUser(@RequestBody RequestDTO userReg) {
+	
+	//@RequestMapping(value = RestURLS.DEMO_REST_DELETEUSER, method = RequestMethod.POST)
+	@RequestMapping(value = "/deleteUser", method = RequestMethod.DELETE,produces="application/json")
+	public @ResponseBody ResponseDTO deleteUser(@RequestBody RequestDTO userReg,UserEntity user,HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		logger.info("******UserRegistrationController.deleteUser**************");
 		System.out.println();
 		return registrationService.deleteUser(userReg);
@@ -195,18 +198,17 @@ public class UserRegisterController {
 	}
 	
 	
-	@RequestMapping(value = "/deleteemp", method = RequestMethod.DELETE, produces = "application/json")
-	public @ResponseBody ResponseDTO deleteRegister(@RequestBody RequestDTO emailId, EmployeeEntity employee, HttpServletRequest request,
+	@RequestMapping(value = "/deleteemp", method = RequestMethod.DELETE,produces="application/json")
+	public @ResponseBody ResponseDTO deleteRegister(@RequestBody RequestDTO userReg,EmployeeEntity employee, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		logger.info("deleteemployee: Received request URL: " + request.getRequestURL().toString()
 				+ ((request.getQueryString() == null) ? "" : "?" + request.getQueryString().toString()));
 	//	logger.info("deleteEmployee: Received request: " + CommonUtils.getJson(employee));
-		return registrationService.deleteEmployee(emailId);
+		return registrationService.deleteEmployee(userReg);
 	}
 	
 	
-	
-	
+
 	
 	
 	

@@ -17,10 +17,24 @@ import javax.persistence.Table;
 public class EmployeeEntity {
 	
 	
+	public int getEmpId() {
+		return empId;
+	}
+	public void setEmpId(int empId) {
+		this.empId = empId;
+	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="EMP_REF")
-	private int Empid;
+	private int empId;
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	@Column(name="DATE")
@@ -134,12 +148,7 @@ public class EmployeeEntity {
 		this.loginStatus = loginStatus;
 	}
 	
-	public int getEmpid() {
-		return Empid;
-	}
-	public void setEmpid(int empid) {
-		Empid = empid;
-	}
+
 	public String getFname() {
 		return fname;
 	}

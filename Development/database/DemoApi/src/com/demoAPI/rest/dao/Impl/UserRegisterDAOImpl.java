@@ -63,7 +63,7 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		user.setAddress(userReg.getAddress());
 		user.setEmailId(userReg.getEmailId());
 		//user.setEmpId("snipe"+user.getUserRef());
-		System.out.println(user.getUserRef());
+		System.out.println(user.getUserId());
 		user.setMobileNo(userReg.getMobileNo());
     	user.setPwd(userReg.getPwd());
 		user.setState(userReg.getState());
@@ -74,10 +74,10 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		user.setLoginStatus("N");
 		session.save(user);
 		System.out.println("Saved");
-		returnMag = "Congratulations!!"+user.getName() +" Registration successfull";
+		returnMag = "Congratulations!!"+user.getName() +" Registration successfull"+user.getUserId()+"thank u";
 		System.out.println(""+userReg.getFname());
 		 response.setReturnMsg(returnMag);	
-		response.setMessageReturn("E"+user.getUserRef());
+		response.setMessageReturn("E"+user.getUserId());
 		return response;
 	}
 
@@ -169,9 +169,9 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 	public void deleteUser(RequestDTO userReg) {
 		logger.info("******UserRegisterDAOImpl.deleteUser**************");
 		// TODO Auto-generated method stub
-		Criteria crit = sessionFactory.getCurrentSession().createCriteria(EmployeeEntity.class);
-		crit.add(Restrictions.eq("emailId", userReg.getEmailId()));
-		EmployeeEntity delentity = (EmployeeEntity)crit.uniqueResult();
+		Criteria crit = sessionFactory.getCurrentSession().createCriteria(UserEntity.class);
+		crit.add(Restrictions.eq("userId", userReg.getEmpId()));
+		UserEntity delentity = (UserEntity)crit.uniqueResult();
 		sessionFactory.getCurrentSession().delete(delentity);
 	}
 
@@ -208,8 +208,8 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		logger.info("******UserRegisterDAOImpl.checkEmailIdo**************");
 		Session session  = currentSession();
 		Criteria crc = session.createCriteria(UserEntity.class);
-		crc.add(Restrictions.eq("emailId",userReg.getEmailId())).setProjection(Projections.rowCount());
-		System.out.println("email: "+userReg.getEmailId());
+		crc.add(Restrictions.eq("userId",userReg.getEmpId())).setProjection(Projections.rowCount());
+		System.out.println("email: "+userReg.getEmpId());
 		int count = (int)((long)crc.uniqueResult());
 		System.out.println(count);
 		if(count>0){
@@ -503,13 +503,49 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		emp.setLoginStatus("N");
 		session.save(emp);
 		System.out.println("Saved");
-		returnMag = "Congratulations!!"+emp.getFname() +" Registration successfull";
+		returnMag = "Congratulations!!"+emp.getFname() +" Registration successfull ID is  "+emp.getEmpId()+"";
 		response.setMessageReturn(returnMag);
 		return response;
 
 		
 		
 
+	}
+
+	@Override
+	public boolean checkEmpId(RequestDTO userReg) {
+		// TODO Auto-generated method stub
+		logger.info("******UserRegisterDAOImpl.checkEmailIdo**************");
+		Session session  = currentSession();
+		Criteria crc = session.createCriteria(EmployeeEntity.class);
+		crc.add(Restrictions.eq("empId",userReg.getEmpId())).setProjection(Projections.rowCount());
+		System.out.println("EmpId"+userReg.getEmailId());
+		int count = (int)((long)crc.uniqueResult());
+		System.out.println(count);
+		if(count>0){
+			
+		//	System.out.println("EmailId is exited");
+			return true;
+		}
+		//System.out.println("COrrectd");
+		return false;
+		
+		
+		
+	}
+
+	@Override
+	public void deleteEmployee(RequestDTO userReg) {
+		// TODO Auto-generated method stub
+		
+		
+		logger.info("******UserRegisterDAOImpl.deleteUser**************");
+		// TODO Auto-generated method stub
+		Criteria crit = sessionFactory.getCurrentSession().createCriteria(EmployeeEntity.class);
+		crit.add(Restrictions.eq("empId", userReg.getEmpId()));
+		EmployeeEntity delentity = (EmployeeEntity)crit.uniqueResult();
+		sessionFactory.getCurrentSession().delete(delentity);
+		
 	}
 	
 	

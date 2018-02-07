@@ -17,7 +17,7 @@ public class UserEntity {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="USER_REF")
-	private int userRef;
+	private int userId;
 	
 
 	@Column(name="FNAME")
@@ -113,11 +113,11 @@ public Date getDate() {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public int getUserRef() {
-		return userRef;
+	public int getUserId() {
+		return userId;
 	}
-	public void setUserRef(int userRef) {
-		this.userRef = userRef;
+	public void setUserRef(int userId) {
+		this.userId = userId;
 	}
 	
 	public String getName() {

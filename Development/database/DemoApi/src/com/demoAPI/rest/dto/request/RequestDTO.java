@@ -46,12 +46,18 @@ public class RequestDTO implements Serializable{
 	public void setDoj(Date doj) {
 		this.doj = doj;
 	}
-	private String empId;
 	
-	public String getEmpId() {
+
+
+	
+	
+	private int empId;
+	
+	
+	public int getEmpId() {
 		return empId;
 	}
-	public void setEmpId(String empId) {
+	public void setEmpId(int empId) {
 		this.empId = empId;
 	}
 	public int getTag_id() {
