@@ -17,6 +17,7 @@ import com.demoAPI.rest.dto.request.RequestDTO;
 import com.demoAPI.rest.dto.response.ResponseDTO;
 import com.demoAPI.rest.entity.EmployeeEntity;
 import com.demoAPI.rest.entity.Lists;
+import com.demoAPI.rest.entity.LoginResponse;
 import com.demoAPI.rest.entity.Question;
 import com.demoAPI.rest.entity.Recent;
 import com.demoAPI.rest.entity.RecentQuestions;
@@ -86,9 +87,17 @@ public class UserRegisterController {
 	
 	
 	@RequestMapping(value = RestURLS.DEMO_REST_LOGIN, method = RequestMethod.POST)
-	public @ResponseBody ResponseDTO getLogin(@RequestBody RequestDTO userReg) {
+	public @ResponseBody LoginResponse getLogin(@RequestBody RequestDTO userReg) {
 		logger.info("******UserRegistrationController.getLogin**************");
 		return registrationService.getLogin(userReg);
+	}
+	
+	
+	
+	@RequestMapping(value = "/loginemp", method = RequestMethod.POST)
+	public @ResponseBody LoginResponse getLoginE(@RequestBody RequestDTO userReg) {
+		logger.info("******UserRegistrationController.getLogin**************");
+		return registrationService.getLoginE(userReg);
 	}
 	
 	

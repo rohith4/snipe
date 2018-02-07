@@ -39,6 +39,9 @@ public interface UserRegisterDAO {
 	boolean checkemailIdE(RequestDTO userReg);
 	List<EmployeeEntity> getEmployeeList(RequestDTO userReg);
 	List<Question> getrecentQuestionQs(RequestDTO userReg);
+	void updateLoginStatusYE(RequestDTO userReg);
+	void updateLoginStatusNE(RequestDTO userReg);
+	ResponseDTO saveEmprreg(RequestDTO userReg);
 	
 	//String getTagId(RequestDTO userReg);
 }

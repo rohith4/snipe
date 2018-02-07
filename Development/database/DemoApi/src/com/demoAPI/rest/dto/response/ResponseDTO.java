@@ -15,8 +15,10 @@ public class ResponseDTO implements Serializable{
 	private String returnMsg;
 	public static final int FAIL=1;
 	public static final int SUCCESS=0;
-	private int returnCode=SUCCESS;
+	
 	private int hostCode=SUCCESS;
+	private int returnCode=SUCCESS;
+	
 	private String messageReturn;
 	
 	private List<EmployeeEntity> employeeentity;

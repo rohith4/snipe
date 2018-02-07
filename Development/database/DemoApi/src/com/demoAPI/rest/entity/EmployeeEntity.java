@@ -179,6 +179,10 @@ public class EmployeeEntity {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	public void setLastlogin(Date date2) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 }

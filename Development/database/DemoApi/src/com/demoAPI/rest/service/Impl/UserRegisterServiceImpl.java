@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.demoAPI.rest.entity.Answeres;
 import com.demoAPI.rest.entity.EmployeeEntity;
 import com.demoAPI.rest.entity.Lists;
+import com.demoAPI.rest.entity.LoginResponse;
 import com.demoAPI.rest.entity.Question;
 import com.demoAPI.rest.entity.Questions;
 import com.demoAPI.rest.entity.Recent;
@@ -82,7 +83,7 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 	}
 
 	@Override
-	public ResponseDTO getLogin(RequestDTO userReg) {
+	public LoginResponse getLogin(RequestDTO userReg) {
 		// TODO Auto-generated method stub
 		logger.info("******UserRegisterServiceImpl.getLogin**************");
 		ResponseDTO userRegRes = new ResponseDTO();
@@ -91,7 +92,7 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 		Criteria crc = session.createCriteria(UserEntity.class);
 	/*	Query query=session.createQuery("select userentity.userRef from UserEntity userentity where userentity.emailId=:email");
 		query.setParameter("email", userReg.getEmailId());*/
-		
+		LoginResponse lresponse=new LoginResponse();
 		
 		boolean result = userRegisterDao.checkemailId(userReg);
 		if(result)
@@ -103,7 +104,9 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 			if(pwd.equals(heapler.getPasswordEncoded(userReg.getPwd(),userReg.getEmailId())))
 			{	
 				userRegisterDao.updateLoginStatusY(userReg);
-			//	userRegRes.setReturnCode(0);
+				userRegRes.setReturnCode(0);
+			//	lresponse.setMessageReturn("success");
+				lresponse.setReturnCode(1);
 				userRegRes.setMessageReturn("Login successfully"+user.getUserRef());
 				System.out.println("Login Sussfull");
 				
@@ -117,7 +120,7 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 			userRegRes.setMessageReturn("Invalid EmailId/Password");
 			System.out.println("Login UnSussfull");
 		}
-		return userRegRes;
+		return lresponse;
 		
 	}
 	
@@ -275,40 +278,30 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 	@Override
 	public ResponseDTO getEmployeeRegist(RequestDTO userReg) {
 		// TODO Auto-generated method stub
-		logger.info("******UserRegisterDAOImpl.saveUserreg**************");
-		// TODO Auto-generated method stub
-		String returnMag ="";
-		ResponseDTO response= new ResponseDTO();
-		Session session  = currentSession();
-	//	UserEntity user = new UserEntity();
-		EmployeeEntity emp=new EmployeeEntity();
-		Criteria crc = session.createCriteria(EmployeeEntity.class);
-		emp.setFname(userReg.getFname());
-		emp.setLname(userReg.getLname());
-		emp.setDob(userReg.getDob());
-		emp.setQualification(userReg.getQualification());
-		emp.setDoj(userReg.getDoj());
-		emp.setAddress(userReg.getAddress());//
-		emp.setEmailId(userReg.getEmailId());
-		//user.setDob("");
-		//user.setName(userReg.getName());
-		emp.setMobileNo(userReg.getMobileNo());
-		//user.setAddress(userReg.getAddress());
-		emp.setPwd(userReg.getPwd());
-		emp.setState(userReg.getState());
-		emp.setCountry(userReg.getCountry());
-		emp.setGender("Male");
-		emp.setDate(new Date());
-		emp.setPwd(heapler.getPasswordEncoded(userReg.getPwd(),userReg.getEmailId()));
-		emp.setLoginStatus("N");
-		session.save(emp);
-		System.out.println("Saved");
-		returnMag = "Congratulations!!"+emp.getFname() +" Registration successfull";
 		
-	//	response.setReturnCode(0);
-		response.setMessageReturn(returnMag);
-		return response;
+		// TODO Auto-generated method stub
+				logger.info("******UserRegisterServiceImpl.getUserRegdjf**************");
+				ResponseDTO userRegRes = new ResponseDTO();
+				EmployeeEntity user=new EmployeeEntity();
+				System.out.println("Server: "+userReg.getFname());
+			System.out.println("dfjidsjgfkls");
+				if(!userReg.getEmailId().isEmpty() && userReg.getEmailId()!= null){
+					boolean result = userRegisterDao.checkemailIdE(userReg);
+					if(result){
+					//	userRegRes.setReturnCode(1);
+						userRegRes.setMessageReturn("This Eamil Already Registered with DEMOAPI");
+					}else{
+				//	heapler.sendEmail(userReg.getEmailId(), userReg.getFname());
+					userRegRes=userRegisterDao.saveEmprreg(userReg);
+					}
+				}else{ 	
+				//	userRegRes.setReturnCode(1);
+					userRegRes.setMessageReturn("You are not entered e");
+					
+				}
+				return userRegRes;
 
+		
 
 	}
 
@@ -537,6 +530,49 @@ System.out.println("email"+userReg.getEmailId());
 		}
 		return response;
 	//	return null;
+	}
+
+	@Override
+	public LoginResponse getLoginE(RequestDTO userReg) {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+		logger.info("******UserRegisterServiceImpl.getLogin**************");
+		ResponseDTO userRegRes = new ResponseDTO();
+		EmployeeEntity user=new EmployeeEntity();
+		Session session  = currentSession();
+		Criteria crc = session.createCriteria(EmployeeEntity.class);
+	/*	Query query=session.createQuery("select userentity.userRef from UserEntity userentity where userentity.emailId=:email");
+		query.setParameter("email", userReg.getEmailId());*/
+		LoginResponse lresponse=new LoginResponse();
+		
+		boolean result = userRegisterDao.checkemailIdE(userReg);
+		if(result)
+		{
+		String pwd= userRegisterDao.getpwd(userReg);
+		System.out.println(": "+pwd);
+		System.out.println(": "+userReg.getEmailId());
+		System.out.println(" "+heapler.getPasswordEncoded(userReg.getPwd(),userReg.getEmailId()));
+			if(pwd.equals(heapler.getPasswordEncoded(userReg.getPwd(),userReg.getEmailId())))
+			{	
+				userRegisterDao.updateLoginStatusYE(userReg);
+			//	userRegRes.setReturnCode(0);
+				lresponse.setMessageReturn("success");
+				lresponse.setReturnCode(1);
+			//	userRegRes.setMessageReturn("Login successfully"+user.getUserRef());
+				System.out.println("Login Sussfull");
+				
+			}else{
+				//userRegRes.setReturnCode(1);
+				userRegRes.setMessageReturn("oooInvalid EmailId/Password");
+				System.out.println("Login UnSussfull");
+			}
+		}else{
+			//userRegRes.setReturnCode(1);
+			userRegRes.setMessageReturn("Invalid EmailId/Password");
+			System.out.println("Login UnSussfull");
+		}
+		return lresponse;
+	
 	}
 	
 }

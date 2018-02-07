@@ -214,10 +214,10 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		System.out.println(count);
 		if(count>0){
 			
-			System.out.println("EmailId is exited");
+		//	System.out.println("EmailId is exited");
 			return true;
 		}
-		System.out.println("COrrectd");
+		//System.out.println("COrrectd");
 		return false;
 		
 	}
@@ -233,14 +233,13 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		crc.add(Restrictions.eq("emailId",userReg.getEmailId())).setProjection(Projections.rowCount());
 		System.out.println("email: "+userReg.getEmailId());
 		int count = (int)((long)crc.uniqueResult());
-		
 		System.out.println(count);
 		if(count>0){
 			
-			System.out.println("EmailId is exited");
+		//	System.out.println("EmailId is exited");
 			return true;
 		}
-		System.out.println("COrrectd");
+		//System.out.println("COrrectd");
 		return false;
 		
 	}
@@ -440,5 +439,78 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		}
 		return RQ;
 	}
+
+	@Override
+	public void updateLoginStatusYE(RequestDTO userReg) {
+		// TODO Auto-generated method stub
+		
+		
+		// TODO Auto-generated method stub
+				logger.info("******UserRegisterDAOImpl.updateLoginStatus**************");
+				Criteria crit = currentSession().createCriteria(EmployeeEntity.class);
+				crit.add(Restrictions.eq("emailId",userReg.getEmailId()));	
+				EmployeeEntity entity = (EmployeeEntity)crit.uniqueResult();
+				entity.setLoginStatus("Y");
+				entity.setLastlogin(new Date());
+				sessionFactory.getCurrentSession().saveOrUpdate(entity);
+		
+		
+	}
+	
+	
+	
+	@Override
+    @Transactional(value="transactionManager", rollbackFor=Exception.class)
+	public void updateLoginStatusNE(RequestDTO userReg) {
+		// TODO Auto-generated method stub
+		logger.info("******UserRegisterDAOImpl.updateLoginStatusN**************");
+		Criteria crit = currentSession().createCriteria(EmployeeEntity.class);
+		crit.add(Restrictions.eq("emailId",userReg.getEmailId()));	
+		EmployeeEntity entity = (EmployeeEntity)crit.uniqueResult();
+		entity.setLoginStatus("N");
+		sessionFactory.getCurrentSession().saveOrUpdate(entity);
+	}
+
+	@Override
+	public ResponseDTO saveEmprreg(RequestDTO userReg) {
+		// TODO Auto-generated method stub
+		
+		logger.info("******UserRegisterDAOImpl.saveUserreg**************");
+		// TODO Auto-generated method stub
+		String returnMag ="";
+		ResponseDTO response= new ResponseDTO();
+		Session session  = currentSession();
+	//	UserEntity user = new UserEntity();
+		EmployeeEntity emp=new EmployeeEntity();
+		Criteria crc = session.createCriteria(EmployeeEntity.class);
+		emp.setFname(userReg.getFname());
+		emp.setLname(userReg.getLname());
+		emp.setDob(userReg.getDob());
+		emp.setQualification(userReg.getQualification());
+		emp.setDoj(userReg.getDoj());
+		emp.setAddress(userReg.getAddress());//
+		emp.setEmailId(userReg.getEmailId());
+		//user.setDob("");
+		//user.setName(userReg.getName());
+		emp.setMobileNo(userReg.getMobileNo());
+		//user.setAddress(userReg.getAddress());
+		emp.setPwd(userReg.getPwd());
+		emp.setState(userReg.getState());
+		emp.setCountry(userReg.getCountry());
+		emp.setGender("Male");
+		emp.setDate(new Date());
+		emp.setPwd(hepler.getPasswordEncoded(userReg.getPwd(),userReg.getEmailId()));
+		emp.setLoginStatus("N");
+		session.save(emp);
+		System.out.println("Saved");
+		returnMag = "Congratulations!!"+emp.getFname() +" Registration successfull";
+		response.setMessageReturn(returnMag);
+		return response;
+
+		
+		
+
+	}
+	
 	
 }

@@ -6,6 +6,7 @@ import com.demoAPI.rest.dto.request.RequestDTO;
 import com.demoAPI.rest.dto.response.ResponseDTO;
 import com.demoAPI.rest.entity.EmployeeEntity;
 import com.demoAPI.rest.entity.Lists;
+import com.demoAPI.rest.entity.LoginResponse;
 import com.demoAPI.rest.entity.Question;
 import com.demoAPI.rest.entity.Recent;
 import com.demoAPI.rest.entity.RecentQuestions;
@@ -16,7 +17,7 @@ public interface UserRegisterService  {
 
 	ResponseDTO getUserRegist(RequestDTO userReg);
 	ResponseDTO answered(RequestDTO userReg);
-	ResponseDTO getLogin(RequestDTO userReg);
+	LoginResponse getLogin(RequestDTO userReg);
 	List<UserEntity> getUsersList(RequestDTO userReg);
 	ResponseDTO modifyUser(RequestDTO userReg);
 	ResponseDTO deleteUser(RequestDTO userReg);
@@ -43,5 +44,6 @@ public interface UserRegisterService  {
 	List<Question> getrecentQeustionQs(RequestDTO userReg);
 	ResponseDTO ContactUs(RequestDTO userReg);
 	ResponseDTO upDateEmployee(RequestDTO userReg);
+	LoginResponse getLoginE(RequestDTO userReg);
 	
 }
