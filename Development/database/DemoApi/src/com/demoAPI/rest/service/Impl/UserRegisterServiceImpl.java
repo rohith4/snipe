@@ -18,7 +18,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.demoAPI.rest.entity.Answeres;
+import com.demoAPI.rest.entity.*;
 import com.demoAPI.rest.entity.EmployeeEntity;
 import com.demoAPI.rest.entity.Lists;
 import com.demoAPI.rest.entity.LoginResponse;
@@ -104,10 +104,15 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 			if(pwd.equals(heapler.getPasswordEncoded(userReg.getPwd(),userReg.getEmailId())))
 			{	
 				userRegisterDao.updateLoginStatusY(userReg);
-				userRegRes.setReturnCode(0);
+			//	userRegRes.setReturnCode(0);
 			//	lresponse.setMessageReturn("success");
+				
+				lresponse.setMessageReturn("success");
 				lresponse.setReturnCode(1);
-				userRegRes.setMessageReturn("Login successfully"+user.getUserId());
+				
+				
+				/*lresponse.setReturnCode(1);
+				userRegRes.setMessageReturn("success");*/
 				System.out.println("Login Sussfull");
 				
 			}else{
@@ -490,8 +495,8 @@ System.out.println("email"+userReg.getEmailId());
 		String returnMag="";
 		ResponseDTO response=new ResponseDTO();
 		Session session=currentSession();
-		com.demoAPI.rest.entity.ContactUs contact =new com.demoAPI.rest.entity.ContactUs();
-		Criteria crc = session.createCriteria(EmployeeEntity.class);
+		ContactUs contact =new ContactUs();
+		Criteria crc = session.createCriteria(ContactUs.class);
 		contact.setEmailId(userReg.getEmailId());
 		contact.setMessage(userReg.getMessage());
 		contact.setName(userReg.getName());
@@ -549,12 +554,14 @@ System.out.println("email"+userReg.getEmailId());
 		boolean result = userRegisterDao.checkemailIdE(userReg);
 		if(result)
 		{
-		String pwd= userRegisterDao.getpwd(userReg);
+		String pwd= userRegisterDao.getpwdE(userReg);
+		
 		System.out.println(": "+pwd);
 		System.out.println(": "+userReg.getEmailId());
-		System.out.println(" "+heapler.getPasswordEncoded(userReg.getPwd(),userReg.getEmailId()));
+		//System.out.println(" "+heapler.getPasswordEncoded(userReg.getPwd(),userReg.getEmailId()));
 			if(pwd.equals(heapler.getPasswordEncoded(userReg.getPwd(),userReg.getEmailId())))
 			{	
+				System.out.println("dfjkldsjlk");
 				userRegisterDao.updateLoginStatusYE(userReg);
 			//	userRegRes.setReturnCode(0);
 				lresponse.setMessageReturn("success");

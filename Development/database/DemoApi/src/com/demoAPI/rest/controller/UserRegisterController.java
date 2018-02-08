@@ -53,7 +53,7 @@ public class UserRegisterController {
 	
 	@RequestMapping(value ="/contact", method = RequestMethod.POST)
 	public @ResponseBody ResponseDTO ContactUs(@RequestBody RequestDTO userReg) {
-		logger.info("******UserRegistrationController.getUserReg**************");
+		logger.info("******UserRegistrationController.ontact**************");
 		return registrationService.ContactUs(userReg);
 	}
 	

@@ -44,6 +44,7 @@ public interface UserRegisterDAO {
 	ResponseDTO saveEmprreg(RequestDTO userReg);
 	boolean checkEmpId(RequestDTO userReg);
 	void deleteEmployee(RequestDTO userReg);
+	String getpwdE(RequestDTO userReg);
 	
 	//String getTagId(RequestDTO userReg);
 }

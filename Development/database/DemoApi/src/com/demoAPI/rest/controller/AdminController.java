@@ -23,11 +23,11 @@ public class AdminController {
 	private static final Logger logger = Logger.getLogger(UserRegisterController.class);
 	
 	@Autowired
-	UserRegisterService registrationService;
+	UserRegisterService registrationService1;
 	
 	@RequestMapping(value = RestURLS.EMPLOYEE_REGISTER, method = RequestMethod.POST)
 	public @ResponseBody ResponseDTO getEmployeeReg(@RequestBody RequestDTO userReg) {
 		logger.info("******UserRegistrationController.getUserReg**************");
-		return registrationService.getEmployeeRegist(userReg);
+		return registrationService1.getEmployeeRegist(userReg);
 	}
 }

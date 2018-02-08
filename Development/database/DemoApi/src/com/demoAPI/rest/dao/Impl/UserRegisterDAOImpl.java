@@ -92,7 +92,27 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		.setProjection(Projections.property("pwd"));
 		String pwd = (String) crc.uniqueResult();
 		return pwd;
+	}
+	
+	
+	@Override
+	@Transactional(value="transactionManager", rollbackFor=Exception.class)
+	public String getpwdE(RequestDTO userReg) {
+		logger.info("******UserRegisterDAOImpl.getpwd**************");
+		// TODO Auto-generated method stub
+		Session session = currentSession();
+		Criteria crc = session.createCriteria(EmployeeEntity.class);
+		crc.add(Restrictions.eq("emailId",userReg.getEmailId()))
+		.setProjection(Projections.property("pwd"));
+		String pwd = (String) crc.uniqueResult();
+		return pwd;
 	}	
+	
+	
+	
+	
+	
+	
 	
 	@Override
 	@Transactional(value="transactionManager", rollbackFor=Exception.class)
@@ -208,7 +228,7 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		logger.info("******UserRegisterDAOImpl.checkEmailIdo**************");
 		Session session  = currentSession();
 		Criteria crc = session.createCriteria(UserEntity.class);
-		crc.add(Restrictions.eq("userId",userReg.getEmpId())).setProjection(Projections.rowCount());
+		crc.add(Restrictions.eq("emailId",userReg.getEmailId())).setProjection(Projections.rowCount());
 		System.out.println("email: "+userReg.getEmpId());
 		int count = (int)((long)crc.uniqueResult());
 		System.out.println(count);
@@ -497,7 +517,7 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		emp.setPwd(userReg.getPwd());
 		emp.setState(userReg.getState());
 		emp.setCountry(userReg.getCountry());
-		emp.setGender("Male");
+		emp.setGender(userReg.getGender());
 		emp.setDate(new Date());
 		emp.setPwd(hepler.getPasswordEncoded(userReg.getPwd(),userReg.getEmailId()));
 		emp.setLoginStatus("N");
