@@ -137,6 +137,11 @@ http://localhost:8080/DemoAPI/rest/recentQs
 {
 }
 
-
-
+POST
+http://localhost:8080/DemoAPI/rest/contact
+{
+"emailId":"d.chennur@gmail.com",
+"message":"HR@Contact",
+"name":"DEVARAJ"
+}
 
