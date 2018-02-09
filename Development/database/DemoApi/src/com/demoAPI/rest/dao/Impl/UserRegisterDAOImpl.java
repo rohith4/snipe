@@ -466,7 +466,7 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		
 		
 		// TODO Auto-generated method stub
-				logger.info("******UserRegisterDAOImpl.updateLoginStatus**************");
+				logger.info("******UserRegisterDAOImpl.updateLoginStatusE**************");
 				Criteria crit = currentSession().createCriteria(EmployeeEntity.class);
 				crit.add(Restrictions.eq("emailId",userReg.getEmailId()));	
 				EmployeeEntity entity = (EmployeeEntity)crit.uniqueResult();

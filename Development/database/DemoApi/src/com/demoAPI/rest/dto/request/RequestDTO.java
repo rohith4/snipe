@@ -12,6 +12,16 @@ public class RequestDTO implements Serializable{
 	
 	//private String emailId;
 	
+	
+	
+	public int getUeid() {
+		return ueid;
+	}
+	public void setUeid(int ueid) {
+		this.ueid = ueid;
+	}
+	private int ueid;
+	
 	private String message;
 	
 	

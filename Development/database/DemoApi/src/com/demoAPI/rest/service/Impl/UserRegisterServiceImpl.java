@@ -67,9 +67,10 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 	System.out.println("dfjidsjgfkls");
 		if(!userReg.getEmailId().isEmpty() && userReg.getEmailId()!= null){
 			boolean result = userRegisterDao.checkemailId(userReg);
-			if(result){
+			boolean resultE = userRegisterDao.checkemailIdE(userReg);
+			if(result || resultE){
 			//	userRegRes.setReturnCode(1);
-				userRegRes.setMessageReturn("This Eamil Already Registered with DEMOAPI");
+				userRegRes.setMessageReturn("This Eamil Already Registered with Snipe");
 			}else{
 		//	heapler.sendEmail(userReg.getEmailId(), userReg.getFname());
 			userRegRes=userRegisterDao.saveUserreg(userReg);
@@ -291,10 +292,11 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 				System.out.println("Server: "+userReg.getFname());
 			System.out.println("dfjidsjgfkls");
 				if(!userReg.getEmailId().isEmpty() && userReg.getEmailId()!= null){
-					boolean result = userRegisterDao.checkemailIdE(userReg);
-					if(result){
+					boolean resultE = userRegisterDao.checkemailIdE(userReg);
+					boolean result = userRegisterDao.checkemailId(userReg);
+					if(result || resultE){
 					//	userRegRes.setReturnCode(1);
-						userRegRes.setMessageReturn("This Eamil Already Registered with DEMOAPI");
+						userRegRes.setMessageReturn("This Eamil Already Registered with Snipe");
 					}else{
 				//	heapler.sendEmail(userReg.getEmailId(), userReg.getFname());
 					userRegRes=userRegisterDao.saveEmprreg(userReg);

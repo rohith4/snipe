@@ -19,6 +19,23 @@ public class UserEntity {
 	@Column(name="USER_REF")
 	private int userId;
 	
+	@Column(name="UID") 
+	private int uid;
+	
+	
+	/*@Column(name="EID")
+	private int eid;*/
+	
+	
+	public int getUid() {
+		return uid;
+	}
+	public void setUid(int uid) {
+		this.uid = uid;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 
 	@Column(name="FNAME")
 	private String fname;

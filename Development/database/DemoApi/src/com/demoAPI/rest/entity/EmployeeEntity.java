@@ -30,6 +30,8 @@ public class EmployeeEntity {
 	
 	
 	
+	@Column(name="EID")
+	private int eid;
 	
 	
 	
@@ -37,6 +39,12 @@ public class EmployeeEntity {
 	
 	
 	
+	public int getEid() {
+		return eid;
+	}
+	public void setEid(int eid) {
+		this.eid = eid;
+	}
 	@Column(name="DATE")
 	private Date date;
 
