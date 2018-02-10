@@ -54,8 +54,8 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		String returnMag ="";
 		ResponseDTO response= new ResponseDTO();
 		Session session  = currentSession();
-		UserEntity user = new UserEntity();
-		Criteria crc = session.createCriteria(UserEntity.class);
+		EmployeeEntity user = new EmployeeEntity();
+		Criteria crc = session.createCriteria(EmployeeEntity.class);
 		user.setFname(userReg.getFname());
 		user.setLname(userReg.getLname());
 		
@@ -63,21 +63,22 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		user.setAddress(userReg.getAddress());
 		user.setEmailId(userReg.getEmailId());
 		//user.setEmpId("snipe"+user.getUserRef());
-		System.out.println(user.getUserId());
+		//System.out.println(user.getUserId());
 		user.setMobileNo(userReg.getMobileNo());
     	user.setPwd(userReg.getPwd());
 		user.setState(userReg.getState());
 		user.setCountry(userReg.getCountry());
 		user.setGender(userReg.getGender());
 		user.setDate(new Date());
+		user.setUeid(1);
 		user.setPwd(hepler.getPasswordEncoded(userReg.getPwd(),userReg.getEmailId()));
 		user.setLoginStatus("N");
 		session.save(user);
 		System.out.println("Saved");
-		returnMag = "Congratulations!!"+user.getName() +" Registration successfull"+user.getUserId()+"thank u";
+		returnMag = "Congratulations!!"+user.getFname() +" Registration successfull"+user.getEmpId()+"thank u";
 		System.out.println(""+userReg.getFname());
 		 response.setReturnMsg(returnMag);	
-		response.setMessageReturn("E"+user.getUserId());
+		response.setMessageReturn("E"+user.getEmpId());
 		return response;
 	}
 
@@ -461,7 +462,7 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 	}
 
 	@Override
-	public void updateLoginStatusYE(RequestDTO userReg) {
+	public int updateLoginStatusYE(RequestDTO userReg) {
 		// TODO Auto-generated method stub
 		
 		
@@ -469,11 +470,23 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 				logger.info("******UserRegisterDAOImpl.updateLoginStatusE**************");
 				Criteria crit = currentSession().createCriteria(EmployeeEntity.class);
 				crit.add(Restrictions.eq("emailId",userReg.getEmailId()));	
+				
+				
+				int eid=1;
 				EmployeeEntity entity = (EmployeeEntity)crit.uniqueResult();
 				entity.setLoginStatus("Y");
 				entity.setLastlogin(new Date());
 				sessionFactory.getCurrentSession().saveOrUpdate(entity);
-		
+				crit.add(Restrictions.eq("ueid",2));
+				List<EmployeeEntity> emp=crit.list();
+				for(EmployeeEntity em:emp)
+				{
+					System.out.println(em.getFname());
+					eid=eid+1;
+				}
+				
+				return eid;
+				
 		
 	}
 	
@@ -510,6 +523,7 @@ public class UserRegisterDAOImpl extends HibernateDao implements UserRegisterDAO
 		emp.setDoj(userReg.getDoj());
 		emp.setAddress(userReg.getAddress());//
 		emp.setEmailId(userReg.getEmailId());
+		emp.setUeid(2);
 		//user.setDob("");
 		//user.setName(userReg.getName());
 		emp.setMobileNo(userReg.getMobileNo());

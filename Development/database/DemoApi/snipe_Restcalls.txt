@@ -29,7 +29,7 @@ http://localhost:8080/DemoAPI/rest/deleteUser
 
 POST
 Login
-http://localhost:8080/DemoAPI/rest/loginUser
+http://localhost:8080/DemoAPI/rest/loginemp
 {
 "emailId":"d.chennur@gmail.com"
 "pwd":"0987"

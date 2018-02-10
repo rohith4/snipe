@@ -18,8 +18,8 @@ public String getMessageReturn() {
 	return messageReturn;
 }
 
-public void setMessageReturn(String messageReturn) {
-	this.messageReturn = messageReturn;
+public void setMessageReturn(String string) {
+	this.messageReturn = string;
 }
 
 public static int getSuccess() {

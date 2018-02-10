@@ -2,6 +2,8 @@ package com.demoAPI.rest.dao;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
+
 import com.demoAPI.rest.dto.request.RequestDTO;
 import com.demoAPI.rest.dto.response.ResponseDTO;
 import com.demoAPI.rest.entity.EmployeeEntity;
@@ -39,7 +41,7 @@ public interface UserRegisterDAO {
 	boolean checkemailIdE(RequestDTO userReg);
 	List<EmployeeEntity> getEmployeeList(RequestDTO userReg);
 	List<Question> getrecentQuestionQs(RequestDTO userReg);
-	void updateLoginStatusYE(RequestDTO userReg);
+	int updateLoginStatusYE(RequestDTO userReg);
 	void updateLoginStatusNE(RequestDTO userReg);
 	ResponseDTO saveEmprreg(RequestDTO userReg);
 	boolean checkEmpId(RequestDTO userReg);

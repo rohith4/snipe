@@ -30,21 +30,27 @@ public class EmployeeEntity {
 	
 	
 	
-	@Column(name="EID")
-	private int eid;
+/*	@Column(name="EID")
+	private int eid;*/
+	
+	@Column(name="UEID")
+	private int ueid;
 	
 	
 	
 	
-	
-	
-	
-	public int getEid() {
+	public int getUeid() {
+		return ueid;
+	}
+	public void setUeid(int ueid) {
+		this.ueid = ueid;
+	}
+/*	public int getEid() {
 		return eid;
 	}
 	public void setEid(int eid) {
 		this.eid = eid;
-	}
+	}*/
 	@Column(name="DATE")
 	private Date date;
 

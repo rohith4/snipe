@@ -107,8 +107,11 @@ public class UserRegisterServiceImpl extends HibernateDao implements UserRegiste
 				userRegisterDao.updateLoginStatusY(userReg);
 			//	userRegRes.setReturnCode(0);
 			//	lresponse.setMessageReturn("success");
-				
-				lresponse.setMessageReturn("success");
+				Query q=session.createQuery("select emp.ueid from EmployeeEntity emp where emp.emailId=:email");
+				q.setParameter("email",userReg.getEmailId());
+				System.out.println(q);
+				//System.out.println(q);
+				lresponse.setMessageReturn("");
 				lresponse.setReturnCode(1);
 				
 				
@@ -564,10 +567,10 @@ System.out.println("email"+userReg.getEmailId());
 			if(pwd.equals(heapler.getPasswordEncoded(userReg.getPwd(),userReg.getEmailId())))
 			{	
 				System.out.println("dfjkldsjlk");
-				userRegisterDao.updateLoginStatusYE(userReg);
+			System.out.println(userRegisterDao.updateLoginStatusYE(userReg));
 			//	userRegRes.setReturnCode(0);
 				lresponse.setMessageReturn("success");
-				lresponse.setReturnCode(2);
+				lresponse.setReturnCode(userRegisterDao.updateLoginStatusYE(userReg));
 			//	userRegRes.setMessageReturn("Login successfully"+user.getUserRef());
 				System.out.println("Login Sussfull");
 				
