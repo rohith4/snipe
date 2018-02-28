@@ -10,8 +10,8 @@ import { TagsComponent } from './components/tags/tags.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { AuthGuard } from './auth.guard';
 import { AskComponent } from './components/ask/ask.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { EmpdashboardComponent } from './components/empdashboard/empdashboard.component';
+// import { DashboardComponent } from './components/dashboard/dashboard.component';
+// import { EmpdashboardComponent } from './components/empdashboard/empdashboard.component';
 
 const appRoutes: Routes = [
    { path: 'login', component: LoginComponent},
@@ -24,8 +24,8 @@ const appRoutes: Routes = [
       { path: 'tag', component: TagsComponent},
       { path: 'contact', component: ContactComponent},
       { path: 'ask', component: AskComponent},
-      { path: 'dashboard', component: DashboardComponent},
-      { path: 'empdashboard', component: EmpdashboardComponent},
+      // { path: 'dashboard', component: DashboardComponent},
+      // { path: 'empdashboard', component: EmpdashboardComponent},
       ]}
   ];
 

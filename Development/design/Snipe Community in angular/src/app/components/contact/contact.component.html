@@ -1,4 +1,5 @@
-<div class="agilehead">
+
+<div class="agilehead"><br>
 <!--header-->
 <div class="agileheader">
     <h1>Contact Us</h1>
@@ -8,23 +9,20 @@
   <!--main-->
   <section class="main-w3l">
   <div class="agile-form">
-      <form action="#" method="post">
+      <form [formGroup]="form" (ngSubmit)="contact()">
         <div class="agile_w3l_inner_form">
           <div class="ft-name">
-            <input type="text" name="First Name" placeholder="First Name" required="required">
-          </div>
-          <div class="lt-name">
-          <input type="text" name="Last Name" placeholder="Last Name" required="required">
+            <input type="text" name="name" placeholder="Full Name" required=""  formControlName="name">
           </div>
           <div class="clear"> </div>
           <div class="e-name">
-          <input type="email" name="Email" placeholder="Email Address" required="required">	
+          <input type="email" name="emailId" placeholder="Your Email" required="" formControlName="emailId">
           </div>
-          <textarea name="Message" placeholder="Message" required=""></textarea>
+          <textarea name="message" placeholder="Message" required="" formControlName="message"></textarea>
          </div>
          <div class="w3ls-bottom">
       
-        <input type="submit" value="SEND MESSAGE">
+        <button type="submit" [disabled]="!form.valid" class="btn btn-primary" >Send message</button>
       
              </div>
          
@@ -32,5 +30,6 @@
     </div>
     
   </section>
+  <br>
   <!--//main-->
 </div>

@@ -18,8 +18,8 @@ export class AskComponent implements OnInit {
  constructor(private fb: FormBuilder,private userService : UserService, private router: Router){}
   ngOnInit() {
      this.form = this.fb.group({    
-     tag: ['', ],
-      que: ['', ],
+     tag_name: ['', ],
+      question: ['', ],
       });
     
   }

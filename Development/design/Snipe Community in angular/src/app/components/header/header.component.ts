@@ -14,21 +14,10 @@ import 'rxjs/Rx';
 export class HeaderComponent implements OnInit {
   form: FormGroup;                    // {1}
 
-  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) { }
-
-  ngOnInit() {
-    this.form = this.fb.group({     // {5}
-      tag: ['', Validators.required],
-      que: ['', Validators.required] 
-    });
+  constructor(private auth: UserService, private router: Router) {
+   // this.isLogged = this.auth.isLogged();
   }
-   
-  isLogged = false;
-
-  constructor(private auth: AuthenticationService, private router: Router) {
-    this.isLogged = this.auth.isLoggedIn();
-  }
-
+ngOnInit(){}
   logout() {
     sessionStorage.removeItem('User');
     this.router.navigate(['/home']);

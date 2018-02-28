@@ -11,10 +11,9 @@ import { Observable } from 'rxjs/Observable';
 })
 
 export class LoginComponent implements OnInit {
-// private emailID: string;
-// private pwd: string;
+  messageReturn: any;
 data: Object = {};
-// private msgs: Message[] = [];
+
 
   constructor(
     private authService: UserService,
@@ -22,7 +21,7 @@ data: Object = {};
   ) {}
 
   ngOnInit(): void {
-    this.authService.isLogged().then((result: any) => {
+    this.authService.isLogged().then((result: boolean) => {
       if (result) {
         this.router.navigate(['/home']);
       }
@@ -31,16 +30,23 @@ data: Object = {};
 
   public login(data): void {
     this.authService.login(data).subscribe((result: any) => {
-      if (result.messageReturn == "Login successfully0") {
+      console.log(result);
+      if (result.returnCode === 1) {
         console.log(result.messageReturn);
         if (typeof (Storage) !== 'undefined') {
           sessionStorage.setItem('User', data.emailId);
         }
+        alert('Login Successfully');
         this.router.navigate(['/home']);
-     //   alert("Login Successfully")
+      }else if (result.returnCode === 2) {
+
+          if (typeof (Storage) !== 'undefined') {
+            sessionStorage.setItem('User', data.emailId);
+    }
+    this.router.navigate(['/dashboard']);
       }else {
         console.log(result.messageReturn);
-      //  alert("Invalid Credentials");
+        alert('Invalid Credentials');
       }
     });
   }

@@ -1,19 +1,16 @@
 
-body p,h1,h2,h3,h4,h5,h6,a{
-	font-family: 'Quicksand', sans-serif;
-}
 img {
-    width: 100%;
+   max-width: 100%;
 }
-body {
+.agilehead {
    
     background-size: cover;
 	text-align:center;
-	padding:0 0 32px 0;
+/*	padding:0 0 32px 0;*/
 }
 /*--header--*/
 .agileheader {
-    margin: 60px 0 40px 0;
+   margin: 0 0 40px 0;	
     border: 1px
 }
 .agileheader h1 {
@@ -21,7 +18,9 @@ body {
     text-transform: uppercase;
     letter-spacing: 5px;
     color: #ffffff;	
-    box-sizing: 1px;
+	box-sizing: 1px;
+	font-family: 'Quicksand', sans-serif;
+	
 }
 /*--//header--*/
 /*--main--*/
@@ -30,6 +29,7 @@ body {
     margin: 0 auto;
     background: #ffffff;
 	padding: 32px 0;
+	
 	margin-bottom: 32px;
 	box-shadow: 9px 14px 5px rgba(0, 0, 0, 0.59);
 }
@@ -52,14 +52,15 @@ body {
     letter-spacing: 2px;
     color: #212121;
     font-weight: 500;
-    text-transform: uppercase;
+	text-transform: uppercase;
 }
 .top-text h5 {
     font-size: 16px;
     letter-spacing: 2px;
     color: #212121;
     margin: 12px 0 0 0;
-    text-align: left;
+	text-align: left;
+	font-family: 'Quicksand', sans-serif;
 }
 .w3ls-ma {
     width: 45%;
@@ -97,7 +98,8 @@ p.ph-icon {
 		color: #212121;
     }
 .agile_w3l_inner_form {
-    padding: 20px;
+	margin-left: 20px;
+    padding: 20px ;
 }
 .ft-name {
     float: left;
@@ -141,7 +143,7 @@ p.ph-icon {
 }
 .agile-form  textarea {
     resize: none;
-    width: 93%;
+	width: 93%;
     background: none;
     color: #212121;
     font-size: .9em;
@@ -186,7 +188,7 @@ p.ph-icon {
     color: #fff;
     padding: 16px 14px;
     font-size: 0.9em;
-    margin: 0 0 0 0;
+ 
     -webkit-appearance: none;
     background: #212121;
     -webkit-transition: 0.5s all;

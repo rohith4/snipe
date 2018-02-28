@@ -26,7 +26,7 @@ export class UserService {
    const body = JSON.stringify(data);
    const headers = new Headers();
    headers.append('Content-Type', 'application/json');
-   return this.http.post('http://192.168.1.111:8082/DemoAPI/rest/registerUser', body,
+   return this.http.post('http://192.168.1.137:8101/DemoAPI/rest/registerUser', body,
     { headers: headers }).map((res: Response) => res.json());
   }
 
@@ -34,7 +34,7 @@ export class UserService {
 
   login(data): Observable<boolean> {
     console.log(data);
-    return this.http.post('http://192.168.1.111:8082/DemoAPI/rest/loginUser', data
+    return this.http.post('http://192.168.1.137:8101/DemoAPI/rest/loginemp', data
       ).map(res => res.json());
     
     }
@@ -43,42 +43,53 @@ export class UserService {
       const body = JSON.stringify(data);
       const headers = new Headers();
       headers.append('Content-Type', 'application/json');
-      return this.http.post('http://192.168.1.111:8082/DemoAPI/rest/askq', body,
+      return this.http.post('http://192.168.1.137:8101/DemoAPI/rest/askq', body,
        { headers: headers }).map((data: Response) => data.json());
    }
-   addEmployee(model) {
-    console.log(model);
-    return this.http.post('http://192.168.1.111:8082/DemoAPI/rest/registerEmployee', model
-      ).map(res => res.json());
-  }
+
   
   deleteEmployee(emailId) {
     console.log(emailId);
-    return this.http.post('http://192.168.1.111:8082/DemoAPI/rest/registerEmployee', emailId
+    return this.http.post('http://192.168.1.137:8101/DemoAPI/rest/registerEmployee', emailId
       ).map(res => res.json());
   }
     headerUser(data) {
       console.log(data);
-      return this.http.post('http://192.168.1.111:8082/DemoAPI/rest/askq', data
+      return this.http.post('http://192.168.1.137:8101/DemoAPI/rest/askq', data
       ).map(res => res.json());
     }
-
+    Getrecent() {
+      return this.http.get('http://192.168.1.137:8101/DemoAPI/rest/recentQs').map(response => response.json());
+  }
     askUser(data:any){
       var body = JSON.stringify(data);
       var headers = new Headers();
       headers.append('Content-Type', 'application/json');
-      return this.http.post('http://192.168.1.111:8082/DemoAPI/rest/askq'	, body,
+      return this.http.post('http://192.168.1.137:8101/DemoAPI/rest/askq'	, body,
        { headers: headers }).map((data: Response) => data.json());
    }
 
-
-  // logout() {                            // {4}
-  //   this.isLogged.next(false); 
-  //   this.router.navigate(['/login']);
-  //   localStorage.removeItem('profile');
-  //   localStorage.removeItem('id_token');
-  //   this.userProfile = undefined;
-  // }
+   contactUser(data:any){
+      var body = JSON.stringify(data);
+      var headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      return this.http.post('http://192.168.1.137:8101/DemoAPI/rest/contact' , body,
+       { headers: headers }).map((data: Response) => data.json());
+   }
+   addEmployee(model) {
+    console.log(model);
+    return this.http.post('http://192.168.1.137:8101/DemoAPI/rest/admin/registerEmployee', model
+      ).map(res => res.json());
+  }
+  
+  getEmp(){
+    return this.http.get('http://192.168.1.137:8101/DemoAPI/rest/employee').map(res => res.json());
+  }
+  
+  deleteEmp(emailId: any){
+    return this.http.delete('http://192.168.1.137:8101/DemoAPI/rest/deleteemp' + emailId)
+      .map(res => res.json());
+  }
 
   // Get a list of all events
   getUsers(): Observable <any[]> {
@@ -94,3 +105,5 @@ export class UserService {
     return Observable.throw(error.json().message || 'backend server error');
   }
 }
+  
+  
