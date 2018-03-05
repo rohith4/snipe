@@ -21,14 +21,16 @@ public class Answeres {
 	private int A_id;
 	
 
-
 	   @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 		@JoinColumn(name="Question_FK")
 	private Question Question;
 	
-	@JoinColumn(name="question_pk")
+	   
+	 //  @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)   
+	   @Column(name="question_pk")
 	   private int Questionid;
 	   
+	
 
  
 	public int getQuestionid() {

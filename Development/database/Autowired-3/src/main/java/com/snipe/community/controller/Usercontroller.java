@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.snipe.community.entity.Answeres;
 import com.snipe.community.entity.Employee;
 import com.snipe.community.entity.LoginResponse;
 import com.snipe.community.entity.Question;
@@ -147,6 +148,22 @@ public class Usercontroller {
 			+ ((request.getQueryString() == null) ? "" : "?" + request.getQueryString().toString()));
       return userService.getPopularq(userReg);
 }	
+	
+	
+	
+	@RequestMapping(value = "/Answers/{q_id}", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody List<Answeres> getAnswer( @PathVariable("q_id")int q_id,HttpServletRequest request, HttpServletResponse response) throws Exception {
+	logger.info("getUsers: Received request: " + request.getRequestURL().toString()
+			+ ((request.getQueryString() == null) ? "" : "?" + request.getQueryString().toString()));
+      return userService.getAnswer(q_id);
+}	
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping(value = "/editemp", method = RequestMethod.PUT, produces = "application/json")
 	//@RequestMapping(value = RestURLS.DEMO_REST_MODIFYUSER, method = RequestMethod.POST)
 	public @ResponseBody Responsedto modifyUser(@RequestBody Requestdto userReg) {

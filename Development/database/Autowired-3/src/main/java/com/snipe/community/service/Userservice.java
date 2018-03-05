@@ -2,6 +2,7 @@ package com.snipe.community.service;
 
 import java.util.List;
 
+import com.snipe.community.entity.Answeres;
 import com.snipe.community.entity.Employee;
 import com.snipe.community.entity.LoginResponse;
 import com.snipe.community.entity.Question;
@@ -62,6 +63,10 @@ public interface Userservice {
 
 
 	Responsedto deleteEmployee(int userReg);
+
+	List<Answeres> getAnswer(int q_id);
+
+	
 
 	
 	

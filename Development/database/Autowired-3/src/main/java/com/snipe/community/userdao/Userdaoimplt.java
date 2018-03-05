@@ -168,7 +168,7 @@ private SessionFactory sessionFactoy;
 		List<Question> RecentQ = new ArrayList<Question>();
 		String returnMag ="";
 		Session session=sessionFactoy.getCurrentSession();
-		Criteria crc=sessionFactoy.getCurrentSession().createCriteria(Question.class);
+		Criteria crc=session.createCriteria(Question.class);
 		Query query = session.createQuery("select que.question from Question1 que");
 		query.setMaxResults(5);
 		try{
@@ -382,41 +382,31 @@ private SessionFactory sessionFactoy;
 	}
 
 	@Override
-	public boolean checkanswered(Requestdto userReg) {
+	public boolean checkanswered(Question userReg) {
 		// TODO Auto-generated method stub
 				logger.info("******UserRegisterDAOImpl.checkANswered**************");
 				Session session=sessionFactoy.getCurrentSession();
-				Question que=new Question();
+				
+				
+				//List<Answeres> ans=new ArrayList<Answeres>();
 				Answeres ans=new Answeres();
 				Criteria crc1=session.createCriteria(Question.class);
-				crc1.add(Restrictions.eq("q_id", userReg.getQ_id()));
-				Criteria crc = session.createCriteria(Answeres.class);
-				Responsedto userRegRes = new Responsedto();
-				que.setQ_id(userReg.getQ_id());	
-				ans.setAns(userReg.getAns());
+				crc1.add(Restrictions.eq("q_id", userReg.getQ_id())).setProjection(Projections.rowCount());
+				
+			
+				System.out.println("Q_Id"+userReg.getQ_id());
+				boolean count = crc1.setMaxResults(1) != null;
+				System.out.println(count);
+				if(count){
+					
+				//	System.out.println("EmailId is exited");
+					return true;
+				}
+				//System.out.println("COrrectd");
+				return false;
 				
 				
-				
-				ans.setQuestion(que);
-				
-				session.saveOrUpdate(ans);
-				System.out.println("answerd"+userReg.getAns());
-				
-				/*"UPDATE Employee set salary = :salary "  + 
-		        "WHERE id = :employee_id";*/
-				
-				
-				/*
-				String hql="update Question set "+"ans=:n,status=:y where q_id=:i";
-			    Query q=session.createQuery(hql);  
-			    q.setParameter("n",userReg.getAns());  
-			    q.setParameter("i",userReg.getQ_id());
-			    q.setParameter("y","Yes");
-			    int status1=q.executeUpdate();  
-			    System.out.println(status1);  */
-			    System.out.println("answered");
-				return true;		
-	}
+				}
 
 	@Override
 	public void updateLoginStatusNE(Requestdto userReg) {
@@ -645,6 +635,52 @@ private SessionFactory sessionFactoy;
 		}
 		//System.out.println("COrrectd");
 		return false;
+	}
+
+	@Override
+	public boolean checkanswered(Requestdto userReg) {
+		// TODO Auto-generated method stub
+		logger.info("******UserRegisterDAOImpl.checkANswered**************");
+		Session session=sessionFactoy.getCurrentSession();
+		
+		
+		//List<Answeres> ans=new ArrayList<Answeres>();
+		Answeres ans=new Answeres();
+		Criteria crc1=session.createCriteria(Question.class);
+		crc1.add(Restrictions.eq("q_id", userReg.getQ_id())).setProjection(Projections.rowCount());
+		
+	
+		System.out.println("Q_Id"+userReg.getQ_id());
+		boolean count = crc1.setMaxResults(1) != null;
+		System.out.println(count);
+		if(count){
+			
+		//	System.out.println("EmailId is exited");
+			return true;
+		}
+		//System.out.println("COrrectd");
+		return false;
+		
+
+	}
+
+	@Override
+	public List<Answeres> getAnsweres(int q_id) {
+		// TODO Auto-generated method stub
+		List<Answeres> quelist=new ArrayList<Answeres>();	
+		Session session=sessionFactoy.getCurrentSession();
+		Criteria crit=session.createCriteria(Answeres.class);
+	    crit.add(Restrictions.eq("Questionid", q_id));
+	
+	try{
+		 quelist = crit.list();
+		}catch(Exception ex)
+	{
+	ex.printStackTrace();		
+	}
+		
+		return quelist;
+		//return null;
 	}
 
 	

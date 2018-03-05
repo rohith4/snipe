@@ -191,6 +191,29 @@ public class Userserviceimpl extends Hibernateutil implements Userservice {
 	    que.setAns(userReg.getAns());
 		System.out.println("name"+userReg.getAns());
 		boolean result = userdao.checkanswered(userReg);
+		System.out.println(result);
+		
+		
+				if(result)
+				{	
+					Session session=sesionFactory.getCurrentSession();
+					
+					
+					//List<Answeres> ans=new ArrayList<Answeres>();
+					Answeres ans=new Answeres();
+					Criteria crc1=session.createCriteria(Answeres.class);
+					ans.setQuestionid(userReg.getQ_id());
+					ans.setAns(userReg.getAns());
+					session.saveOrUpdate(ans);
+				/*	userRegRes=userdao.getLoginuser(userReg);
+					userdao.updateLoginStatusY(userReg);*/
+				//	userRegRes.setReturnCode(0);
+				//	lresponse.setMessageReturn("success");
+				
+			}
+		//	return lresponse;
+		
+		
 		
 		userRegRes.setMessageReturn("Answered");
 		
@@ -602,6 +625,30 @@ System.out.println("email"+userReg.getEmailId());
 				return response;
 
 	}
+
+	@Override
+	public List<Answeres> getAnswer(int q_id) {
+		// TODO Auto-generated method stub
+		
+		
+		logger.info("******UserRegisterServiceImpl.getUsersList**************");
+		Responsedto response=new Responsedto();
+		List<Answeres> Answerslist= userdao.getAnsweres(q_id);
+		//System.out.println(popularlist);
+		if(Answerslist.size()==0){
+			//response.setReturnCode(1);
+			response.setMessageReturn("No questions");
+		}else{
+	//	response.setReturnCode(0);
+	 //response.setQuestion1();
+		}
+		return Answerslist;
+		
+		
+		
+		//return null;
+	}
+
 
 	
 

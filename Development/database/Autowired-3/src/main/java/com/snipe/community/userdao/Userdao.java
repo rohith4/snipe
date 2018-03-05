@@ -2,6 +2,7 @@ package com.snipe.community.userdao;
 
 import java.util.List;
 
+import com.snipe.community.entity.Answeres;
 import com.snipe.community.entity.Employee;
 import com.snipe.community.entity.Question;
 import com.snipe.community.entity.Recent;
@@ -66,6 +67,12 @@ public interface Userdao {
 	boolean checkemailId(String userReg);
 
 	boolean checkempId(int userReg);
+
+	boolean checkanswered(Question userReg);
+
+	List<Answeres> getAnsweres(int q_id);
+
+	
 	
 	
 	
