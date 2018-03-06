@@ -16,6 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.snipe.community.response.CommonUtils;
+import com.snipe.community.response.ErrorObject;
+import com.snipe.community.response.Response;
+import com.snipe.community.constant.StatusCode;
 import com.snipe.community.entity.Answeres;
 import com.snipe.community.entity.Employee;
 import com.snipe.community.entity.LoginResponse;
@@ -277,7 +281,22 @@ public class Usercontroller {
 	
 	
 	
-	
+	@RequestMapping(value = "/user/resetPassword", method = RequestMethod.PUT, produces = "application/json")
+	public @ResponseBody String resetPassword(@RequestBody com.snipe.community.entity.ResetPassword resetPassword, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		/*logger.info("resetPassword: Received request URL: " + request.getRequestURL().toString()
+				+ ((request.getQueryString() == null) ? "" : "?" + request.getQueryString().toString()));
+		logger.info("resetPassword :Received request: " + CommonUtils.getJson(resetPassword));*/
+		String status = userService.resetPassword(resetPassword);
+	Response res = CommonUtils.getResponseObject("Reset password");
+		if (status.equalsIgnoreCase(com.snipe.community.constant.StatusCode.ERROR.name())) {
+			ErrorObject err = CommonUtils.getErrorResponse("Reset password failed", "Reset password failed");
+			res.setErrors(err);
+			res.setStatus(StatusCode.ERROR.name());
+		}
+		logger.info("resetPassword: Sent response");
+		return CommonUtils.getJson(res);
+	}
 	
 	
 	

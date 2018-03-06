@@ -21,11 +21,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.snipe.community.Config.Hibernateutil;
 import com.snipe.community.Userdetails.Userdetails;
+import com.snipe.community.constant.StatusCode;
 import com.snipe.community.entity.Answeres;
 import com.snipe.community.entity.ContactUs;
 import com.snipe.community.entity.Employee;
 import com.snipe.community.entity.Question;
 import com.snipe.community.entity.Recent;
+import com.snipe.community.entity.ResetPassword;
 import com.snipe.community.helper.Helper;
 import com.snipe.community.request.Requestdto;
 import com.snipe.community.response.Responsedto;
@@ -683,8 +685,38 @@ private SessionFactory sessionFactoy;
 		//return null;
 	}
 
+	@Override
+	public Employee isUserExist(ResetPassword resetPassword) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String resetPassword(String emailId, String encriptString) {
+		// TODO Auto-generated method stub
+		try {
+			
+
+			String returnMag ="";
+			Session session=sessionFactoy.getCurrentSession();
+			Query crit=session.createQuery("update Employee emp set emp.password=?" + 
+					"where emp.emailId=?");
+			//Criteria crit = currentSession().createCriteria(UserEntity.class);
+			crit.setParameter("emailId", emailId );
+			crit.setParameter("password", encriptString );
+			int res=crit.executeUpdate();
+		//	crit.add(Restrictions.eq("emailId",userReg.getEmailId()));	
+		if(res==1) {
+			return StatusCode.SUCCESS.name();
+		}
 	
 	
-	
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+			return StatusCode.ERROR.name();
+		}
+		return encriptString;
+	}
 	
 }

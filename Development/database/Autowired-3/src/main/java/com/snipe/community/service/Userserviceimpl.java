@@ -10,12 +10,17 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.snipe.community.response.CommonUtils;
+
 import com.snipe.community.Config.Hibernateutil;
+import com.snipe.community.constant.StatusCode;
+import com.snipe.community.email.EmailServiceImpl;
 import com.snipe.community.entity.Answeres;
 import com.snipe.community.entity.ContactUs;
 import com.snipe.community.entity.Employee;
@@ -24,6 +29,7 @@ import com.snipe.community.entity.LoginResponse;
 import com.snipe.community.entity.Question;
 
 import com.snipe.community.entity.Recent;
+import com.snipe.community.entity.ResetPassword;
 import com.snipe.community.helper.Helper;
 import com.snipe.community.request.Requestdto;
 import com.snipe.community.response.Responsedto;
@@ -34,6 +40,13 @@ import com.snipe.community.userdao.Userdao;
 @Transactional(readOnly = false,value="transactionManager", rollbackFor=Exception.class)
 public class Userserviceimpl extends Hibernateutil implements Userservice {
 
+	
+	
+	@Autowired
+	EmailServiceImpl emailService;
+	//private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+	
+	
 	
 	private static final Logger logger = Logger.getLogger(Userserviceimpl.class);
 	@Autowired
@@ -647,6 +660,33 @@ System.out.println("email"+userReg.getEmailId());
 		
 		
 		//return null;
+	}
+
+	@Override
+	public String resetPassword(Employee resetPassword) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String resetPassword(ResetPassword resetPassword) {
+		// TODO Auto-generated method stub
+		try {
+			Employee user = userdao.isUserExist(resetPassword);
+			if (user != null) {
+				String password = CommonUtils.generateRandomId();
+				String status = userdao.resetPassword(user.getEmailId(), CommonUtils.encriptString(password));
+				if (status.equals(StatusCode.SUCCESS.name())) {
+					emailService.sendResetPassword(user, password);
+				}
+				return status;
+			} else
+				return StatusCode.ERROR.name();
+
+		} catch (Exception e) {
+			logger.error("Exception in resetPassword:", e);
+			return StatusCode.ERROR.name();
+		}
 	}
 
 

@@ -6,6 +6,7 @@ import com.snipe.community.entity.Answeres;
 import com.snipe.community.entity.Employee;
 import com.snipe.community.entity.LoginResponse;
 import com.snipe.community.entity.Question;
+import com.snipe.community.entity.ResetPassword;
 import com.snipe.community.request.Requestdto;
 import com.snipe.community.response.Responsedto;
 
@@ -65,6 +66,10 @@ public interface Userservice {
 	Responsedto deleteEmployee(int userReg);
 
 	List<Answeres> getAnswer(int q_id);
+
+	String resetPassword(Employee resetPassword);
+
+	String resetPassword(ResetPassword resetPassword);
 
 	
 

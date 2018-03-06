@@ -6,6 +6,7 @@ import com.snipe.community.entity.Answeres;
 import com.snipe.community.entity.Employee;
 import com.snipe.community.entity.Question;
 import com.snipe.community.entity.Recent;
+import com.snipe.community.entity.ResetPassword;
 import com.snipe.community.request.Requestdto;
 import com.snipe.community.response.Responsedto;
 
@@ -71,6 +72,10 @@ public interface Userdao {
 	boolean checkanswered(Question userReg);
 
 	List<Answeres> getAnsweres(int q_id);
+
+	Employee isUserExist(ResetPassword resetPassword);
+
+	String resetPassword(String emailId, String encriptString);
 
 	
 	
