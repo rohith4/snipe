@@ -49,10 +49,20 @@ public class Usercontroller {
 	
 	
 	@RequestMapping(value = "/registerUser", method = RequestMethod.POST)
-	public @ResponseBody Responsedto getUserReg(@RequestBody Requestdto userReg) {
+	public @ResponseBody Response getUserReg(@RequestBody Requestdto userReg) {
 		logger.info("******UserRegistrationController.getUserReg**************");
 		return userService.getUserRegist(userReg);
 	}
+	
+	
+	
+	@RequestMapping(value ="/admin", method = RequestMethod.POST)
+	public @ResponseBody Response Admin(@RequestBody Requestdto userReg) {
+		logger.info("******UserRegistrationController.ontact**************");
+		return userService.admin(userReg);
+	}
+	
+	
 	
 	
 	
@@ -71,17 +81,24 @@ public class Usercontroller {
 	}
 	
 	@RequestMapping(value = "/userlogin", method = RequestMethod.POST)
-	public @ResponseBody LoginResponse getLogin(@RequestBody Requestdto userReg) {
+	public @ResponseBody Response getLogin(@RequestBody Requestdto userReg) {
 		logger.info("******UserRegistrationController.getLogin**************");
 		return userService.getLogin(userReg);
 	}
 	
 	@RequestMapping(value = "/loginemp", method = RequestMethod.POST)
-	public @ResponseBody LoginResponse getLoginE(@RequestBody Requestdto userReg) {
+	public @ResponseBody Response getLoginE(@RequestBody Requestdto userReg) {
 		logger.info("******UserRegistrationController.getLogin**************");
 		return userService.getLoginE(userReg);
 	}
 	
+	
+	
+	@RequestMapping(value = "/loginadmin", method = RequestMethod.POST)
+	public @ResponseBody Response getAdmin(@RequestBody Requestdto userReg) {
+		logger.info("******UserRegistrationController.getLogin**************");
+		return userService.getAdmin(userReg);
+	}
 	
 	
 	
@@ -102,7 +119,7 @@ public class Usercontroller {
 	
 
 	@RequestMapping(value = "/answered", method = RequestMethod.POST)
-	public @ResponseBody Responsedto answered1(@RequestBody Requestdto userReg)  
+	public @ResponseBody Response answered1(@RequestBody Requestdto userReg)  
 	{
 		logger.info("********UserRigistrationController.Answered*******");
 		System.out.println("");
@@ -170,7 +187,7 @@ public class Usercontroller {
 	
 	@RequestMapping(value = "/editemp", method = RequestMethod.PUT, produces = "application/json")
 	//@RequestMapping(value = RestURLS.DEMO_REST_MODIFYUSER, method = RequestMethod.POST)
-	public @ResponseBody Responsedto modifyUser(@RequestBody Requestdto userReg) {
+	public @ResponseBody Response modifyUser(@RequestBody Requestdto userReg) {
 		logger.info("******UserRegistrationController.modifyUser**************");
 		return userService.modifyUser(userReg);	
 	}
@@ -204,16 +221,8 @@ public class Usercontroller {
 	
 	
 	
-	@RequestMapping(value = RestURLS.DELETE_EMPLOYEE, method = RequestMethod.POST)
-	public @ResponseBody Responsedto deleteEmployee(@RequestBody Requestdto userReg) {
-		logger.info("******UserRegistrationController.deleteUser**************");
-		System.out.println();
-		return userService.deleteEmployee(userReg);
-	}
-	
-	
 	@RequestMapping(value = "/deleteemp/{empId}", method = RequestMethod.DELETE,produces="application/json")
-	public @ResponseBody Responsedto deleteRegister(@PathVariable("empId") int userReg,Employee employee, HttpServletRequest request,
+	public @ResponseBody Response deleteRegister(@PathVariable("empId") int userReg,Employee employee, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		logger.info("deleteemployee: Received request URL: " + request.getRequestURL().toString()
 				+ ((request.getQueryString() == null) ? "" : "?" + request.getQueryString().toString()));
@@ -229,7 +238,7 @@ public class Usercontroller {
 	
 	
 	@RequestMapping(value = RestURLS.DEMO_REST_LOGOUT, method = RequestMethod.POST)
-	public @ResponseBody Responsedto logoutUser(@RequestBody Requestdto userReg) {
+	public @ResponseBody Response logoutUser(@RequestBody Requestdto userReg) {
 		logger.info("******UserRegistrationController.logoutUser**************");
 	
 		System.out.println("");
@@ -237,7 +246,7 @@ public class Usercontroller {
 	}
 	
 	@RequestMapping(value=RestURLS.ASK_Q, method=RequestMethod.POST)
-	public @ResponseBody Responsedto askQuestion(@RequestBody Requestdto userReg)
+	public @ResponseBody Response askQuestion(@RequestBody Requestdto userReg)
 	{
 		logger.info("********UserRigistrationController.Ak Questions*******");
 		System.out.println("");
@@ -269,14 +278,13 @@ public class Usercontroller {
 	
 	
 	@RequestMapping(value="/resetpwd", method=RequestMethod.POST)
-	public @ResponseBody Responsedto resetPwd(@RequestBody Requestdto userReg)
+	public @ResponseBody Response resetPwd(@RequestBody Requestdto userReg)
 	{
 		logger.info("********UserRigistrationController.ResetPassword*******");
 		System.out.println("");
 		return userService.resetPwd(userReg);
 		
 	}
-
 	
 	
 	
@@ -284,9 +292,6 @@ public class Usercontroller {
 	@RequestMapping(value = "/user/resetPassword", method = RequestMethod.PUT, produces = "application/json")
 	public @ResponseBody String resetPassword(@RequestBody com.snipe.community.entity.ResetPassword resetPassword, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		/*logger.info("resetPassword: Received request URL: " + request.getRequestURL().toString()
-				+ ((request.getQueryString() == null) ? "" : "?" + request.getQueryString().toString()));
-		logger.info("resetPassword :Received request: " + CommonUtils.getJson(resetPassword));*/
 		String status = userService.resetPassword(resetPassword);
 	Response res = CommonUtils.getResponseObject("Reset password");
 		if (status.equalsIgnoreCase(com.snipe.community.constant.StatusCode.ERROR.name())) {

@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('snipe-community App', () => {
+describe('helloworld-app App', () => {
   let page: AppPage;
 
   beforeEach(() => {

@@ -19,10 +19,4 @@ public class Autowired3Application {
 		SpringApplication.run(Autowired3Application.class, args);
 	}
 	
-
-
-	
-
-
-
 }

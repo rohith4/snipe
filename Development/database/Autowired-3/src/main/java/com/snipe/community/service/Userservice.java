@@ -8,21 +8,22 @@ import com.snipe.community.entity.LoginResponse;
 import com.snipe.community.entity.Question;
 import com.snipe.community.entity.ResetPassword;
 import com.snipe.community.request.Requestdto;
+import com.snipe.community.response.Response;
 import com.snipe.community.response.Responsedto;
 
 public interface Userservice {
 
 	List getUserDetails();
 
-	Responsedto getUserRegist(Requestdto userReg);
+	Response getUserRegist(Requestdto userReg);
 
 	Responsedto ContactUs(Requestdto userReg);
 
 	Responsedto getrecentQeustion(Requestdto userReg);
 
-	LoginResponse getLogin(Requestdto userReg);
+	Response getLogin(Requestdto userReg);
 
-	LoginResponse getLoginE(Requestdto userReg);
+	Response getLoginE(Requestdto userReg);
 	
 	
 	
@@ -34,26 +35,26 @@ public interface Userservice {
 	List<Question> answered(Requestdto userReg);
 
 	//List<UserEntity> getUsersList(Requestdto userReg);
-	Responsedto modifyUser(Requestdto userReg);
+	Response modifyUser(Requestdto userReg);
 	Responsedto deleteUser(Requestdto userReg);
-	Responsedto logoutUser(Requestdto userReg);
+	Response logoutUser(Requestdto userReg);
 	
 	//List<Recent> getrecentList(Requestdto userReg);
 	
 	
-	Responsedto askquestion(Requestdto userReg);
+	Response askquestion(Requestdto userReg);
 	Responsedto getTags(Requestdto userReg);
-	Responsedto getEmployeeRegist(Requestdto userReg);
+	Response getEmployeeRegist(Requestdto userReg);
 	
 	Responsedto getupdatepwd(Requestdto userReg);
-	Responsedto resetPwd(Requestdto userReg);
+	Response resetPwd(Requestdto userReg) ;
 //	ResponseDTO getRecentList(RequestDTO userReg);
 	//ResponseDTO getRecentList(RequestDTO userReg);
-	Responsedto deleteEmployee(Requestdto userReg);
+	
 	//ResponseDTO getrecentQuestions(RequestDTO userReg);
 	//Responsedto getrecentQeustion(Requestdto userReg);
 //	Recent getRecentList(RequestDTO userReg);
-	Responsedto answered1(Requestdto userReg);
+	Response answered1(Requestdto userReg);
 	List<Question> getPopularq(Requestdto userReg);
 	List<Employee> getEmployeeList(Requestdto userReg);
 	List<Question> getrecentQeustionQs(Requestdto userReg);
@@ -63,13 +64,17 @@ public interface Userservice {
 	List<Employee> getUsersList(Requestdto userReg);
 
 
-	Responsedto deleteEmployee(int userReg);
+	Response deleteEmployee(int userReg);
 
 	List<Answeres> getAnswer(int q_id);
 
 	String resetPassword(Employee resetPassword);
 
 	String resetPassword(ResetPassword resetPassword);
+
+	Response admin(Requestdto userReg);
+
+	Response getAdmin(Requestdto userReg);
 
 	
 

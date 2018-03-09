@@ -9,12 +9,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.snipe.community.request.Requestdto;
+import com.snipe.community.response.Response;
 import com.snipe.community.response.Responsedto;
 import com.snipe.community.service.RestURLS;
 import com.snipe.community.service.Userservice;
 
 @Controller
-@RequestMapping("/rest/admin")
+@RequestMapping("/admin")
 public class AdminController {
 
 	
@@ -26,7 +27,7 @@ public class AdminController {
 	Userservice registrationService1;
 	
 	@RequestMapping(value = RestURLS.EMPLOYEE_REGISTER, method = RequestMethod.POST)
-	public @ResponseBody Responsedto getEmployeeReg(@RequestBody Requestdto userReg) {
+	public @ResponseBody Response getEmployeeReg(@RequestBody Requestdto userReg) {
 		logger.info("******UserRegistrationController.getUserReg**************");
 		return registrationService1.getEmployeeRegist(userReg);
 	}

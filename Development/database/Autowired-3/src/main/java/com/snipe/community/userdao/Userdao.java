@@ -8,6 +8,7 @@ import com.snipe.community.entity.Question;
 import com.snipe.community.entity.Recent;
 import com.snipe.community.entity.ResetPassword;
 import com.snipe.community.request.Requestdto;
+import com.snipe.community.response.Response;
 import com.snipe.community.response.Responsedto;
 
 
@@ -21,7 +22,7 @@ public interface Userdao {
 
 	boolean checkemailIdE(Requestdto userReg);
 
-	Responsedto saveUserreg(Requestdto userReg);
+	Response saveUserreg(Requestdto userReg);
 
 	Responsedto contactUs(Requestdto userReg);
 
@@ -31,7 +32,7 @@ public interface Userdao {
 
 	void updateLoginStatusY(Requestdto userReg);
 
-	Responsedto getLoginuser(Requestdto userReg);
+	Response getLoginuser(Requestdto userReg);
 
 	String getpwdE(Requestdto userReg);
 
@@ -51,7 +52,7 @@ public interface Userdao {
 	List<Question> getqueList(Requestdto userReg);
 	boolean checkanswered(Requestdto userReg);
 	void updateLoginStatusNE(Requestdto userReg);
-	Responsedto saveEmprreg(Requestdto userReg);
+	Response saveEmprreg(Requestdto userReg);
 	boolean checkEmpId(String userReg);
 	void deleteEmployee(int userReg);
 
@@ -76,6 +77,18 @@ public interface Userdao {
 	Employee isUserExist(ResetPassword resetPassword);
 
 	String resetPassword(String emailId, String encriptString);
+
+
+
+	boolean Isexist(Requestdto userReg);
+
+	boolean Checklogin(Requestdto userReg);
+
+	void updatepwd(Requestdto userReg, String st);
+
+	boolean checadmin(Requestdto userReg);
+
+	String getpassword(Requestdto userReg);
 
 	
 	

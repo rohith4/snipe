@@ -10,6 +10,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -17,10 +18,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.snipe.community.response.CommonUtils;
+import com.snipe.community.response.Response;
 
 import com.snipe.community.Config.Hibernateutil;
 import com.snipe.community.constant.StatusCode;
-import com.snipe.community.email.EmailServiceImpl;
+import com.snipe.community.email.send;
+import com.snipe.community.entity.Admin;
 import com.snipe.community.entity.Answeres;
 import com.snipe.community.entity.ContactUs;
 import com.snipe.community.entity.Employee;
@@ -42,8 +45,8 @@ public class Userserviceimpl extends Hibernateutil implements Userservice {
 
 	
 	
-	@Autowired
-	EmailServiceImpl emailService;
+	/*@Autowired(required=false)
+	EmailServiceImpl emailService;*/
 	//private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 	
 	
@@ -67,29 +70,32 @@ public class Userserviceimpl extends Hibernateutil implements Userservice {
 	}
 
 	@Override
-	public Responsedto getUserRegist(Requestdto userReg) {
+	public Response getUserRegist(Requestdto userReg) {
 		// TODO Auto-generated method stub
-				logger.info("******UserRegisterServiceImpl.getUserRegdjf**************");
-				Responsedto userRegRes = new Responsedto();
+		Response response = new Response();		
+		logger.info("******UserRegisterServiceImpl.getUserRegdjf**************");
+				try {
+				
 				Employee user=new Employee();
 				System.out.println("Server: "+userReg.getFname());
 			System.out.println("dfjidsjgfkls");
 				if(!userReg.getEmailId().isEmpty() && userReg.getEmailId()!= null){
 					boolean result = userdao.checkemailId(userReg);
-					boolean resultE = userdao.checkemailIdE(userReg);
-					if(result || resultE){
-					//	userRegRes.setReturnCode(1);
-						userRegRes.setMessageReturn("This Eamil Already Registered with Snipe");
-					}else{
-				//	heapler.sendEmail(userReg.getEmailId(), userReg.getFname());
-					userRegRes=userdao.saveUserreg(userReg);
+				//	boolean resultE = userdao.checkemailIdE(userReg);
+					if(result ){
+						
+						response.setStatus(StatusCode.ERROR.name());
+						response.setMessage("User already registered");
+						
+					} else
+					{
+						response=userdao.saveUserreg(userReg);
 					}
-				}else{ 	
-				//	userRegRes.setReturnCode(1);
-					userRegRes.setMessageReturn("You are not entered e");
-					
 				}
-				return userRegRes;
+				}catch (Exception ex) {
+						logger.info("Exception Service:" + ex.getMessage());
+					}
+					return response;
 
 	}
 
@@ -112,10 +118,10 @@ public class Userserviceimpl extends Hibernateutil implements Userservice {
 		
 	}
 	@Override
-	public LoginResponse getLogin(Requestdto userReg) {
+	public Response getLogin(Requestdto userReg) {
 		// TODO Auto-generated method stub
 				logger.info("******UserRegisterServiceImpl.getLogin**************");
-				Responsedto userRegRes = new Responsedto();
+				Response response = new Response();
 				Employee user=new Employee();
 				
 			/*	Query query=session.createQuery("select Employee.userRef from Employee Employee where Employee.emailId=:email");
@@ -132,22 +138,27 @@ public class Userserviceimpl extends Hibernateutil implements Userservice {
 					if(pwd.equals(heapler.getPasswordEncoded(userReg.getPwd(),userReg.getEmailId())))
 					{	
 						
-						userRegRes=userdao.getLoginuser(userReg);
+						response=userdao.getLoginuser(userReg);
 						userdao.updateLoginStatusY(userReg);
-					//	userRegRes.setReturnCode(0);
-					//	lresponse.setMessageReturn("success");
+					
 					}
 				}
-				return lresponse;
+				else
+				{
+					response.setStatus(StatusCode.ERROR.name());
+				}
+				
+				return response;
 			
 	}
 
 	@Override
-	public LoginResponse getLoginE(Requestdto userReg) {
+	public Response getLoginE(Requestdto userReg) {
 		// TODO Auto-generated method stub
 				// TODO Auto-generated method stub
 				logger.info("******UserRegisterServiceImpl.getLogin**************");
-				Responsedto userRegRes = new Responsedto();
+				//Responsedto userRegRes = new Responsedto();
+				Response response=new Response();
 				Employee user=new Employee();
 				Session session  = sesionFactory.getCurrentSession();
 				Criteria crc = session.createCriteria(Employee.class);
@@ -164,30 +175,33 @@ public class Userserviceimpl extends Hibernateutil implements Userservice {
 				//System.out.println(" "+heapler.getPasswordEncoded(userReg.getPwd(),userReg.getEmailId()));
 					if(pwd.equals(heapler.getPasswordEncoded(userReg.getPwd(),userReg.getEmailId())))
 					{	
-						System.out.println("dfjkldsjlk");
+				/*		System.out.println("dfjkldsjlk");
 					int ueid=userdao.updateLoginStatusYE(userReg);
 					
 					Query q=session.createQuery("select emp.ueid from Employee emp where emp.emailId=:email");
 					q.setParameter("email",userReg.getEmailId());
 					System.out.println(q);
 						lresponse.setReturnCode(ueid);
-						lresponse.setMessageReturn("success");
+						lresponse.setMessageReturn("success");*/
+					
+					response.setStatus(StatusCode.SUCCESS.name());
 						userdao.updateLoginStatusYE(userReg);
 					//	userRegRes.setMessageReturn("Login successfully"+user.getUserRef());
 						System.out.println("Login Sussfull");
 						
 					}else{
-						userRegRes.setReturnCode(1);
-						userRegRes.setMessageReturn("oooInvalid EmailId/Password");
+						response.setStatus(StatusCode.ERROR.name());
+						response.setMessage("Invalid Email or Password");
+						
 						System.out.println("Login UnSussfull");
 					}
 				}else{
 					//userRegRes.setReturnCode(1);
-					userRegRes.setMessageReturn("Invalid EmailId/Password");
+					response.setMessage("Invalid Email or Password");
 					System.out.println("Login UnSussfull");
 				}
 				
-				return lresponse;
+				return response;
 			
 
 	}
@@ -196,20 +210,33 @@ public class Userserviceimpl extends Hibernateutil implements Userservice {
 	
 	
 	@Override
-	public Responsedto answered1(Requestdto userReg) {
+	public Response answered1(Requestdto userReg) {
 		// TODO Auto-generated method stub
 		logger.info("******UserRegisterServiceImpl.Answered**************");
-		Responsedto userRegRes = new Responsedto();
-		Question que=new Question();
-	    que.setAns(userReg.getAns());
+		Response response = new Response();
+	
+		Session session=sesionFactory.getCurrentSession();
+		Criteria cr=session.createCriteria(Question.class);
+	    //que.setAns(userReg.getAns());
 		System.out.println("name"+userReg.getAns());
+		boolean res=userdao.Isexist(userReg);
+
+		if(res)
+		{
+		System.out.println(res);
 		boolean result = userdao.checkanswered(userReg);
-		System.out.println(result);
+		if(result) {
+			cr.add(Restrictions.eq("q_id",userReg.getQ_id()));	
+			Question que = (Question)cr.uniqueResult();
+			
+			que.setStatus("Y");
+			session.saveOrUpdate(que);
+		}
 		
+		System.out.println( res);
 		
-				if(result)
-				{	
-					Session session=sesionFactory.getCurrentSession();
+			
+					
 					
 					
 					//List<Answeres> ans=new ArrayList<Answeres>();
@@ -217,20 +244,22 @@ public class Userserviceimpl extends Hibernateutil implements Userservice {
 					Criteria crc1=session.createCriteria(Answeres.class);
 					ans.setQuestionid(userReg.getQ_id());
 					ans.setAns(userReg.getAns());
+					
 					session.saveOrUpdate(ans);
-				/*	userRegRes=userdao.getLoginuser(userReg);
-					userdao.updateLoginStatusY(userReg);*/
-				//	userRegRes.setReturnCode(0);
-				//	lresponse.setMessageReturn("success");
-				
+					response.setMessage("Answered");
+			
 			}
-		//	return lresponse;
+				else
+				{
+					response.setMessage("Question Id is not correct");
+				}
 		
 		
 		
-		userRegRes.setMessageReturn("Answered");
 		
-		return userRegRes;
+		//userRegRes.setMessageReturn("Answered");
+		
+		return response;
 	}
 
 	
@@ -279,17 +308,17 @@ public class Userserviceimpl extends Hibernateutil implements Userservice {
 	
 	
 	@Override
-	public Responsedto modifyUser(Requestdto userReg) {
+	public Response modifyUser(Requestdto userReg) {
 		// TODO Auto-generated method stub
 		logger.info("******UserRegisterServiceImpl.modifyUser**************");
-		Responsedto response=new Responsedto();
+		Response response=new Response();
 		int result = userdao.modifyUser(userReg);
 		if(result>=1){
 			//response.setReturnCode(0);
-			response.setMessageReturn("User emailId modified successfully");
+			response.setMessage("User emailId modified successfully");
 		}else{
 			//response.setReturnCode(0);
-			response.setMessageReturn("No user found for particular EmailId");
+			response.setMessage("No user found for particular EmailId");
 		}
 		return response;
 	}
@@ -313,33 +342,48 @@ public class Userserviceimpl extends Hibernateutil implements Userservice {
 	}
 
 	@Override
-	public Responsedto logoutUser(Requestdto userReg) {
+	public Response logoutUser(Requestdto userReg) {
 		logger.info("******UserRegisterServiceImpl.logoutUser**************");
 		// TODO Auto-generated method stub
-		Responsedto response=new Responsedto();
-		boolean result = userdao.checkemailId(userReg);
-		if(result){
-			userdao.updateLoginStatusN(userReg);
-		//	response.setReturnCode(0);
-			response.setMessageReturn("Logout successfully");
-		}else{
-			//response.setReturnCode(1);
-			response.setMessageReturn("Something went wrong");
-		}
+		Response response=new Response();
+		boolean checklogin=userdao.Checklogin(userReg);
+		System.out.println(checklogin);
+		if(checklogin) 
+		{
+			
+				if(!(userReg.getEmailId()==null)){
+						boolean result = userdao.checkemailId(userReg);
+						if(result){
+								userdao.updateLoginStatusN(userReg);
+								response.setMessage("Logout Successfully");
+			
+						}
+						else{
+								response.setMessage("Not login!  Please Login");
+						}
+				 }else {
+		
+								response.setMessage("Please entre EmailId");
+					}
+	     }
+		else {
+		response.setMessage("Please Login");
+	}
+		
 		return response;
 	}
 
 	@Override
-	public Responsedto askquestion(Requestdto userReg) {
+	public Response askquestion(Requestdto userReg) {
 		// TODO Auto-generated method stub
 		
 		SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy");
 		String date=sdf.format(new Date());
-		
+		Response response= new Response();
 		logger.info("******userdaoImpl.saveUserreg**************");
 		// TODO Auto-generated method stub
 		String returnMag ="";
-		Responsedto response= new Responsedto();
+		
 		Answeres ans=new Answeres();
 		Session session=sesionFactory.getCurrentSession();
 		
@@ -364,7 +408,7 @@ public class Userserviceimpl extends Hibernateutil implements Userservice {
 		returnMag = " "+que.getQuestion()+" "+" Question Submitted Successfully";
 		returnMag="Question Id is"+que.getQ_id()+"";
 	//	response.setReturnCode(0);
-		response.setMessageReturn(returnMag);
+		response.setMessage(returnMag);
 		return response;
 
 		
@@ -374,12 +418,12 @@ public class Userserviceimpl extends Hibernateutil implements Userservice {
 	}
 
 	@Override
-	public Responsedto getEmployeeRegist(Requestdto userReg) {
+	public Response getEmployeeRegist(Requestdto userReg) {
 		// TODO Auto-generated method stub
 		
 		// TODO Auto-generated method stub
 				logger.info("******UserRegisterServiceImpl.getUserRegdjf**************");
-				Responsedto userRegRes = new Responsedto();
+				Response response = new Response();
 				Employee user=new Employee();
 				System.out.println("Server: "+userReg.getFname());
 			System.out.println("dfjidsjgfkls");
@@ -388,17 +432,19 @@ public class Userserviceimpl extends Hibernateutil implements Userservice {
 					boolean result = userdao.checkemailId(userReg);
 					if(result || resultE){
 					//	userRegRes.setReturnCode(1);
-						userRegRes.setMessageReturn("This Eamil Already Registered with Snipe");
+						//userRegRes.setMessageReturn("This Eamil Already Registered with Snipe");
+						response.setMessage("This Emaild Id already Exist");
 					}else{
 				//	heapler.sendEmail(userReg.getEmailId(), userReg.getFname());
-					userRegRes=userdao.saveEmprreg(userReg);
+					response=userdao.saveEmprreg(userReg);
 					}
 				}else{ 	
 				//	userRegRes.setReturnCode(1);
-					userRegRes.setMessageReturn("You are not entered e");
+					//userRegRes.setMessageReturn("You are not entered e");
+					response.setMessage("You have not entered correctly");
 					
 				}
-				return userRegRes;
+				return response;
 
 		
 
@@ -462,24 +508,34 @@ Question que=new Question();
 		
 
 	@Override
-	public Responsedto resetPwd(Requestdto userReg) {
+	public Response resetPwd(Requestdto userReg) {
 		// TODO Auto-generated method stub
-		Responsedto response=new Responsedto();
+Response response=new Response();
 		
 		Employee user=new Employee();
-//		String email=user.setSendedmail(userReg.getEmailId());
+		String email=user.setSendedmail(userReg.getEmailId());
 		send Send=new send();
 System.out.println("email"+userReg.getEmailId());
 		try
 		
 		{ 
-		//	Send.otp(email);
+		Send.otp(userReg.getEmailId());
 		
+		System.out.println(" It  is Running");
+		
+		/*System.out.println(st);
+		
+		
+		userdao.updatepwd(userReg,st);*/
 		}catch(Exception e)
 		{
 			System.out.println(e);
 		}
-		response.setReturnMsg("OTP sent ");
+
+		
+		
+		
+		response.setMessage("OTP Sent");
 		return response;
 	}
 
@@ -561,9 +617,7 @@ System.out.println("email"+userReg.getEmailId());
 		// TODO Auto-generated method stub
 		String returnMag="";
 		Responsedto response=new Responsedto();
-		Session session=sesionFactory.getCurrentSession();
-		
-		
+		Session session=sesionFactory.getCurrentSession();	
 		ContactUs contact =new ContactUs();
 		Criteria crc = session.createCriteria(ContactUs.class);
 		contact.setEmailId(userReg.getEmailId());
@@ -572,22 +626,19 @@ System.out.println("email"+userReg.getEmailId());
 		session.save(contact);
 		System.out.println("Saved");
 		returnMag = "Congratulations!!"+contact.getName() +" Your message submitted";
-	//	response.setReturnCode(0);
 		response.setMessageReturn(returnMag);
 		return response;
 
 		
-//		return null;
 	}
 
 	@Override
 	public Responsedto upDateEmployee(Requestdto userReg) {
-		// TODO Auto-generated method stub
+
 		Responsedto response=new Responsedto();
-		
-	//	Response response = CommonUtils.getResponseObject("Update employee data");
+
 		try {
-		//	String sql = "UPDATE employee_register SET username=?,email=?,password=?,phoneNumber=? WHERE emp_id=?";
+
 			String hql="update employee set fname=:fname,emailId=:email, pwd=:password,lname=:lname,qualification=:qualification where emailId=:email";
 
 			int res = jdbcTemplate.update(hql,userReg.getFname(),userReg.getLname(),userReg.getEmailId(),userReg.getPwd(),userReg.getQualification());
@@ -596,31 +647,20 @@ System.out.println("email"+userReg.getEmailId());
 			if (res == 1) {
 				response.setMessageReturn("Success");
 			} else {
-				//response.setStatus(StatusCode.ERROR.name());
+
 			}
 		} catch (Exception e) {
 			logger.error("Exception in update employee data", e);
-		//	response.setStatus(StatusCode.ERROR.name());
-		//	response.setErrors(e.getMessage());
 		}
 		return response;
-	//	return null;
+
 	}
 
-	@Override
-	public Responsedto deleteEmployee(Requestdto userReg) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
-	public Responsedto deleteEmployee(int userReg) {
-		// TODO Auto-generated method stub
-		// TODO Auto-generated method stub
-		
-				// TODO Auto-generated method stub
+	public Response deleteEmployee(int userReg) {
 				logger.info("******UserRegisterServiceImpl.deleteUser**************");
-				Responsedto response=new Responsedto();
+				Response response=new Response();
 				 
 				String delete="Record deleted";
 			Employee user=new Employee();
@@ -628,12 +668,9 @@ System.out.println("email"+userReg.getEmailId());
 				if(result)
 				{
 					userdao.deleteEmployee(userReg);
-					response.setReturnCode(0);
-					response.setMessageReturn(user.getFname()+" user deleted successfully");
+					response.setMessage("user deleted successfully");
 				}else{
-					//response.setReturnCode(1);
-					//response.setMessageReturn("No user found for particular MobileNo");
-					//String	delete1="Record deleted";
+				
 				}
 				return response;
 
@@ -642,25 +679,17 @@ System.out.println("email"+userReg.getEmailId());
 	@Override
 	public List<Answeres> getAnswer(int q_id) {
 		// TODO Auto-generated method stub
-		
-		
 		logger.info("******UserRegisterServiceImpl.getUsersList**************");
 		Responsedto response=new Responsedto();
 		List<Answeres> Answerslist= userdao.getAnsweres(q_id);
-		//System.out.println(popularlist);
 		if(Answerslist.size()==0){
-			//response.setReturnCode(1);
 			response.setMessageReturn("No questions");
 		}else{
-	//	response.setReturnCode(0);
-	 //response.setQuestion1();
+
 		}
 		return Answerslist;
-		
-		
-		
-		//return null;
-	}
+	
+}
 
 	@Override
 	public String resetPassword(Employee resetPassword) {
@@ -677,7 +706,7 @@ System.out.println("email"+userReg.getEmailId());
 				String password = CommonUtils.generateRandomId();
 				String status = userdao.resetPassword(user.getEmailId(), CommonUtils.encriptString(password));
 				if (status.equals(StatusCode.SUCCESS.name())) {
-					emailService.sendResetPassword(user, password);
+				//	emailService.sendResetPassword(user, password);
 				}
 				return status;
 			} else
@@ -687,6 +716,69 @@ System.out.println("email"+userReg.getEmailId());
 			logger.error("Exception in resetPassword:", e);
 			return StatusCode.ERROR.name();
 		}
+	}
+
+	@Override
+	public Response admin(Requestdto userReg) {
+		// TODO Auto-generated method stub
+		
+		
+		String returnMag="";
+		Response response=new Response();
+		Session session=sesionFactory.getCurrentSession();
+		
+		
+		Admin admin =new Admin();
+		Criteria crc = session.createCriteria(Admin.class);
+		admin.setAdmin(userReg.getAdmin());
+	//	admin.setPassword(userReg.getPwd());
+		admin.setPassword(heapler.getPasswordEncoded(userReg.getPassword(),userReg.getAdmin()));
+		session.save(admin);
+		System.out.println("Saved");
+		returnMag = "Congratulations!!"+admin.getAdmin() +" Your message submitted";
+	//	response.setReturnCode(0);
+		response.setMessage(returnMag);
+		return response;
+		
+		
+		
+	}
+
+	@Override
+	public Response getAdmin(Requestdto userReg) {
+		// TODO Auto-generated method stub
+		logger.info("******UserRegisterServiceImpl.getLogin**************");
+		Response response=new Response();
+		Admin admin=new Admin();
+		Session session  = sesionFactory.getCurrentSession();
+		Criteria crc = session.createCriteria(Admin.class);
+		LoginResponse lresponse=new LoginResponse();
+		boolean resultE= userdao.checadmin(userReg);
+		
+		if(resultE)
+		{
+		String password= userdao.getpassword(userReg);
+		System.out.println(": "+password);
+		System.out.println(": "+userReg.getAdmin());
+			if(password.equals(heapler.getPasswordEncoded(userReg.getPassword(),userReg.getAdmin())))
+			{	
+
+			response.setStatus(StatusCode.SUCCESS.name());
+			
+				System.out.println("Login Sussfull");
+				
+			}else{
+				response.setStatus(StatusCode.ERROR.name());
+				response.setMessage("Invalid Email or Password");
+				System.out.println("Login UnSussfull");
+			}
+		}else{
+			response.setMessage("Invalid Email or Password");
+			System.out.println("Login UnSussfull");
+		}
+		
+		return response;
+
 	}
 
 

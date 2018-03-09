@@ -18,8 +18,14 @@ public class Requestdto implements Serializable {
 	
 	//private String emailId;
 	
+	private String admin;
 	
-	
+	public String getAdmin() {
+		return admin;
+	}
+	public void setAdmin(String admin) {
+		this.admin = admin;
+	}
 	public int getUeid() {
 		return ueid;
 	}
@@ -48,6 +54,14 @@ public class Requestdto implements Serializable {
    
 	private String qualification;
 	
+	private String password;
+	
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	private Date doj;
 	
 	public String getQualification() {

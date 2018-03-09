@@ -1,5 +1,6 @@
 package com.snipe.community.userdao;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.snipe.community.Config.Hibernateutil;
 import com.snipe.community.Userdetails.Userdetails;
 import com.snipe.community.constant.StatusCode;
+import com.snipe.community.entity.Admin;
 import com.snipe.community.entity.Answeres;
 import com.snipe.community.entity.ContactUs;
 import com.snipe.community.entity.Employee;
@@ -30,6 +32,7 @@ import com.snipe.community.entity.Recent;
 import com.snipe.community.entity.ResetPassword;
 import com.snipe.community.helper.Helper;
 import com.snipe.community.request.Requestdto;
+import com.snipe.community.response.Response;
 import com.snipe.community.response.Responsedto;
 
 
@@ -61,24 +64,26 @@ private SessionFactory sessionFactoy;
 	@Transactional(value="transactionManager", rollbackFor=Exception.class)
 	public boolean checkemailId(Requestdto userReg) {
 
+		Response response=new Response();
 		logger.info("******UserRegisterDAOImpl.checkEmailIdo**************");
-		//Session session  = sessionFactory.openSession().createCriteria(Employee.class);
-	//	Session session=null;
+		
 		Session session=sessionFactoy.getCurrentSession();
 		Criteria crc=sessionFactoy.getCurrentSession().createCriteria(Employee.class);
-		//Criteria crc=sessionFactoy.openSession().createCriteria(Employee.class);
-	//	Criteria crc = openSession().createCriteria(Employee.class);
+	
 		crc.add(Restrictions.eq("emailId",userReg.getEmailId())).setProjection(Projections.rowCount());
-		System.out.println("email: "+userReg.getEmpId());
+		System.out.println("email: "+userReg.getEmailId());
 		int count = (int)((long)crc.uniqueResult());
 		System.out.println(count);
 		if(count>0){
 			
-		//	System.out.println("EmailId is exited");
+			System.out.println("EmailId is exited");
+			
 			return true;
-		}
+		}else {
+		
 		//System.out.println("COrrectd");
-		return false;
+		
+		return false;}
 
 	}
 
@@ -103,23 +108,27 @@ private SessionFactory sessionFactoy;
 	}
 
 	@Override
-	public Responsedto saveUserreg(Requestdto userReg) {
+	public Response saveUserreg(Requestdto userReg) {
 		// TODO Auto-generated method stub
 		
 		logger.info("******UserRegisterDAOImpl.saveUserreg**************");
 		// TODO Auto-generated method stub
 		String returnMag ="";
 		Employee user = new Employee();
-		Responsedto response= new Responsedto();
+		SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy");
+		String date=sdf.format(userReg.getDob());
+		
+		
+		Response response= new Response();
 		Session session=sessionFactoy.getCurrentSession();
 		Criteria crc=sessionFactoy.getCurrentSession().createCriteria(Employee.class);
-	//	Session session  =currentSession();
+	
+		try {
 		
-		//Criteria crc = session.createCriteria(Employee.class);
 		user.setFname(userReg.getFname());
 		user.setLname(userReg.getLname());
 		
-		user.setDob(userReg.getDob());
+		user.setDob(date);
 		user.setAddress(userReg.getAddress());
 		user.setEmailId(userReg.getEmailId());
 		//user.setEmpId("snipe"+user.getUserRef());
@@ -130,21 +139,28 @@ private SessionFactory sessionFactoy;
 		user.setCountry(userReg.getCountry());
 		user.setGender(userReg.getGender());
 	System.out.println(userReg.getGender());
-		user.setDate(new Date());
+		user.setDoj(date);
 		user.setUeid(1);
 		user.setPwd(hepler.getPasswordEncoded(userReg.getPwd(),userReg.getEmailId()));
 		
 		user.setLoginStatus("N");
 		System.out.println("HJHGGHV");
-	int i=	(int) session.save(user);
-		//System.out.println("HJHGGHV");
-		System.out.println("Saved");
-	//	returnMag = "Congratulations!!"+user.getFname() +" Registration successfull"+user.getEmpId()+"thank u";
-		System.out.println(""+userReg.getFname());
-		 //response.setReturnMsg(returnMag);	
-		//response.setMessageReturn("E"+user.getEmpId());
-		return response;
+	int res=(int) session.save(user);
+	System.out.println(res);
+	if (res >0) {
+		response.setStatus(StatusCode.SUCCESS.name());
+		response.setMessage("User added");
+	} else {
+		response.setStatus(StatusCode.ERROR.name());
 	}
+} catch (Exception e) {
+	logger.error("Exception in addUser", e);
+	response.setStatus(StatusCode.ERROR.name());
+	response.setErrors(e.getMessage());
+}
+return response;
+	}
+
 
 	@Override
 	public Responsedto contactUs(Requestdto userReg) {
@@ -214,33 +230,22 @@ private SessionFactory sessionFactoy;
 	}
 
 	@Override
-	public Responsedto getLoginuser(Requestdto userReg) {
+	public Response getLoginuser(Requestdto userReg) {
 		
 		
-		Responsedto response= new Responsedto();
+		Response response= new Response();
 		String returnMag ="";
 		Session session=sessionFactoy.getCurrentSession();
 		Criteria crc=sessionFactoy.getCurrentSession().createCriteria(ContactUs.class);
 		Query q=session.createQuery("select emp.ueid from EmployeeEntity emp where emp.emailId=:email");
 		q.setParameter("email",userReg.getEmailId());
 		System.out.println(q);
-		//System.out.println(q);
-		response.setMessageReturn("");
-		response.setReturnCode(1);
-		
-		
-		/*lresponse.setReturnCode(1);
-		userRegRes.setMessageReturn("success");*/
+
+		response.setMessage("Login Successfull");
+
 		System.out.println("Login Sussfull");
-		
 	
-		//userRegRes.setReturnCode(1);
-		response.setMessageReturn("oooInvalid EmailId/Password");
-		System.out.println("Login UnSussfull");
 	
-	//userRegRes.setReturnCode(1);
-	response.setMessageReturn("Invalid EmailId/Password");
-	System.out.println("Login UnSussfull");
 	return response;
 	}
 
@@ -417,13 +422,24 @@ private SessionFactory sessionFactoy;
 	}
 
 	@Override
-	public Responsedto saveEmprreg(Requestdto userReg) {
+	public Response saveEmprreg(Requestdto userReg) {
 		// TODO Auto-generated method stub
 		
 		logger.info("******UserRegisterDAOImpl.saveUserreg**************");
 		// TODO Auto-generated method stub
 		String returnMag ="";
-		Responsedto response= new Responsedto();
+		Response response= new Response();
+		
+		SimpleDateFormat sdf=new SimpleDateFormat("dd/mm/yyyy");
+		String dob=sdf.format(userReg.getDob());
+		
+		SimpleDateFormat sdf1=new SimpleDateFormat("dd/mm/yyyy");
+		String doj=sdf1.format(userReg.getDoj());
+		
+		
+		/*SimpleDateFormat currentdate=new SimpleDateFormat("dd/MM/yyyy");
+		String nowdate=currentdate.format(new Date());
+		*/
 		Session session=sessionFactoy.getCurrentSession();
 		
 	//	UserEntity user = new UserEntity();
@@ -431,9 +447,9 @@ private SessionFactory sessionFactoy;
 		Criteria crc = session.createCriteria(Employee.class);
 		emp.setFname(userReg.getFname());
 		emp.setLname(userReg.getLname());
-		emp.setDob(userReg.getDob());
+		emp.setDob(dob);
 		emp.setQualification(userReg.getQualification());
-		emp.setDoj(userReg.getDoj());
+		emp.setDoj(doj);
 		emp.setAddress(userReg.getAddress());//
 		emp.setEmailId(userReg.getEmailId());
 		emp.setUeid(2);
@@ -445,13 +461,13 @@ private SessionFactory sessionFactoy;
 		emp.setState(userReg.getState());
 		emp.setCountry(userReg.getCountry());
 		emp.setGender(userReg.getGender());
-		emp.setDate(new Date());
+	//	emp.setDate(new Date());
 		emp.setPwd(hepler.getPasswordEncoded(userReg.getPwd(),userReg.getEmailId()));
 		emp.setLoginStatus("N");
 		session.save(emp);
 		System.out.println("Saved");
 		returnMag = "Congratulations!!"+emp.getFname() +" Registration successfull ID is  "+emp.getEmpId()+"";
-		response.setMessageReturn(returnMag);
+		response.setMessage(returnMag);
 		return response;
 
 	}
@@ -470,10 +486,10 @@ private SessionFactory sessionFactoy;
 				if(count>0){
 					
 				//	System.out.println("EmailId is exited");
-					return true;
+					return false;
 				}
 				//System.out.println("COrrectd");
-				return false;
+				return true;
 	}
 
 	@Override
@@ -520,7 +536,8 @@ private SessionFactory sessionFactoy;
 	    q.setParameter("lname",userReg.getLname());
 	    q.setParameter("emailId",userReg.getEmailId());
 	 int status1=q.executeUpdate();  
-	    if(status1>=1)System.out.println("updated");
+	    if(status1>=1)
+	    	System.out.println("updated");
 	    else{System.out.println("Not found");}
 	      
 	    
@@ -640,29 +657,19 @@ private SessionFactory sessionFactoy;
 	}
 
 	@Override
-	public boolean checkanswered(Requestdto userReg) {
-		// TODO Auto-generated method stub
-		logger.info("******UserRegisterDAOImpl.checkANswered**************");
-		Session session=sessionFactoy.getCurrentSession();
+
 		
 		
-		//List<Answeres> ans=new ArrayList<Answeres>();
-		Answeres ans=new Answeres();
-		Criteria crc1=session.createCriteria(Question.class);
-		crc1.add(Restrictions.eq("q_id", userReg.getQ_id())).setProjection(Projections.rowCount());
 		
-	
-		System.out.println("Q_Id"+userReg.getQ_id());
-		boolean count = crc1.setMaxResults(1) != null;
-		System.out.println(count);
-		if(count){
-			
-		//	System.out.println("EmailId is exited");
-			return true;
-		}
-		//System.out.println("COrrectd");
-		return false;
 		
+		
+		public boolean checkanswered(Requestdto userReg) {
+		logger.info("*****************Userdaoimpl. Check Answered  ************************");
+			Session session=sessionFactoy.getCurrentSession();
+		    return session.createCriteria(Question.class)
+		            .add(Restrictions.eq("status", "N"))
+		            .setProjection(Projections.property("status"))!=null;
+		            
 
 	}
 
@@ -718,5 +725,92 @@ private SessionFactory sessionFactoy;
 		}
 		return encriptString;
 	}
+
+	@Override
+	public boolean Isexist(Requestdto userReg) {
+		// TODO Auto-generated method stub
+		
+		logger.info("******UserRegisterDAOImpl.Q-Id Exists or Not**************");
+		Session session=sessionFactoy.getCurrentSession();
+		
+	//	Session session=sessionFactoy.getCurrentSession();
+	    return session.createCriteria(Question.class)
+	            .add(Restrictions.eq("q_id", userReg.getQ_id()))
+	            .setProjection(Projections.property("q_id"))
+	            .uniqueResult() != null;
 	
+}
+
+	@Override
+	public boolean Checklogin(Requestdto userReg) {
+		// TODO Auto-generated method stub
+		logger.info("*****************Userdaoimpl. Check login  ************************");
+		Session session=sessionFactoy.getCurrentSession();
+		Criteria cr=session.createCriteria(Employee.class);
+	    cr.add(Restrictions.eq("loginStatus", "Y")).setProjection(Projections.rowCount());
+	    int i=(int)(long)cr.uniqueResult();
+	    System.out.println(i);
+	    if(i>=1)
+	    {
+	    	return true;
+	    	
+	    }
+		
+	           return false;
+	            
+	}
+
+	@Override
+	public void updatepwd(Requestdto userReg, String st) {
+		// TODO Auto-generated method stub
+	
+Session session=sessionFactoy.getCurrentSession();
+		System.out.println(st);
+		System.out.println(userReg.getEmailId());
+		logger.info("******UserRegisterDAOImpl.updateLoginStatus**************");
+		Criteria crit = session.createCriteria(Employee.class);
+		crit.add(Restrictions.eq("emailId",userReg.getEmailId()));	
+		Employee entity = (Employee)crit.uniqueResult();
+		entity.setPwd(hepler.getPasswordEncoded(st,userReg.getEmailId()));
+		session.saveOrUpdate(entity);
+
+		
+		
+		
+	}
+
+	@Override
+	public boolean checadmin(Requestdto userReg) {
+		// TODO Auto-generated method stub
+		logger.info("******UserRegisterDAOImpl.checkEmailIdo**************");
+		Session session  = sessionFactoy.getCurrentSession();
+		Criteria crc = session.createCriteria(Admin.class);
+		crc.add(Restrictions.eq("admin",userReg.getAdmin())).setProjection(Projections.rowCount());
+		System.out.println("email: "+userReg.getAdmin());
+		int count = (int)((long)crc.uniqueResult());
+		System.out.println(count);
+		if(count>0){
+			
+		//	System.out.println("EmailId is exited");
+			return true;
+		}
+		//System.out.println("COrrectd");
+		return false;
+	}
+
+	@Override
+	public String getpassword(Requestdto userReg) {
+		// TODO Auto-generated method stub
+		logger.info("******UserRegisterDAOImpl.getpwd**************");
+		// TODO Auto-generated method stub
+		String returnMag ="";
+		Session session=sessionFactoy.getCurrentSession();
+		Criteria crc=sessionFactoy.getCurrentSession().createCriteria(Admin.class);
+		crc.add(Restrictions.eq("admin",userReg.getAdmin()))
+		.setProjection(Projections.property("password"));
+		String pwd = (String) crc.uniqueResult();
+		return pwd;
+	}
+
+
 }

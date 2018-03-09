@@ -48,8 +48,6 @@ public class Employee {
 	public void setEid(int eid) {
 		this.eid = eid;
 	}*/
-	@Column(name="DATE")
-	private Date date;
 
    
 
@@ -63,23 +61,18 @@ public class Employee {
 	public void setQualification(String qualification) {
 		this.qualification = qualification;
 	}
-	public Date getDoj() {
+	public String getDoj() {
 		return doj;
 	}
-	public void setDoj(Date doj) {
-		this.doj = doj;
+	public void setDoj(String date2) {
+		this.doj = date2;
 	}
 	@Column(name="DOJ")
-	private Date doj;
+	private String doj;
 	
 	
 	
-	public Date getDate() {
-		return date;
-	}
-	public void setDate(Date date) {
-		this.date = date;
-	}
+	
 	@Column(name="EMP_FNAME")
 	private String fname;
 	
@@ -138,7 +131,7 @@ public class Employee {
 		this.address = address;
 	}
 	@Column(name="EMP_DOB")
-	private Date dob; 
+	private String dob; 
 	
 	@Column(name="EMP_STATE")
 	private String state;
@@ -175,11 +168,11 @@ public class Employee {
 	
 	
 	
-	public Date getDob() {
+	public String getDob() {
 		return dob;
 	}
-	public void setDob(Date dob) {
-		this.dob = dob;
+	public void setDob(String date2) {
+		this.dob = date2;
 	}
 	public String getState() {
 		return state;
@@ -202,6 +195,10 @@ public class Employee {
 	public void setLastlogin(Date date2) {
 		// TODO Auto-generated method stub
 		
+	}
+	public String setSendedmail(String emailId2) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
